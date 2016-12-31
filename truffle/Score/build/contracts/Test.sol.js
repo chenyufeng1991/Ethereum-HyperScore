@@ -231,13 +231,13 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.new = function() {
     if (this.currentProvider == null) {
-      throw new Error("Utils error: Please call setProvider() first before calling new().");
+      throw new Error("Test error: Please call setProvider() first before calling new().");
     }
 
     var args = Array.prototype.slice.call(arguments);
 
     if (!this.unlinked_binary) {
-      throw new Error("Utils error: contract binary not set. Can't deploy new instance.");
+      throw new Error("Test error: contract binary not set. Can't deploy new instance.");
     }
 
     var regex = /__[^_]+_+/g;
@@ -256,7 +256,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         return name != arr[index + 1];
       }).join(", ");
 
-      throw new Error("Utils contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of Utils: " + unlinked_libraries);
+      throw new Error("Test contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of Test: " + unlinked_libraries);
     }
 
     var self = this;
@@ -297,7 +297,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.at = function(address) {
     if (address == null || typeof address != "string" || address.length != 42) {
-      throw new Error("Invalid address passed to Utils.at(): " + address);
+      throw new Error("Invalid address passed to Test.at(): " + address);
     }
 
     var contract_class = this.web3.eth.contract(this.abi);
@@ -308,7 +308,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.deployed = function() {
     if (!this.address) {
-      throw new Error("Cannot find deployed address: Utils not deployed or address not set.");
+      throw new Error("Cannot find deployed address: Test not deployed or address not set.");
     }
 
     return this.at(this.address);
@@ -348,10 +348,72 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.all_networks = {
   "default": {
-    "abi": [],
-    "unlinked_binary": "0x606060405260088060106000396000f36060604052600256",
-    "events": {},
-    "updated_at": 1483192829584,
+    "abi": [
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "getAge",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_age",
+            "type": "uint256"
+          }
+        ],
+        "name": "setAge",
+        "outputs": [],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "age",
+            "type": "uint256"
+          }
+        ],
+        "name": "SetAge",
+        "type": "event"
+      }
+    ],
+    "unlinked_binary": "0x606060405260a28060106000396000f3606060405260e060020a6000350463967e6e6581146026578063d5dcf12714603f575b6002565b3460025760005460408051918252519081900360200190f35b346002576004356000819055604080513373ffffffffffffffffffffffffffffffffffffffff16815260208101839052815160a093927fc890294a68097562641143813b7ae9e39c85e43d49eefd10381cb4458c0ebcf5928290030190a150565b00",
+    "events": {
+      "0xc890294a68097562641143813b7ae9e39c85e43d49eefd10381cb4458c0ebcf5": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "age",
+            "type": "uint256"
+          }
+        ],
+        "name": "SetAge",
+        "type": "event"
+      }
+    },
+    "updated_at": 1483192829579,
     "links": {}
   }
 };
@@ -437,7 +499,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     Contract.links[name] = address;
   };
 
-  Contract.contract_name   = Contract.prototype.contract_name   = "Utils";
+  Contract.contract_name   = Contract.prototype.contract_name   = "Test";
   Contract.generated_with  = Contract.prototype.generated_with  = "3.2.0";
 
   // Allow people to opt-in to breaking changes now.
@@ -477,6 +539,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   } else {
     // There will only be one version of this contract in the browser,
     // and we can use that.
-    window.Utils = Contract;
+    window.Test = Contract;
   }
 })();

@@ -32,4 +32,20 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
     var codeString = JSON.stringify(web3.eth.compile.solidity(result.toString()).code);
     console.log("code字节码：" + codeString);
     fs.writeFile("../../../contract/codeString.txt", codeString);
+
+    var contractAddress = "0x31b8058d24aa83080659215fff659d94aefcf819";
+
+    var contractInstance = web3.eth.contract(JSON.parse(abiString)).at(contractAddress);
+    contractInstance.setAge(8888, {from: web3.eth.accounts[0]}, function (error, result) {
+        console.log(result);
+    });
+    contractInstance.getAge(function (error, result) {
+      console.log(result);
+    });
+    var eventSetAge = contractInstance.SetAge();
+    eventSetAge.watch(function (error, event) {
+        console.log(event.args.age);
+        eventSetAge.stopWatching();
+    });
+
 });

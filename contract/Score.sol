@@ -1,6 +1,7 @@
 pragma solidity ^0.4.2;
 
-//测试类
+//测试类：该合约不需要迁移
+//供外部调用测试交易方法、常量方法、event的使用
 contract Test {
     uint age;
 
@@ -15,7 +16,7 @@ contract Test {
     }
 }
 
-//工具类
+//工具类：该合约不需要迁移
 contract Utils {
 
 	function stringToBytes32(string memory source)constant internal returns (bytes32 result) {
@@ -43,6 +44,7 @@ contract Utils {
 
 }
 
+//主合约：该合约需要迁移
 contract Score is Utils, Test {
 
     address owner; //合约的拥有者，银行

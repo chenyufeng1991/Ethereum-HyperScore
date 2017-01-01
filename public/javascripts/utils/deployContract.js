@@ -29,23 +29,32 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
     fs.writeFile("../../../contract/abiString.txt", abiString);
 
     //获得code字节码
-    var codeString = JSON.stringify(web3.eth.compile.solidity(result.toString()).code);
+    var codeString = web3.eth.compile.solidity(result.toString()).code;
     console.log("code字节码：" + codeString);
     fs.writeFile("../../../contract/codeString.txt", codeString);
 
-    var contractAddress = "0x31b8058d24aa83080659215fff659d94aefcf819";
+    //根据abi和bytecode部署合约
+    web3.eth.contract(JSON.parse(abiString)).new({data: codeString, from: web3.eth.accounts[0], gas: 1600000}, function (error, contractInstance) {
+        if(!contractInstance.address) {
+            console.log("交易hash：" + contractInstance.transactionHash);
+        }
+        else {
+            //获得部署的合约地址
+            var contractAddress = contractInstance.address;
+            console.log("合约地址：" + contractAddress);
+            fs.writeFile("../../../contract/contractAddress.txt", contractAddress);
 
-    var contractInstance = web3.eth.contract(JSON.parse(abiString)).at(contractAddress);
-    contractInstance.setAge(8888, {from: web3.eth.accounts[0]}, function (error, result) {
-        console.log(result);
+            contractInstance.setAge(8888, {from: web3.eth.accounts[0]}, function (error, result) {
+                console.log(result);
+            });
+            contractInstance.getAge(function (error, result) {
+                console.log(result);
+            });
+            var eventSetAge = contractInstance.SetAge();
+            eventSetAge.watch(function (error, event) {
+                console.log(event.args.age);
+                eventSetAge.stopWatching();
+            });
+        }
     });
-    contractInstance.getAge(function (error, result) {
-      console.log(result);
-    });
-    var eventSetAge = contractInstance.SetAge();
-    eventSetAge.watch(function (error, event) {
-        console.log(event.args.age);
-        eventSetAge.stopWatching();
-    });
-
 });

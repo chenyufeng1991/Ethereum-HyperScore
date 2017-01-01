@@ -34,16 +34,18 @@ module.exports.register = function (req, res) {
 
     //如果出现OOG，则添加gas参数
     global.contractInstance.registerCustomer(req.query.customerAddr, req.query.password, {from: web3.eth.accounts[0], gas:1000000}, function (error, result) {
-        if(error) {
+        if (!error) {
+            var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
+            eventRegisterCustomer.watch(function (error, result) {
+                console.log(result.args.message);
+                eventRegisterCustomer.stopWatching();
+                res.send(result.args.message);
+                res.end();
+            });
+        }
+        else {
             console.log("发生错误：" + error);
         }
-    });
-    var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
-    eventRegisterCustomer.watch(function (error, result) {
-        console.log(result.args.message);
-        eventRegisterCustomer.stopWatching();
-        res.send(result.args.message);
-        res.end();
     });
 
 

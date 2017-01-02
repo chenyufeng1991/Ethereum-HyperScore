@@ -3,6 +3,7 @@
 var Web3 = require('web3');
 var express = require('express');
 var fs = require('fs');
+var generateKey = require('../public/javascripts/utils/generateKey');
 
 //web3初始化
 var web3;
@@ -35,6 +36,11 @@ else {
 module.exports.register = function (req, res) {
 
     console.log("请求参数："+ req.query.customerAddr + "    " + req.query.password);
+
+    var keys = generateKey.generateKeys();
+    console.log("qqqqqq=" + keys.publicKey);
+    console.log("wwwwww=" + keys.privateKey);
+    console.log("eeeeee=" + keys.accountAddress);
 
     //如果出现OOG，则添加gas参数
     global.contractInstance.registerCustomer(req.query.customerAddr, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {

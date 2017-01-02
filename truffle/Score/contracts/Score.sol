@@ -1,21 +1,5 @@
 pragma solidity ^0.4.2;
 
-//测试类
-contract Test {
-    uint age;
-
-    event SetAge(address sender, uint age);
-    function setAge(uint _age) {
-        age = _age;
-        SetAge(msg.sender, age);
-    }
-
-    function getAge()constant returns(uint) {
-        return age;
-    }
-}
-
-//工具类
 contract Utils {
 
 	function stringToBytes32(string memory source)constant internal returns (bytes32 result) {
@@ -43,7 +27,7 @@ contract Utils {
 
 }
 
-contract Score is Utils, Test {
+contract Score is Utils {
 
     address owner; //合约的拥有者，银行
     uint issuedScoreAmount; //银行已经发行的积分总数

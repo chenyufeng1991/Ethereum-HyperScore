@@ -14,6 +14,14 @@ else {
 }
 
 /**
+ * 状态码说明：
+ * 0：成功
+ * 1：错误
+ *
+ */
+
+/**
+ * 返回JSON
  *
  * @param req
  * customerAddr:客户地址
@@ -22,33 +30,37 @@ else {
  * @param res
  * code:状态码
  * message:消息
+ * txInfo:区块链交易信息
  */
 module.exports.register = function (req, res) {
 
     console.log("请求参数："+ req.query.customerAddr + "    " + req.query.password);
-    console.log("baseUrl:" + req.baseUrl);
-    console.log("hostname:" + req.hostname);
-    console.log("originalUrl:" + req.originalUrl);
-    console.log("params:" + req.params);
-    console.log("path:" + req.path);
 
     //如果出现OOG，则添加gas参数
-    global.contractInstance.registerCustomer(req.query.customerAddr, req.query.password, {from: web3.eth.accounts[0], gas:1000000}, function (error, result) {
+    global.contractInstance.registerCustomer(req.query.customerAddr, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {
         if (!error) {
             var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
             eventRegisterCustomer.watch(function (error, result) {
                 console.log(result.args.message);
+                var response = {
+                    code: 0,
+                    message: result.args.message,
+                    txInfo: result
+                };
                 eventRegisterCustomer.stopWatching();
-                res.send(result.args.message);
+                res.send(JSON.stringify(response));
                 res.end();
             });
         }
         else {
             console.log("发生错误：" + error);
+            var response = {
+                code: 1,
+                message: error.toString(),
+                txInfo: ""
+            };
+            res.send(JSON.stringify(response));
+            res.end();
         }
     });
-
-
-
-
 };

@@ -1,196 +1,115 @@
 {
- "Score": {
-  "code": "0x606060405260018054600160a060020a0319166c0100000000000000000000000033810204179055610433806100356000396000f3606060405260e060020a600035046381f94656811461003f578063893d20e8146100e8578063967e6e6514610100578063d5dcf12714610110575b610002565b346100025760408051602060046024803582810135601f81018590048502860185019096528585526101669583359593946044949392909201918190840183828082843750506040805160209735808a0135601f81018a90048a0283018a019093528282529698976064979196506024919091019450909250829150840183828082843750949650505050505050610196826000805b6009548110156103f8576104038361026b565b3461000257610168600154600160a060020a03165b90565b34610002576101846000546100fd565b346100025760043560008190556040805133600160a060020a0316815260208101839052815161016693927fc890294a68097562641143813b7ae9e39c85e43d49eefd10381cb4458c0ebcf5928290030190a150565b005b60408051600160a060020a039092168252519081900360200190f35b60408051918252519081900360200190f35b15156101d557600160a060020a03831660009081526004602052604090208054600160a060020a031916606060020a8086020417905561024a8261026b565b60408051600160a060020a0333168152602081018290526015818301527fe8afa5e8b4a6e688b7e5b7b2e7bb8fe6b3a8e5868c0000000000000000000000606082015290517f03945a4b71f6bae73fb43e650538e4ce700147bd742b006557d2a400c60ca2bc9181900360800190a15b505050565b600160a060020a038416600090815260046020526040902060010155610272815b6020015190565b600160a060020a038416600090815260046020526040812060020191909155839060059061029f8561026b565b815260208101919091526040016000208054600160a060020a031916606060020a928302929092049190911790556008805460018101808355828183801582901161030b5760008381526020902061030b9181019083015b8082111561036057600081556001016102f7565b5050506000928352506020909120018054600160a060020a031916606060020a8581020417905560098054600181018083558281838015829011610364576000838152602090206103649181019083016102f7565b5090565b50505091909060005260206000209001600061037f8561026b565b909155505060408051600160a060020a033316815260208101829052600c818301527fe6b3a8e5868ce68890e58a9f0000000000000000000000000000000000000000606082015290517f03945a4b71f6bae73fb43e650538e4ce700147bd742b006557d2a400c60ca2bc9181900360800190a1610245565b600091505b50919050565b60098054839081101561000257600091825260209091200154141561042b57600191506103fd565b6001016100d556",
-  "info": {
-   "source": "pragma solidity ^0.4.2;\n\n//测试类：该合约不需要迁移\n//供外部调用测试交易方法、常量方法、event的使用\ncontract Test {\n    uint age;\n\n    event SetAge(address sender, uint age);\n    function setAge(uint _age) {\n        age = _age;\n        SetAge(msg.sender, age);\n    }\n\n    function getAge()constant returns(uint) {\n        return age;\n    }\n}\n\n//工具类：该合约不需要迁移\ncontract Utils {\n\n    function stringToBytes32(string memory source)constant internal returns (bytes32 result) {\n    assembly {\n        result := mload(add(source, 32))\n      }\n    }\n\n    function bytes32ToString(bytes32 x)constant internal returns (string) {\n    bytes memory bytesString = new bytes(32);\n    uint charCount = 0;\n    for (uint j = 0; j < 32; j++) {\n        byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));\n        if (char != 0) {\n            bytesString[charCount] = char;\n            charCount++;\n        }\n    }\n    bytes memory bytesStringTrimmed = new bytes(charCount);\n    for (j = 0; j < charCount; j++) {\n        bytesStringTrimmed[j] = bytesString[j];\n    }\n    return string(bytesStringTrimmed);\n    }\n\n}\n\n//主合约：该合约需要迁移\ncontract Score is Utils, Test {\n\n    address owner; //合约的拥有者，银行\n    uint issuedScoreAmount; //银行已经发行的积分总数\n    uint settledScoreAmount; //银行已经清算的积分总数\n\n    struct Customer {\n        address customerAddr; //客户address\n        bytes32 phone; //客户手机\n        bytes32 password; //客户密码\n        uint scoreAmount; //积分余额\n        bytes32[] buyGoods; //购买的商品数组\n    }\n\n    struct Merchant {\n        address merchantAddr; //商户address\n        bytes32 password; //商户密码\n        uint scoreAmount; //积分余额\n        bytes32[] sellGoods; //发布的商品数组\n    }\n\n    struct Good {\n        bytes32 goodId; //商品Id;\n        uint price; //价格；\n        address belong; //商品属于哪个商户address；\n    }\n\n    mapping (address=>Customer) customer; \n    mapping (bytes32=>address) customerPhone;\n    mapping (address=>Merchant) merchant; \n    mapping (bytes32=>Good) good; //根据商品Id查找该件商品\n\n    address[] customerAddrs; //已注册的客户地址数组\n    bytes32[] customerPhones; //已注册的客户手机数组\n    address[] merchants; //已注册的商户数组\n    bytes32[] goods; //已经上线的商品数组\n\n    //增加权限控制，某些方法只能由合约的创建者调用\n    modifier onlyOwner(){\n        if(msg.sender != owner) throw;\n        _;\n    }\n\n    //构造函数\n    function Score() {\n        owner = msg.sender;\n    }\n\n    //返回合约调用者地址\n    function getOwner() constant returns(address) {\n        return owner;\n    }\n\n    //注册一个客户\n    event RegisterCustomer(address sender, string message);\n    function registerCustomer(address _customerAddr, \n        string _phone, \n        string _password) {\n        //判断是否已经注册\n        if(!isCustomerAlreadyRegister(_phone)) {\n            //还未注册\n            customer[_customerAddr].customerAddr = _customerAddr;\n            customer[_customerAddr].phone = stringToBytes32(_phone);\n            customer[_customerAddr].password = stringToBytes32(_password);\n\n            customerPhone[stringToBytes32(_phone)] = _customerAddr;\n            customerAddrs.push(_customerAddr);\n            customerPhones.push(stringToBytes32(_phone));\n            RegisterCustomer(msg.sender, \"注册成功\");\n            return;\n        }\n        else {\n            RegisterCustomer(msg.sender, \"该账户已经注册\");\n            return;\n        }\n    }\n\n    //注册一个商户\n    // event NewMerchant(address sender, bool isSuccess, string message);\n    // function newMerchant(address _merchantAddr) {\n\n    //     //判断是否已经注册\n    //     if(!isMerchantAlreadyRegister(_merchantAddr)) {\n    //         //还未注册\n    //         merchant[_merchantAddr].merchantAddr = _merchantAddr;\n    //         merchants.push(_merchantAddr);\n    //         NewMerchant(msg.sender, true, \"注册成功\");\n    //         return;\n    //     }\n    //     else {\n    //         NewMerchant(msg.sender, false, \"该账户已经注册\");\n    //         return;\n    //     }\n    // }\n\n    //判断一个客户是否已经注册\n    function isCustomerAlreadyRegister(string _phone)internal returns(bool) {\n        for(uint i = 0; i < customerPhones.length; i++) {\n            if(customerPhones[i] == stringToBytes32(_phone)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    //判断一个商户是否已经注册\n    // function isMerchantAlreadyRegister(address _merchantAddr)internal returns(bool) {\n    //     for(uint i = 0; i < merchants.length; i++) {\n    //         if(merchants[i] == _merchantAddr) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n\n    //设置商户密码\n    // event SetMerchantPassword(address sender, string message);\n    // function setMerchantPassword(address _merchantAddr, string _password) {\n    //     merchant[_merchantAddr].password = stringToBytes32(_password);\n    //     SetMerchantPassword(msg.sender, \"设置密码成功\");\n    // }\n\n    //查询用户密码\n    // function getCustomerPassword(address _customerAddr)constant returns(bool, bytes32) {\n    //     //先判断该用户是否注册\n    //     if(isCustomerAlreadyRegister(_customerAddr)) {\n    //         return (true, customer[_customerAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //查询商户密码\n    // function getMerchantPassword(address _merchantAddr)constant returns(bool, bytes32) {\n    //     //先判断该商户是否注册\n    //     if(isMerchantAlreadyRegister(_merchantAddr)) {\n    //         return (true, merchant[_merchantAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //银行发送积分给客户,只能被银行调用，且只能发送给客户\n    // event SendScoreToCustomer(address sender, string message);\n    // function sendScoreToCustomer(address _receiver, \n    //     uint _amount)onlyOwner {\n\n    //     if(isCustomerAlreadyRegister(_receiver)) {\n    //         //已经注册\n    //         issuedScoreAmount += _amount;\n    //         customer[_receiver].scoreAmount += _amount;\n    //         SendScoreToCustomer(msg.sender, \"发行积分成功\");\n    //         return;\n    //     }\n    //     else {\n    //         //还没注册\n    //         SendScoreToCustomer(msg.sender, \"该账户未注册，发行积分失败\");\n    //         return;\n    //     }\n    // }\n\n    //根据客户address查找余额\n    // function getScoreWithCustomerAddr(address customerAddr)constant returns(uint) {\n    //     return customer[customerAddr].scoreAmount;\n    // }\n\n    //根据商户address查找余额\n    // function getScoreWithMerchantAddr(address merchantAddr)constant returns(uint) {\n    //     return merchant[merchantAddr].scoreAmount;\n    // }\n\n    //两个账户转移积分，任意两个账户之间都可以转移，客户商户都调用该方法\n    //_senderType表示调用者类型，0表示客户，1表示商户\n    // event TransferScoreToAnother(address sender, string message);\n    // function transferScoreToAnother(uint _senderType, \n    //     address _sender, \n    //     address _receiver, \n    //     uint _amount) {\n    //     string memory message;\n    //     if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver)) {\n    //         //目的账户不存在\n    //         TransferScoreToAnother(msg.sender, \"目的账户不存在，请确认后再转移！\");\n    //         return;\n    //     }\n    //     if(_senderType == 0) {\n    //         //客户转移\n    //         if(customer[_sender].scoreAmount >= _amount) {\n    //             customer[_sender].scoreAmount -= _amount;\n        \n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //       }else {\n    //             TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //             return;\n    //       }\n    //     }else {\n    //         //商户转移\n    //         if(merchant[_sender].scoreAmount >= _amount) {\n    //             merchant[_sender].scoreAmount -= _amount;\n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //         }else {\n    //              TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //              return;\n    //         }\n    //     }\n    // }\n\n    //银行查找已经发行的积分总数\n    // function getIssuedScoreAmount()constant returns(uint) {\n    //     return issuedScoreAmount;\n    // }\n\n    //（1）商户添加一件商品:（1）（2）（3）方法分拆解决out of gas\n    // event AddGood(address sender, bool isSuccess, string message);\n    // function addGood(address _merchantAddr, string _goodId, uint _price) {\n    //     bytes32 tempId = stringToBytes32(_goodId);\n\n    //     //首先判断该商品Id是否已经存在\n    //     if(!isGoodAlreadyAdd(tempId)) {\n    //         good[tempId].goodId = tempId;\n    //         good[tempId].price = _price;\n    //         good[tempId].belong = _merchantAddr;\n    //         AddGood(msg.sender, true, \"创建商品成功\");\n    //         return;\n    //     }\n    //     else {\n    //         AddGood(msg.sender, false, \"该件商品已经添加，请确认后操作\");\n    //         return;\n    //     }\n    // }\n\n    //（2）商户添加一件商品\n    // event PutGoodToArray(address sender, string message);\n    // function putGoodToArray(string _goodId) {\n    //     goods.push(stringToBytes32(_goodId));  \n    //     PutGoodToArray(msg.sender, \"添加到全局商品数组成功\");\n    // }\n\n    //（3）商户添加一件商品\n    // event PutGoodToMerchant(address sender, string message);\n    // function putGoodToMerchant(address _merchantAddr, string _goodId) {\n    //      merchant[_merchantAddr].sellGoods.push(stringToBytes32(_goodId)); \n    //      PutGoodToMerchant(msg.sender, \"添加到商户的商品数组成功\");\n    // }\n\n    //商户查找自己的商品数组\n    // function getGoodsByMerchant(address _merchantAddr)constant returns(bytes32[]) {\n    //     return merchant[_merchantAddr].sellGoods;\n    // }\n\n    //（1）用户用积分购买一件商品,拆分方法，解决out of gas\n    // event BuyGood(address sender, bool isSuccess, string message);\n    // function buyGood(address _customerAddr, string _goodId) {\n    //     //首先判断输入的商品Id是否存在\n    //     bytes32 tempId = stringToBytes32(_goodId);\n    //     if(isGoodAlreadyAdd(tempId)) {\n    //         //该件商品已经添加，可以购买\n    //         if(customer[_customerAddr].scoreAmount < good[tempId].price) {\n    //             BuyGood(msg.sender, false, \"余额不足，购买商品失败\");\n    //             return;\n    //         }\n    //         else {\n    //             //对这里的方法抽取      \n    //             BuyGood(msg.sender, true, \"购买商品成功\");\n    //             return;\n    //         }\n    //     }\n    //     else {\n    //         //没有这个Id的商品\n    //         BuyGood(msg.sender, false, \"输入商品Id不存在，请确定后购买\");\n    //         return;\n    //     }\n    // }\n\n    //（2）对上面buyGood()方法的拆分\n    // function buyGoodSuccess(address _customerAddr, string _goodId) {\n    //      bytes32 tempId = stringToBytes32(_goodId);\n    //      customer[_customerAddr].scoreAmount -= good[tempId].price;\n    //      merchant[good[tempId].belong].scoreAmount += good[tempId].price;\n    //      customer[_customerAddr].buyGoods.push(tempId);\n    // }\n\n    //客户查找自己的商品数组\n    // function getGoodsByCustomer(address _customerAddr)constant returns(bytes32[]) {\n    //     return customer[_customerAddr].buyGoods;\n    // }\n\n    //首先判断输入的商品Id是否存在\n    // function isGoodAlreadyAdd(bytes32 _goodId)internal returns(bool) {\n    //     for(uint i = 0; i < goods.length; i++) {\n    //         if(goods[i] == _goodId) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n}\n\n\n\n\n\n\n\n",
-   "language": "Solidity",
-   "languageVersion": "0.4.4",
-   "compilerVersion": "0.4.4",
-   "compilerOptions": "--combined-json bin,abi,userdoc,devdoc --add-std --optimize",
-   "abiDefinition": [
-    {
-     "constant": false,
-     "inputs": [
-      {
-       "name": "_customerAddr",
-       "type": "address"
-      },
-      {
-       "name": "_phone",
-       "type": "string"
-      },
-      {
-       "name": "_password",
-       "type": "string"
-      }
-     ],
-     "name": "registerCustomer",
-     "outputs": [],
-     "payable": false,
-     "type": "function"
-    },
-    {
-     "constant": true,
-     "inputs": [],
-     "name": "getOwner",
-     "outputs": [
-      {
-       "name": "",
-       "type": "address"
-      }
-     ],
-     "payable": false,
-     "type": "function"
-    },
-    {
-     "constant": true,
-     "inputs": [],
-     "name": "getAge",
-     "outputs": [
-      {
-       "name": "",
-       "type": "uint256"
-      }
-     ],
-     "payable": false,
-     "type": "function"
-    },
-    {
-     "constant": false,
-     "inputs": [
-      {
-       "name": "_age",
-       "type": "uint256"
-      }
-     ],
-     "name": "setAge",
-     "outputs": [],
-     "payable": false,
-     "type": "function"
-    },
-    {
-     "inputs": [],
-     "type": "constructor"
-    },
-    {
-     "anonymous": false,
-     "inputs": [
-      {
-       "indexed": false,
-       "name": "sender",
-       "type": "address"
-      },
-      {
-       "indexed": false,
-       "name": "message",
-       "type": "string"
-      }
-     ],
-     "name": "RegisterCustomer",
-     "type": "event"
-    },
-    {
-     "anonymous": false,
-     "inputs": [
-      {
-       "indexed": false,
-       "name": "sender",
-       "type": "address"
-      },
-      {
-       "indexed": false,
-       "name": "age",
-       "type": "uint256"
-      }
-     ],
-     "name": "SetAge",
-     "type": "event"
-    }
-   ],
-   "userDoc": {
-    "methods": {}
+ "code": "606060405260018054600160a060020a0319166c0100000000000000000000000033810204179055610433806100356000396000f3606060405260e060020a600035046381f94656811461003f578063893d20e8146100e8578063967e6e6514610100578063d5dcf12714610110575b610002565b346100025760408051602060046024803582810135601f81018590048502860185019096528585526101669583359593946044949392909201918190840183828082843750506040805160209735808a0135601f81018a90048a0283018a019093528282529698976064979196506024919091019450909250829150840183828082843750949650505050505050610196826000805b6009548110156103f8576104038361026b565b3461000257610168600154600160a060020a03165b90565b34610002576101846000546100fd565b346100025760043560008190556040805133600160a060020a0316815260208101839052815161016693927fc890294a68097562641143813b7ae9e39c85e43d49eefd10381cb4458c0ebcf5928290030190a150565b005b60408051600160a060020a039092168252519081900360200190f35b60408051918252519081900360200190f35b15156101d557600160a060020a03831660009081526004602052604090208054600160a060020a031916606060020a8086020417905561024a8261026b565b60408051600160a060020a0333168152602081018290526015818301527fe8afa5e8b4a6e688b7e5b7b2e7bb8fe6b3a8e5868c0000000000000000000000606082015290517f03945a4b71f6bae73fb43e650538e4ce700147bd742b006557d2a400c60ca2bc9181900360800190a15b505050565b600160a060020a038416600090815260046020526040902060010155610272815b6020015190565b600160a060020a038416600090815260046020526040812060020191909155839060059061029f8561026b565b815260208101919091526040016000208054600160a060020a031916606060020a928302929092049190911790556008805460018101808355828183801582901161030b5760008381526020902061030b9181019083015b8082111561036057600081556001016102f7565b5050506000928352506020909120018054600160a060020a031916606060020a8581020417905560098054600181018083558281838015829011610364576000838152602090206103649181019083016102f7565b5090565b50505091909060005260206000209001600061037f8561026b565b909155505060408051600160a060020a033316815260208101829052600c818301527fe6b3a8e5868ce68890e58a9f0000000000000000000000000000000000000000606082015290517f03945a4b71f6bae73fb43e650538e4ce700147bd742b006557d2a400c60ca2bc9181900360800190a1610245565b600091505b50919050565b60098054839081101561000257600091825260209091200154141561042b57600191506103fd565b6001016100d556",
+ "info": {
+  "source": "pragma solidity ^0.4.2;\n\n//测试类：该合约不需要迁移\n//供外部调用测试交易方法、常量方法、event的使用\ncontract Test {\n    uint age;\n\n    event SetAge(address sender, uint age);\n    function setAge(uint _age) {\n        age = _age;\n        SetAge(msg.sender, age);\n    }\n\n    function getAge()constant returns(uint) {\n        return age;\n    }\n}\n\n//工具类：该合约不需要迁移\ncontract Utils {\n\n    function stringToBytes32(string memory source)constant internal returns (bytes32 result) {\n    assembly {\n        result := mload(add(source, 32))\n      }\n    }\n\n    function bytes32ToString(bytes32 x)constant internal returns (string) {\n    bytes memory bytesString = new bytes(32);\n    uint charCount = 0;\n    for (uint j = 0; j < 32; j++) {\n        byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));\n        if (char != 0) {\n            bytesString[charCount] = char;\n            charCount++;\n        }\n    }\n    bytes memory bytesStringTrimmed = new bytes(charCount);\n    for (j = 0; j < charCount; j++) {\n        bytesStringTrimmed[j] = bytesString[j];\n    }\n    return string(bytesStringTrimmed);\n    }\n\n}\n\n//主合约：该合约需要迁移\ncontract Score is Utils, Test {\n\n    address owner; //合约的拥有者，银行\n    uint issuedScoreAmount; //银行已经发行的积分总数\n    uint settledScoreAmount; //银行已经清算的积分总数\n\n    struct Customer {\n        address customerAddr; //客户address\n        bytes32 phone; //客户手机\n        bytes32 password; //客户密码\n        uint scoreAmount; //积分余额\n        bytes32[] buyGoods; //购买的商品数组\n    }\n\n    struct Merchant {\n        address merchantAddr; //商户address\n        bytes32 password; //商户密码\n        uint scoreAmount; //积分余额\n        bytes32[] sellGoods; //发布的商品数组\n    }\n\n    struct Good {\n        bytes32 goodId; //商品Id;\n        uint price; //价格；\n        address belong; //商品属于哪个商户address；\n    }\n\n    mapping (address=>Customer) customer; \n    mapping (bytes32=>address) customerPhone;\n    mapping (address=>Merchant) merchant; \n    mapping (bytes32=>Good) good; //根据商品Id查找该件商品\n\n    address[] customerAddrs; //已注册的客户地址数组\n    bytes32[] customerPhones; //已注册的客户手机数组\n    address[] merchants; //已注册的商户数组\n    bytes32[] goods; //已经上线的商品数组\n\n    //增加权限控制，某些方法只能由合约的创建者调用\n    modifier onlyOwner(){\n        if(msg.sender != owner) throw;\n        _;\n    }\n\n    //构造函数\n    function Score() {\n        owner = msg.sender;\n    }\n\n    //返回合约调用者地址\n    function getOwner() constant returns(address) {\n        return owner;\n    }\n\n    //注册一个客户\n    event RegisterCustomer(address sender, string message);\n    function registerCustomer(address _customerAddr, \n        string _phone, \n        string _password) {\n        //判断是否已经注册\n        if(!isCustomerAlreadyRegister(_phone)) {\n            //还未注册\n            customer[_customerAddr].customerAddr = _customerAddr;\n            customer[_customerAddr].phone = stringToBytes32(_phone);\n            customer[_customerAddr].password = stringToBytes32(_password);\n\n            customerPhone[stringToBytes32(_phone)] = _customerAddr;\n            customerAddrs.push(_customerAddr);\n            customerPhones.push(stringToBytes32(_phone));\n            RegisterCustomer(msg.sender, \"注册成功\");\n            return;\n        }\n        else {\n            RegisterCustomer(msg.sender, \"该账户已经注册\");\n            return;\n        }\n    }\n\n    //注册一个商户\n    // event NewMerchant(address sender, bool isSuccess, string message);\n    // function newMerchant(address _merchantAddr) {\n\n    //     //判断是否已经注册\n    //     if(!isMerchantAlreadyRegister(_merchantAddr)) {\n    //         //还未注册\n    //         merchant[_merchantAddr].merchantAddr = _merchantAddr;\n    //         merchants.push(_merchantAddr);\n    //         NewMerchant(msg.sender, true, \"注册成功\");\n    //         return;\n    //     }\n    //     else {\n    //         NewMerchant(msg.sender, false, \"该账户已经注册\");\n    //         return;\n    //     }\n    // }\n\n    //判断一个客户是否已经注册\n    function isCustomerAlreadyRegister(string _phone)internal returns(bool) {\n        for(uint i = 0; i < customerPhones.length; i++) {\n            if(customerPhones[i] == stringToBytes32(_phone)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    //判断一个商户是否已经注册\n    // function isMerchantAlreadyRegister(address _merchantAddr)internal returns(bool) {\n    //     for(uint i = 0; i < merchants.length; i++) {\n    //         if(merchants[i] == _merchantAddr) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n\n    //设置商户密码\n    // event SetMerchantPassword(address sender, string message);\n    // function setMerchantPassword(address _merchantAddr, string _password) {\n    //     merchant[_merchantAddr].password = stringToBytes32(_password);\n    //     SetMerchantPassword(msg.sender, \"设置密码成功\");\n    // }\n\n    //查询用户密码\n    // function getCustomerPassword(address _customerAddr)constant returns(bool, bytes32) {\n    //     //先判断该用户是否注册\n    //     if(isCustomerAlreadyRegister(_customerAddr)) {\n    //         return (true, customer[_customerAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //查询商户密码\n    // function getMerchantPassword(address _merchantAddr)constant returns(bool, bytes32) {\n    //     //先判断该商户是否注册\n    //     if(isMerchantAlreadyRegister(_merchantAddr)) {\n    //         return (true, merchant[_merchantAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //银行发送积分给客户,只能被银行调用，且只能发送给客户\n    // event SendScoreToCustomer(address sender, string message);\n    // function sendScoreToCustomer(address _receiver, \n    //     uint _amount)onlyOwner {\n\n    //     if(isCustomerAlreadyRegister(_receiver)) {\n    //         //已经注册\n    //         issuedScoreAmount += _amount;\n    //         customer[_receiver].scoreAmount += _amount;\n    //         SendScoreToCustomer(msg.sender, \"发行积分成功\");\n    //         return;\n    //     }\n    //     else {\n    //         //还没注册\n    //         SendScoreToCustomer(msg.sender, \"该账户未注册，发行积分失败\");\n    //         return;\n    //     }\n    // }\n\n    //根据客户address查找余额\n    // function getScoreWithCustomerAddr(address customerAddr)constant returns(uint) {\n    //     return customer[customerAddr].scoreAmount;\n    // }\n\n    //根据商户address查找余额\n    // function getScoreWithMerchantAddr(address merchantAddr)constant returns(uint) {\n    //     return merchant[merchantAddr].scoreAmount;\n    // }\n\n    //两个账户转移积分，任意两个账户之间都可以转移，客户商户都调用该方法\n    //_senderType表示调用者类型，0表示客户，1表示商户\n    // event TransferScoreToAnother(address sender, string message);\n    // function transferScoreToAnother(uint _senderType, \n    //     address _sender, \n    //     address _receiver, \n    //     uint _amount) {\n    //     string memory message;\n    //     if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver)) {\n    //         //目的账户不存在\n    //         TransferScoreToAnother(msg.sender, \"目的账户不存在，请确认后再转移！\");\n    //         return;\n    //     }\n    //     if(_senderType == 0) {\n    //         //客户转移\n    //         if(customer[_sender].scoreAmount >= _amount) {\n    //             customer[_sender].scoreAmount -= _amount;\n        \n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //       }else {\n    //             TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //             return;\n    //       }\n    //     }else {\n    //         //商户转移\n    //         if(merchant[_sender].scoreAmount >= _amount) {\n    //             merchant[_sender].scoreAmount -= _amount;\n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //         }else {\n    //              TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //              return;\n    //         }\n    //     }\n    // }\n\n    //银行查找已经发行的积分总数\n    // function getIssuedScoreAmount()constant returns(uint) {\n    //     return issuedScoreAmount;\n    // }\n\n    //（1）商户添加一件商品:（1）（2）（3）方法分拆解决out of gas\n    // event AddGood(address sender, bool isSuccess, string message);\n    // function addGood(address _merchantAddr, string _goodId, uint _price) {\n    //     bytes32 tempId = stringToBytes32(_goodId);\n\n    //     //首先判断该商品Id是否已经存在\n    //     if(!isGoodAlreadyAdd(tempId)) {\n    //         good[tempId].goodId = tempId;\n    //         good[tempId].price = _price;\n    //         good[tempId].belong = _merchantAddr;\n    //         AddGood(msg.sender, true, \"创建商品成功\");\n    //         return;\n    //     }\n    //     else {\n    //         AddGood(msg.sender, false, \"该件商品已经添加，请确认后操作\");\n    //         return;\n    //     }\n    // }\n\n    //（2）商户添加一件商品\n    // event PutGoodToArray(address sender, string message);\n    // function putGoodToArray(string _goodId) {\n    //     goods.push(stringToBytes32(_goodId));  \n    //     PutGoodToArray(msg.sender, \"添加到全局商品数组成功\");\n    // }\n\n    //（3）商户添加一件商品\n    // event PutGoodToMerchant(address sender, string message);\n    // function putGoodToMerchant(address _merchantAddr, string _goodId) {\n    //      merchant[_merchantAddr].sellGoods.push(stringToBytes32(_goodId)); \n    //      PutGoodToMerchant(msg.sender, \"添加到商户的商品数组成功\");\n    // }\n\n    //商户查找自己的商品数组\n    // function getGoodsByMerchant(address _merchantAddr)constant returns(bytes32[]) {\n    //     return merchant[_merchantAddr].sellGoods;\n    // }\n\n    //（1）用户用积分购买一件商品,拆分方法，解决out of gas\n    // event BuyGood(address sender, bool isSuccess, string message);\n    // function buyGood(address _customerAddr, string _goodId) {\n    //     //首先判断输入的商品Id是否存在\n    //     bytes32 tempId = stringToBytes32(_goodId);\n    //     if(isGoodAlreadyAdd(tempId)) {\n    //         //该件商品已经添加，可以购买\n    //         if(customer[_customerAddr].scoreAmount < good[tempId].price) {\n    //             BuyGood(msg.sender, false, \"余额不足，购买商品失败\");\n    //             return;\n    //         }\n    //         else {\n    //             //对这里的方法抽取      \n    //             BuyGood(msg.sender, true, \"购买商品成功\");\n    //             return;\n    //         }\n    //     }\n    //     else {\n    //         //没有这个Id的商品\n    //         BuyGood(msg.sender, false, \"输入商品Id不存在，请确定后购买\");\n    //         return;\n    //     }\n    // }\n\n    //（2）对上面buyGood()方法的拆分\n    // function buyGoodSuccess(address _customerAddr, string _goodId) {\n    //      bytes32 tempId = stringToBytes32(_goodId);\n    //      customer[_customerAddr].scoreAmount -= good[tempId].price;\n    //      merchant[good[tempId].belong].scoreAmount += good[tempId].price;\n    //      customer[_customerAddr].buyGoods.push(tempId);\n    // }\n\n    //客户查找自己的商品数组\n    // function getGoodsByCustomer(address _customerAddr)constant returns(bytes32[]) {\n    //     return customer[_customerAddr].buyGoods;\n    // }\n\n    //首先判断输入的商品Id是否存在\n    // function isGoodAlreadyAdd(bytes32 _goodId)internal returns(bool) {\n    //     for(uint i = 0; i < goods.length; i++) {\n    //         if(goods[i] == _goodId) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n}\n\n\n\n\n\n\n\n",
+  "language": "Solidity",
+  "languageVersion": "0",
+  "compilerVersion": "0.4.4+commit.4633f3de.Emscripten.clang",
+  "abiDefinition": [
+   {
+    "constant": false,
+    "inputs": [
+     {
+      "name": "_customerAddr",
+      "type": "address"
+     },
+     {
+      "name": "_phone",
+      "type": "string"
+     },
+     {
+      "name": "_password",
+      "type": "string"
+     }
+    ],
+    "name": "registerCustomer",
+    "outputs": [],
+    "payable": false,
+    "type": "function"
    },
-   "developerDoc": {
-    "methods": {}
-   }
-  }
- },
- "Test": {
-  "code": "0x606060405260a28060106000396000f3606060405260e060020a6000350463967e6e6581146026578063d5dcf12714603f575b6002565b3460025760005460408051918252519081900360200190f35b346002576004356000819055604080513373ffffffffffffffffffffffffffffffffffffffff16815260208101839052815160a093927fc890294a68097562641143813b7ae9e39c85e43d49eefd10381cb4458c0ebcf5928290030190a150565b00",
-  "info": {
-   "source": "pragma solidity ^0.4.2;\n\n//测试类：该合约不需要迁移\n//供外部调用测试交易方法、常量方法、event的使用\ncontract Test {\n    uint age;\n\n    event SetAge(address sender, uint age);\n    function setAge(uint _age) {\n        age = _age;\n        SetAge(msg.sender, age);\n    }\n\n    function getAge()constant returns(uint) {\n        return age;\n    }\n}\n\n//工具类：该合约不需要迁移\ncontract Utils {\n\n    function stringToBytes32(string memory source)constant internal returns (bytes32 result) {\n    assembly {\n        result := mload(add(source, 32))\n      }\n    }\n\n    function bytes32ToString(bytes32 x)constant internal returns (string) {\n    bytes memory bytesString = new bytes(32);\n    uint charCount = 0;\n    for (uint j = 0; j < 32; j++) {\n        byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));\n        if (char != 0) {\n            bytesString[charCount] = char;\n            charCount++;\n        }\n    }\n    bytes memory bytesStringTrimmed = new bytes(charCount);\n    for (j = 0; j < charCount; j++) {\n        bytesStringTrimmed[j] = bytesString[j];\n    }\n    return string(bytesStringTrimmed);\n    }\n\n}\n\n//主合约：该合约需要迁移\ncontract Score is Utils, Test {\n\n    address owner; //合约的拥有者，银行\n    uint issuedScoreAmount; //银行已经发行的积分总数\n    uint settledScoreAmount; //银行已经清算的积分总数\n\n    struct Customer {\n        address customerAddr; //客户address\n        bytes32 phone; //客户手机\n        bytes32 password; //客户密码\n        uint scoreAmount; //积分余额\n        bytes32[] buyGoods; //购买的商品数组\n    }\n\n    struct Merchant {\n        address merchantAddr; //商户address\n        bytes32 password; //商户密码\n        uint scoreAmount; //积分余额\n        bytes32[] sellGoods; //发布的商品数组\n    }\n\n    struct Good {\n        bytes32 goodId; //商品Id;\n        uint price; //价格；\n        address belong; //商品属于哪个商户address；\n    }\n\n    mapping (address=>Customer) customer; \n    mapping (bytes32=>address) customerPhone;\n    mapping (address=>Merchant) merchant; \n    mapping (bytes32=>Good) good; //根据商品Id查找该件商品\n\n    address[] customerAddrs; //已注册的客户地址数组\n    bytes32[] customerPhones; //已注册的客户手机数组\n    address[] merchants; //已注册的商户数组\n    bytes32[] goods; //已经上线的商品数组\n\n    //增加权限控制，某些方法只能由合约的创建者调用\n    modifier onlyOwner(){\n        if(msg.sender != owner) throw;\n        _;\n    }\n\n    //构造函数\n    function Score() {\n        owner = msg.sender;\n    }\n\n    //返回合约调用者地址\n    function getOwner() constant returns(address) {\n        return owner;\n    }\n\n    //注册一个客户\n    event RegisterCustomer(address sender, string message);\n    function registerCustomer(address _customerAddr, \n        string _phone, \n        string _password) {\n        //判断是否已经注册\n        if(!isCustomerAlreadyRegister(_phone)) {\n            //还未注册\n            customer[_customerAddr].customerAddr = _customerAddr;\n            customer[_customerAddr].phone = stringToBytes32(_phone);\n            customer[_customerAddr].password = stringToBytes32(_password);\n\n            customerPhone[stringToBytes32(_phone)] = _customerAddr;\n            customerAddrs.push(_customerAddr);\n            customerPhones.push(stringToBytes32(_phone));\n            RegisterCustomer(msg.sender, \"注册成功\");\n            return;\n        }\n        else {\n            RegisterCustomer(msg.sender, \"该账户已经注册\");\n            return;\n        }\n    }\n\n    //注册一个商户\n    // event NewMerchant(address sender, bool isSuccess, string message);\n    // function newMerchant(address _merchantAddr) {\n\n    //     //判断是否已经注册\n    //     if(!isMerchantAlreadyRegister(_merchantAddr)) {\n    //         //还未注册\n    //         merchant[_merchantAddr].merchantAddr = _merchantAddr;\n    //         merchants.push(_merchantAddr);\n    //         NewMerchant(msg.sender, true, \"注册成功\");\n    //         return;\n    //     }\n    //     else {\n    //         NewMerchant(msg.sender, false, \"该账户已经注册\");\n    //         return;\n    //     }\n    // }\n\n    //判断一个客户是否已经注册\n    function isCustomerAlreadyRegister(string _phone)internal returns(bool) {\n        for(uint i = 0; i < customerPhones.length; i++) {\n            if(customerPhones[i] == stringToBytes32(_phone)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    //判断一个商户是否已经注册\n    // function isMerchantAlreadyRegister(address _merchantAddr)internal returns(bool) {\n    //     for(uint i = 0; i < merchants.length; i++) {\n    //         if(merchants[i] == _merchantAddr) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n\n    //设置商户密码\n    // event SetMerchantPassword(address sender, string message);\n    // function setMerchantPassword(address _merchantAddr, string _password) {\n    //     merchant[_merchantAddr].password = stringToBytes32(_password);\n    //     SetMerchantPassword(msg.sender, \"设置密码成功\");\n    // }\n\n    //查询用户密码\n    // function getCustomerPassword(address _customerAddr)constant returns(bool, bytes32) {\n    //     //先判断该用户是否注册\n    //     if(isCustomerAlreadyRegister(_customerAddr)) {\n    //         return (true, customer[_customerAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //查询商户密码\n    // function getMerchantPassword(address _merchantAddr)constant returns(bool, bytes32) {\n    //     //先判断该商户是否注册\n    //     if(isMerchantAlreadyRegister(_merchantAddr)) {\n    //         return (true, merchant[_merchantAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //银行发送积分给客户,只能被银行调用，且只能发送给客户\n    // event SendScoreToCustomer(address sender, string message);\n    // function sendScoreToCustomer(address _receiver, \n    //     uint _amount)onlyOwner {\n\n    //     if(isCustomerAlreadyRegister(_receiver)) {\n    //         //已经注册\n    //         issuedScoreAmount += _amount;\n    //         customer[_receiver].scoreAmount += _amount;\n    //         SendScoreToCustomer(msg.sender, \"发行积分成功\");\n    //         return;\n    //     }\n    //     else {\n    //         //还没注册\n    //         SendScoreToCustomer(msg.sender, \"该账户未注册，发行积分失败\");\n    //         return;\n    //     }\n    // }\n\n    //根据客户address查找余额\n    // function getScoreWithCustomerAddr(address customerAddr)constant returns(uint) {\n    //     return customer[customerAddr].scoreAmount;\n    // }\n\n    //根据商户address查找余额\n    // function getScoreWithMerchantAddr(address merchantAddr)constant returns(uint) {\n    //     return merchant[merchantAddr].scoreAmount;\n    // }\n\n    //两个账户转移积分，任意两个账户之间都可以转移，客户商户都调用该方法\n    //_senderType表示调用者类型，0表示客户，1表示商户\n    // event TransferScoreToAnother(address sender, string message);\n    // function transferScoreToAnother(uint _senderType, \n    //     address _sender, \n    //     address _receiver, \n    //     uint _amount) {\n    //     string memory message;\n    //     if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver)) {\n    //         //目的账户不存在\n    //         TransferScoreToAnother(msg.sender, \"目的账户不存在，请确认后再转移！\");\n    //         return;\n    //     }\n    //     if(_senderType == 0) {\n    //         //客户转移\n    //         if(customer[_sender].scoreAmount >= _amount) {\n    //             customer[_sender].scoreAmount -= _amount;\n        \n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //       }else {\n    //             TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //             return;\n    //       }\n    //     }else {\n    //         //商户转移\n    //         if(merchant[_sender].scoreAmount >= _amount) {\n    //             merchant[_sender].scoreAmount -= _amount;\n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //         }else {\n    //              TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //              return;\n    //         }\n    //     }\n    // }\n\n    //银行查找已经发行的积分总数\n    // function getIssuedScoreAmount()constant returns(uint) {\n    //     return issuedScoreAmount;\n    // }\n\n    //（1）商户添加一件商品:（1）（2）（3）方法分拆解决out of gas\n    // event AddGood(address sender, bool isSuccess, string message);\n    // function addGood(address _merchantAddr, string _goodId, uint _price) {\n    //     bytes32 tempId = stringToBytes32(_goodId);\n\n    //     //首先判断该商品Id是否已经存在\n    //     if(!isGoodAlreadyAdd(tempId)) {\n    //         good[tempId].goodId = tempId;\n    //         good[tempId].price = _price;\n    //         good[tempId].belong = _merchantAddr;\n    //         AddGood(msg.sender, true, \"创建商品成功\");\n    //         return;\n    //     }\n    //     else {\n    //         AddGood(msg.sender, false, \"该件商品已经添加，请确认后操作\");\n    //         return;\n    //     }\n    // }\n\n    //（2）商户添加一件商品\n    // event PutGoodToArray(address sender, string message);\n    // function putGoodToArray(string _goodId) {\n    //     goods.push(stringToBytes32(_goodId));  \n    //     PutGoodToArray(msg.sender, \"添加到全局商品数组成功\");\n    // }\n\n    //（3）商户添加一件商品\n    // event PutGoodToMerchant(address sender, string message);\n    // function putGoodToMerchant(address _merchantAddr, string _goodId) {\n    //      merchant[_merchantAddr].sellGoods.push(stringToBytes32(_goodId)); \n    //      PutGoodToMerchant(msg.sender, \"添加到商户的商品数组成功\");\n    // }\n\n    //商户查找自己的商品数组\n    // function getGoodsByMerchant(address _merchantAddr)constant returns(bytes32[]) {\n    //     return merchant[_merchantAddr].sellGoods;\n    // }\n\n    //（1）用户用积分购买一件商品,拆分方法，解决out of gas\n    // event BuyGood(address sender, bool isSuccess, string message);\n    // function buyGood(address _customerAddr, string _goodId) {\n    //     //首先判断输入的商品Id是否存在\n    //     bytes32 tempId = stringToBytes32(_goodId);\n    //     if(isGoodAlreadyAdd(tempId)) {\n    //         //该件商品已经添加，可以购买\n    //         if(customer[_customerAddr].scoreAmount < good[tempId].price) {\n    //             BuyGood(msg.sender, false, \"余额不足，购买商品失败\");\n    //             return;\n    //         }\n    //         else {\n    //             //对这里的方法抽取      \n    //             BuyGood(msg.sender, true, \"购买商品成功\");\n    //             return;\n    //         }\n    //     }\n    //     else {\n    //         //没有这个Id的商品\n    //         BuyGood(msg.sender, false, \"输入商品Id不存在，请确定后购买\");\n    //         return;\n    //     }\n    // }\n\n    //（2）对上面buyGood()方法的拆分\n    // function buyGoodSuccess(address _customerAddr, string _goodId) {\n    //      bytes32 tempId = stringToBytes32(_goodId);\n    //      customer[_customerAddr].scoreAmount -= good[tempId].price;\n    //      merchant[good[tempId].belong].scoreAmount += good[tempId].price;\n    //      customer[_customerAddr].buyGoods.push(tempId);\n    // }\n\n    //客户查找自己的商品数组\n    // function getGoodsByCustomer(address _customerAddr)constant returns(bytes32[]) {\n    //     return customer[_customerAddr].buyGoods;\n    // }\n\n    //首先判断输入的商品Id是否存在\n    // function isGoodAlreadyAdd(bytes32 _goodId)internal returns(bool) {\n    //     for(uint i = 0; i < goods.length; i++) {\n    //         if(goods[i] == _goodId) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n}\n\n\n\n\n\n\n\n",
-   "language": "Solidity",
-   "languageVersion": "0.4.4",
-   "compilerVersion": "0.4.4",
-   "compilerOptions": "--combined-json bin,abi,userdoc,devdoc --add-std --optimize",
-   "abiDefinition": [
-    {
-     "constant": true,
-     "inputs": [],
-     "name": "getAge",
-     "outputs": [
-      {
-       "name": "",
-       "type": "uint256"
-      }
-     ],
-     "payable": false,
-     "type": "function"
-    },
-    {
-     "constant": false,
-     "inputs": [
-      {
-       "name": "_age",
-       "type": "uint256"
-      }
-     ],
-     "name": "setAge",
-     "outputs": [],
-     "payable": false,
-     "type": "function"
-    },
-    {
-     "anonymous": false,
-     "inputs": [
-      {
-       "indexed": false,
-       "name": "sender",
-       "type": "address"
-      },
-      {
-       "indexed": false,
-       "name": "age",
-       "type": "uint256"
-      }
-     ],
-     "name": "SetAge",
-     "type": "event"
-    }
-   ],
-   "userDoc": {
-    "methods": {}
+   {
+    "constant": true,
+    "inputs": [],
+    "name": "getOwner",
+    "outputs": [
+     {
+      "name": "",
+      "type": "address"
+     }
+    ],
+    "payable": false,
+    "type": "function"
    },
-   "developerDoc": {
-    "methods": {}
-   }
-  }
- },
- "Utils": {
-  "code": "0x606060405260088060106000396000f36060604052600256",
-  "info": {
-   "source": "pragma solidity ^0.4.2;\n\n//测试类：该合约不需要迁移\n//供外部调用测试交易方法、常量方法、event的使用\ncontract Test {\n    uint age;\n\n    event SetAge(address sender, uint age);\n    function setAge(uint _age) {\n        age = _age;\n        SetAge(msg.sender, age);\n    }\n\n    function getAge()constant returns(uint) {\n        return age;\n    }\n}\n\n//工具类：该合约不需要迁移\ncontract Utils {\n\n    function stringToBytes32(string memory source)constant internal returns (bytes32 result) {\n    assembly {\n        result := mload(add(source, 32))\n      }\n    }\n\n    function bytes32ToString(bytes32 x)constant internal returns (string) {\n    bytes memory bytesString = new bytes(32);\n    uint charCount = 0;\n    for (uint j = 0; j < 32; j++) {\n        byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));\n        if (char != 0) {\n            bytesString[charCount] = char;\n            charCount++;\n        }\n    }\n    bytes memory bytesStringTrimmed = new bytes(charCount);\n    for (j = 0; j < charCount; j++) {\n        bytesStringTrimmed[j] = bytesString[j];\n    }\n    return string(bytesStringTrimmed);\n    }\n\n}\n\n//主合约：该合约需要迁移\ncontract Score is Utils, Test {\n\n    address owner; //合约的拥有者，银行\n    uint issuedScoreAmount; //银行已经发行的积分总数\n    uint settledScoreAmount; //银行已经清算的积分总数\n\n    struct Customer {\n        address customerAddr; //客户address\n        bytes32 phone; //客户手机\n        bytes32 password; //客户密码\n        uint scoreAmount; //积分余额\n        bytes32[] buyGoods; //购买的商品数组\n    }\n\n    struct Merchant {\n        address merchantAddr; //商户address\n        bytes32 password; //商户密码\n        uint scoreAmount; //积分余额\n        bytes32[] sellGoods; //发布的商品数组\n    }\n\n    struct Good {\n        bytes32 goodId; //商品Id;\n        uint price; //价格；\n        address belong; //商品属于哪个商户address；\n    }\n\n    mapping (address=>Customer) customer; \n    mapping (bytes32=>address) customerPhone;\n    mapping (address=>Merchant) merchant; \n    mapping (bytes32=>Good) good; //根据商品Id查找该件商品\n\n    address[] customerAddrs; //已注册的客户地址数组\n    bytes32[] customerPhones; //已注册的客户手机数组\n    address[] merchants; //已注册的商户数组\n    bytes32[] goods; //已经上线的商品数组\n\n    //增加权限控制，某些方法只能由合约的创建者调用\n    modifier onlyOwner(){\n        if(msg.sender != owner) throw;\n        _;\n    }\n\n    //构造函数\n    function Score() {\n        owner = msg.sender;\n    }\n\n    //返回合约调用者地址\n    function getOwner() constant returns(address) {\n        return owner;\n    }\n\n    //注册一个客户\n    event RegisterCustomer(address sender, string message);\n    function registerCustomer(address _customerAddr, \n        string _phone, \n        string _password) {\n        //判断是否已经注册\n        if(!isCustomerAlreadyRegister(_phone)) {\n            //还未注册\n            customer[_customerAddr].customerAddr = _customerAddr;\n            customer[_customerAddr].phone = stringToBytes32(_phone);\n            customer[_customerAddr].password = stringToBytes32(_password);\n\n            customerPhone[stringToBytes32(_phone)] = _customerAddr;\n            customerAddrs.push(_customerAddr);\n            customerPhones.push(stringToBytes32(_phone));\n            RegisterCustomer(msg.sender, \"注册成功\");\n            return;\n        }\n        else {\n            RegisterCustomer(msg.sender, \"该账户已经注册\");\n            return;\n        }\n    }\n\n    //注册一个商户\n    // event NewMerchant(address sender, bool isSuccess, string message);\n    // function newMerchant(address _merchantAddr) {\n\n    //     //判断是否已经注册\n    //     if(!isMerchantAlreadyRegister(_merchantAddr)) {\n    //         //还未注册\n    //         merchant[_merchantAddr].merchantAddr = _merchantAddr;\n    //         merchants.push(_merchantAddr);\n    //         NewMerchant(msg.sender, true, \"注册成功\");\n    //         return;\n    //     }\n    //     else {\n    //         NewMerchant(msg.sender, false, \"该账户已经注册\");\n    //         return;\n    //     }\n    // }\n\n    //判断一个客户是否已经注册\n    function isCustomerAlreadyRegister(string _phone)internal returns(bool) {\n        for(uint i = 0; i < customerPhones.length; i++) {\n            if(customerPhones[i] == stringToBytes32(_phone)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    //判断一个商户是否已经注册\n    // function isMerchantAlreadyRegister(address _merchantAddr)internal returns(bool) {\n    //     for(uint i = 0; i < merchants.length; i++) {\n    //         if(merchants[i] == _merchantAddr) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n\n    //设置商户密码\n    // event SetMerchantPassword(address sender, string message);\n    // function setMerchantPassword(address _merchantAddr, string _password) {\n    //     merchant[_merchantAddr].password = stringToBytes32(_password);\n    //     SetMerchantPassword(msg.sender, \"设置密码成功\");\n    // }\n\n    //查询用户密码\n    // function getCustomerPassword(address _customerAddr)constant returns(bool, bytes32) {\n    //     //先判断该用户是否注册\n    //     if(isCustomerAlreadyRegister(_customerAddr)) {\n    //         return (true, customer[_customerAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //查询商户密码\n    // function getMerchantPassword(address _merchantAddr)constant returns(bool, bytes32) {\n    //     //先判断该商户是否注册\n    //     if(isMerchantAlreadyRegister(_merchantAddr)) {\n    //         return (true, merchant[_merchantAddr].password);\n    //     }\n    //     else {\n    //         return(false, \"\");\n    //     }\n    // }\n\n    //银行发送积分给客户,只能被银行调用，且只能发送给客户\n    // event SendScoreToCustomer(address sender, string message);\n    // function sendScoreToCustomer(address _receiver, \n    //     uint _amount)onlyOwner {\n\n    //     if(isCustomerAlreadyRegister(_receiver)) {\n    //         //已经注册\n    //         issuedScoreAmount += _amount;\n    //         customer[_receiver].scoreAmount += _amount;\n    //         SendScoreToCustomer(msg.sender, \"发行积分成功\");\n    //         return;\n    //     }\n    //     else {\n    //         //还没注册\n    //         SendScoreToCustomer(msg.sender, \"该账户未注册，发行积分失败\");\n    //         return;\n    //     }\n    // }\n\n    //根据客户address查找余额\n    // function getScoreWithCustomerAddr(address customerAddr)constant returns(uint) {\n    //     return customer[customerAddr].scoreAmount;\n    // }\n\n    //根据商户address查找余额\n    // function getScoreWithMerchantAddr(address merchantAddr)constant returns(uint) {\n    //     return merchant[merchantAddr].scoreAmount;\n    // }\n\n    //两个账户转移积分，任意两个账户之间都可以转移，客户商户都调用该方法\n    //_senderType表示调用者类型，0表示客户，1表示商户\n    // event TransferScoreToAnother(address sender, string message);\n    // function transferScoreToAnother(uint _senderType, \n    //     address _sender, \n    //     address _receiver, \n    //     uint _amount) {\n    //     string memory message;\n    //     if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver)) {\n    //         //目的账户不存在\n    //         TransferScoreToAnother(msg.sender, \"目的账户不存在，请确认后再转移！\");\n    //         return;\n    //     }\n    //     if(_senderType == 0) {\n    //         //客户转移\n    //         if(customer[_sender].scoreAmount >= _amount) {\n    //             customer[_sender].scoreAmount -= _amount;\n        \n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //       }else {\n    //             TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //             return;\n    //       }\n    //     }else {\n    //         //商户转移\n    //         if(merchant[_sender].scoreAmount >= _amount) {\n    //             merchant[_sender].scoreAmount -= _amount;\n    //             if(isCustomerAlreadyRegister(_receiver)) {\n    //                 //目的地址是客户\n    //                 customer[_receiver].scoreAmount += _amount;\n    //             }else {\n    //                 merchant[_receiver].scoreAmount += _amount;\n    //             }\n    //             TransferScoreToAnother(msg.sender, \"积分转让成功！\");\n    //             return;\n    //         }else {\n    //              TransferScoreToAnother(msg.sender, \"你的积分余额不足，转让失败！\");\n    //              return;\n    //         }\n    //     }\n    // }\n\n    //银行查找已经发行的积分总数\n    // function getIssuedScoreAmount()constant returns(uint) {\n    //     return issuedScoreAmount;\n    // }\n\n    //（1）商户添加一件商品:（1）（2）（3）方法分拆解决out of gas\n    // event AddGood(address sender, bool isSuccess, string message);\n    // function addGood(address _merchantAddr, string _goodId, uint _price) {\n    //     bytes32 tempId = stringToBytes32(_goodId);\n\n    //     //首先判断该商品Id是否已经存在\n    //     if(!isGoodAlreadyAdd(tempId)) {\n    //         good[tempId].goodId = tempId;\n    //         good[tempId].price = _price;\n    //         good[tempId].belong = _merchantAddr;\n    //         AddGood(msg.sender, true, \"创建商品成功\");\n    //         return;\n    //     }\n    //     else {\n    //         AddGood(msg.sender, false, \"该件商品已经添加，请确认后操作\");\n    //         return;\n    //     }\n    // }\n\n    //（2）商户添加一件商品\n    // event PutGoodToArray(address sender, string message);\n    // function putGoodToArray(string _goodId) {\n    //     goods.push(stringToBytes32(_goodId));  \n    //     PutGoodToArray(msg.sender, \"添加到全局商品数组成功\");\n    // }\n\n    //（3）商户添加一件商品\n    // event PutGoodToMerchant(address sender, string message);\n    // function putGoodToMerchant(address _merchantAddr, string _goodId) {\n    //      merchant[_merchantAddr].sellGoods.push(stringToBytes32(_goodId)); \n    //      PutGoodToMerchant(msg.sender, \"添加到商户的商品数组成功\");\n    // }\n\n    //商户查找自己的商品数组\n    // function getGoodsByMerchant(address _merchantAddr)constant returns(bytes32[]) {\n    //     return merchant[_merchantAddr].sellGoods;\n    // }\n\n    //（1）用户用积分购买一件商品,拆分方法，解决out of gas\n    // event BuyGood(address sender, bool isSuccess, string message);\n    // function buyGood(address _customerAddr, string _goodId) {\n    //     //首先判断输入的商品Id是否存在\n    //     bytes32 tempId = stringToBytes32(_goodId);\n    //     if(isGoodAlreadyAdd(tempId)) {\n    //         //该件商品已经添加，可以购买\n    //         if(customer[_customerAddr].scoreAmount < good[tempId].price) {\n    //             BuyGood(msg.sender, false, \"余额不足，购买商品失败\");\n    //             return;\n    //         }\n    //         else {\n    //             //对这里的方法抽取      \n    //             BuyGood(msg.sender, true, \"购买商品成功\");\n    //             return;\n    //         }\n    //     }\n    //     else {\n    //         //没有这个Id的商品\n    //         BuyGood(msg.sender, false, \"输入商品Id不存在，请确定后购买\");\n    //         return;\n    //     }\n    // }\n\n    //（2）对上面buyGood()方法的拆分\n    // function buyGoodSuccess(address _customerAddr, string _goodId) {\n    //      bytes32 tempId = stringToBytes32(_goodId);\n    //      customer[_customerAddr].scoreAmount -= good[tempId].price;\n    //      merchant[good[tempId].belong].scoreAmount += good[tempId].price;\n    //      customer[_customerAddr].buyGoods.push(tempId);\n    // }\n\n    //客户查找自己的商品数组\n    // function getGoodsByCustomer(address _customerAddr)constant returns(bytes32[]) {\n    //     return customer[_customerAddr].buyGoods;\n    // }\n\n    //首先判断输入的商品Id是否存在\n    // function isGoodAlreadyAdd(bytes32 _goodId)internal returns(bool) {\n    //     for(uint i = 0; i < goods.length; i++) {\n    //         if(goods[i] == _goodId) {\n    //             return true;\n    //         }\n    //     }\n    //     return false;\n    // }\n}\n\n\n\n\n\n\n\n",
-   "language": "Solidity",
-   "languageVersion": "0.4.4",
-   "compilerVersion": "0.4.4",
-   "compilerOptions": "--combined-json bin,abi,userdoc,devdoc --add-std --optimize",
-   "abiDefinition": [],
-   "userDoc": {
-    "methods": {}
+   {
+    "constant": true,
+    "inputs": [],
+    "name": "getAge",
+    "outputs": [
+     {
+      "name": "",
+      "type": "uint256"
+     }
+    ],
+    "payable": false,
+    "type": "function"
    },
-   "developerDoc": {
-    "methods": {}
+   {
+    "constant": false,
+    "inputs": [
+     {
+      "name": "_age",
+      "type": "uint256"
+     }
+    ],
+    "name": "setAge",
+    "outputs": [],
+    "payable": false,
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "type": "constructor"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": false,
+      "name": "sender",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "message",
+      "type": "string"
+     }
+    ],
+    "name": "RegisterCustomer",
+    "type": "event"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": false,
+      "name": "sender",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "age",
+      "type": "uint256"
+     }
+    ],
+    "name": "SetAge",
+    "type": "event"
    }
+  ],
+  "userDoc": {
+   "methods": {}
+  },
+  "developerDoc": {
+   "methods": {}
   }
  }
 }

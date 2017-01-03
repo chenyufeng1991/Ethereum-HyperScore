@@ -10,6 +10,7 @@ else {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 
+//获得合约实例
 fs.readFile("./contract/abiString.txt", function (error, result) {
     console.log(result.toString());
     var abiString = result.toString();
@@ -21,3 +22,4 @@ fs.readFile("./contract/abiString.txt", function (error, result) {
         global.contractInstance = web3.eth.contract(JSON.parse(abiString)).at(contractAddress);
     });
 });
+

@@ -13,6 +13,8 @@ app.get('/', function (req, res) {
 var registerCustomer = require('./routes/registerCustomer');
 app.get('/registerCustomer', registerCustomer.register);
 
+
+
 var server = app.listen(8000, function () {
     console.log("服务端地址为：http://localhost:8000");
 });

@@ -4,6 +4,7 @@ var Web3 = require('web3');
 var express = require('express');
 var fs = require('fs');
 var generateKey = require('../public/javascripts/utils/generateKey');
+var generateAccount = require('../public/javascripts/utils/generateAccount');
 
 //web3初始化
 var web3;
@@ -35,34 +36,52 @@ else {
  */
 module.exports.register = function (req, res) {
 
-    console.log("请求参数："+ req.query.customerAddr + "    " + req.query.password);
+    console.log("请求参数："+ req.query.phone + "    " + req.query.password);
+    // 可以使用椭圆曲线加密获得公私钥
+    // var keys = generateKey.generateKeys();
+    // console.log("qqqqqq=" + keys.publicKey);
+    // console.log("wwwwww=" + keys.privateKey);
+    // console.log("eeeeee=" + keys.accountAddress);
 
-    var keys = generateKey.generateKeys();
-    console.log("qqqqqq=" + keys.publicKey);
-    console.log("wwwwww=" + keys.privateKey);
-    console.log("eeeeee=" + keys.accountAddress);
-
-    //如果出现OOG，则添加gas参数
-    global.contractInstance.registerCustomer(req.query.customerAddr, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {
-        if (!error) {
-            var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
-            eventRegisterCustomer.watch(function (error, result) {
-                console.log(result.args.message);
-                var response = {
-                    code: 0,
-                    message: result.args.message,
-                    txInfo: result
-                };
-                eventRegisterCustomer.stopWatching();
-                res.send(JSON.stringify(response));
-                res.end();
+    //可以使用web3.js API生成以太坊账户
+    generateAccount.generateAccounts(req.query.password, function (error, result) {
+        console.log("1111111111111111111" + JSON.stringify(result));
+        if (result.code == 0) {
+            //以太坊创建账户成功
+            //如果出现OOG，则添加gas参数
+            //默认交易发起者还是web3.eth.accounts[0]；
+            global.contractInstance.registerCustomer(result.account, req.query.phone, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {
+                if (!error) {
+                    var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
+                    eventRegisterCustomer.watch(function (error, result) {
+                        console.log(result.args.message);
+                        var response = {
+                            code: 0,
+                            message: result.args.message,
+                            txInfo: result
+                        };
+                        eventRegisterCustomer.stopWatching();
+                        res.send(JSON.stringify(response));
+                        res.end();
+                    });
+                }
+                else {
+                    console.log("发生错误：" + error);
+                    var response = {
+                        code: 1,
+                        message: error.toString(),
+                        txInfo: ""
+                    };
+                    res.send(JSON.stringify(response));
+                    res.end();
+                }
             });
         }
         else {
-            console.log("发生错误：" + error);
+            //以太坊创建账户失败
             var response = {
                 code: 1,
-                message: error.toString(),
+                message: result.message,
                 txInfo: ""
             };
             res.send(JSON.stringify(response));

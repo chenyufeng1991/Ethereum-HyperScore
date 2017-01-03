@@ -5,6 +5,7 @@
 var Web3 = require('web3');
 var fs = require('fs');
 var path = require('path');
+var judgeNodeType = require('./judgeNodeType');
 
 var web3;
 if(typeof web3 !== 'undefined') {
@@ -24,12 +25,28 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
     fs.writeFile("../../../contract/compileJSON.txt", compileJSON); //写入文件
 
     //获得abi文件
-    var abiString = JSON.stringify(web3.eth.compile.solidity(result.toString()).Score.info.abiDefinition, null, " ");
+    var abiString;
+    if (judgeNodeType.nodeType == 0) {
+        //testrpc
+        abiString = JSON.stringify(web3.eth.compile.solidity(result.toString()).info.abiDefinition, null, " ");
+    }
+    else {
+        //geth
+        abiString = JSON.stringify(web3.eth.compile.solidity(result.toString()).Score.info.abiDefinition, null, " ");
+    }
     console.log("abi文件：" + abiString);
     fs.writeFile("../../../contract/abiString.txt", abiString);
 
     //获得code字节码
-    var codeString = web3.eth.compile.solidity(result.toString()).Score.code;
+    var codeString;
+    if (judgeNodeType.nodeType == 0) {
+        //testrpc
+        codeString = web3.eth.compile.solidity(result.toString()).code;
+    }
+    else {
+        //geth
+        codeString = web3.eth.compile.solidity(result.toString()).Score.code;
+    }
     console.log("code字节码：" + codeString);
     fs.writeFile("../../../contract/codeString.txt", codeString);
 

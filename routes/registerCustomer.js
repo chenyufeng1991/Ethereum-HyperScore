@@ -27,7 +27,7 @@ else {
  * 返回JSON
  *
  * @param req
- * customerAddr:客户地址
+ * phone:客户手机
  * password:客户密码
  *
  * @param res
@@ -50,9 +50,9 @@ module.exports.register = function (req, res) {
             if (!error) {
                 var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                 eventRegisterCustomer.watch(function (error, result) {
-                    console.log(result.args.message);
+                    console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                     var response = {
-                        code: 0,
+                        code: result.args.statusCode,
                         message: result.args.message,
                         txInfo: result
                     };
@@ -86,9 +86,9 @@ module.exports.register = function (req, res) {
                     if (!error) {
                         var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                         eventRegisterCustomer.watch(function (error, result) {
-                            console.log(result.args.message);
+                            console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                             var response = {
-                                code: 0,
+                                code: result.args.statusCode,
                                 message: result.args.message,
                                 txInfo: result
                             };

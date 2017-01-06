@@ -148,6 +148,13 @@ contract Score is Utils, Test {
         }
     }
 
+    //查询客户的详细信息,已登录用户调用
+    function getCustomerInfo(string _phone)constant returns(address, bytes32, uint) {
+        address tempAddr = customerPhone[stringToBytes32(_phone)];
+        return (customer[tempAddr].customerAddr, customer[tempAddr].phone, customer[tempAddr].scoreAmount);
+    }
+
+
     //注册一个商户
     // event NewMerchant(address sender, bool isSuccess, string message);
     // function newMerchant(address _merchantAddr) {
@@ -186,34 +193,6 @@ contract Score is Utils, Test {
     //     return false;
     // }
 
-    //设置商户密码
-    // event SetMerchantPassword(address sender, string message);
-    // function setMerchantPassword(address _merchantAddr, string _password) {
-    //     merchant[_merchantAddr].password = stringToBytes32(_password);
-    //     SetMerchantPassword(msg.sender, "设置密码成功");
-    // }
-
-    //查询用户密码
-    // function getCustomerPassword(address _customerAddr)constant returns(bool, bytes32) {
-    //     //先判断该用户是否注册
-    //     if(isCustomerAlreadyRegister(_customerAddr)) {
-    //         return (true, customer[_customerAddr].password);
-    //     }
-    //     else {
-    //         return(false, "");
-    //     }
-    // }
-
-    //查询商户密码
-    // function getMerchantPassword(address _merchantAddr)constant returns(bool, bytes32) {
-    //     //先判断该商户是否注册
-    //     if(isMerchantAlreadyRegister(_merchantAddr)) {
-    //         return (true, merchant[_merchantAddr].password);
-    //     }
-    //     else {
-    //         return(false, "");
-    //     }
-    // }
 
     //银行发送积分给客户,只能被银行调用，且只能发送给客户
     // event SendScoreToCustomer(address sender, string message);
@@ -232,11 +211,6 @@ contract Score is Utils, Test {
     //         SendScoreToCustomer(msg.sender, "该账户未注册，发行积分失败");
     //         return;
     //     }
-    // }
-
-    //根据客户address查找余额
-    // function getScoreWithCustomerAddr(address customerAddr)constant returns(uint) {
-    //     return customer[customerAddr].scoreAmount;
     // }
 
     //根据商户address查找余额

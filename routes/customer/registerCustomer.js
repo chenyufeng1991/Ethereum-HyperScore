@@ -3,9 +3,9 @@
 var Web3 = require('web3');
 var express = require('express');
 var fs = require('fs');
-var generateKey = require('../public/javascripts/utils/generateKey');
-var generateAccount = require('../public/javascripts/utils/generateAccount');
-var judgeNodeType = require('../public/javascripts/utils/judgeNodeType');
+var generateKey = require('../../public/javascripts/utils/generateKey');
+var generateAccount = require('../../public/javascripts/utils/generateAccount');
+var judgeNodeType = require('../../public/javascripts/utils/judgeNodeType');
 
 //web3初始化
 var web3;

@@ -73,7 +73,7 @@ contract Score is Utils, Test {
     }
 
     mapping (address=>Customer) customer; 
-    mapping (bytes32=>address) customerPhone;
+    mapping (bytes32=>address) customerPhone; //根据用户手机查找账户address
     mapping (address=>Merchant) merchant; 
     mapping (bytes32=>Good) good; //根据商品Id查找该件商品
 
@@ -99,7 +99,7 @@ contract Score is Utils, Test {
     }
 
     //注册一个客户
-    event RegisterCustomer(address sender, string message);
+    event RegisterCustomer(address sender, uint statusCode, string message);
     function registerCustomer(address _customerAddr, 
         string _phone, 
         string _password) {
@@ -113,11 +113,37 @@ contract Score is Utils, Test {
             customerPhone[stringToBytes32(_phone)] = _customerAddr;
             customerAddrs.push(_customerAddr);
             customerPhones.push(stringToBytes32(_phone));
-            RegisterCustomer(msg.sender, "注册成功");
+            RegisterCustomer(msg.sender, 0, "注册成功");
             return;
         }
         else {
-            RegisterCustomer(msg.sender, "该账户已经注册");
+            RegisterCustomer(msg.sender, 1, "该账户已经注册");
+            return;
+        }
+    }
+
+    //登录一个客户
+    event LoginCustomer(address sender, uint statusCode, string message);
+    function loginCustomer(string _phone, 
+        string _password) {
+        //判断是否已经注册
+        if(isCustomerAlreadyRegister(_phone)) {
+            //已经注册，可以进行登录操作
+            address tempAddr = customerPhone[stringToBytes32(_phone)];
+            if(stringToBytes32(_password) == customer[tempAddr].password) {
+                //登录成功
+                LoginCustomer(msg.sender, 0, "登录成功");
+                return;
+            }
+            else {
+                //登录失败
+                LoginCustomer(msg.sender, 1, "密码错误，登录失败");
+                return;
+            }
+        }
+        else {
+            //还未注册
+            LoginCustomer(msg.sender, 1, "该用户未注册，请确认后登录");
             return;
         }
     }

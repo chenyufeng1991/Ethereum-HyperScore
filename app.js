@@ -13,7 +13,9 @@ app.get('/', function (req, res) {
 var registerCustomer = require('./routes/registerCustomer');
 app.get('/registerCustomer', registerCustomer.register);
 
-
+//客户登录
+var loginCustomer = require('./routes/loginCustomer');
+app.get('/loginCustomer', loginCustomer.login);
 
 var server = app.listen(8000, function () {
     console.log("服务端地址为：http://localhost:8000");

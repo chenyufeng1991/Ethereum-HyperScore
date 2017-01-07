@@ -93,6 +93,27 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_merchantAddr",
+    "type": "address"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   }
+  ],
+  "name": "registerMerchant",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
     "name": "_age",
     "type": "uint256"
    }
@@ -203,6 +224,28 @@
    }
   ],
   "name": "LoginCustomer",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "RegisterMerchant",
   "type": "event"
  },
  {

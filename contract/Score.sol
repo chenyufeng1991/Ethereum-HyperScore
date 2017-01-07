@@ -48,14 +48,14 @@ contract Utils {
 contract Score is Utils, Test {
 
     address owner; //合约的拥有者，银行
-    uint issuedScoreAmount; //银行已经发行的积分总数
-    uint settledScoreAmount; //银行已经清算的积分总数
+    uint issuedScore; //银行已经发行的积分总数
+    uint settledScore; //银行已经清算的积分总数
 
     struct Customer {
         address customerAddr; //客户address
         bytes32 phone; //客户手机
         bytes32 password; //客户密码
-        uint scoreAmount; //积分余额
+        uint score; //积分余额
         bytes32[] buyGoods; //购买的商品数组
     }
 
@@ -103,16 +103,19 @@ contract Score is Utils, Test {
     function registerCustomer(address _customerAddr, 
         string _phone, 
         string _password) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempPassword = stringToBytes32(_password);
+
         //判断是否已经注册
         if(!isCustomerAlreadyRegister(_phone)) {
             //还未注册
             customer[_customerAddr].customerAddr = _customerAddr;
-            customer[_customerAddr].phone = stringToBytes32(_phone);
-            customer[_customerAddr].password = stringToBytes32(_password);
+            customer[_customerAddr].phone = tempPhone;
+            customer[_customerAddr].password = tempPassword;
 
-            customerPhone[stringToBytes32(_phone)] = _customerAddr;
+            customerPhone[tempPhone] = _customerAddr;
             customerAddrs.push(_customerAddr);
-            customerPhones.push(stringToBytes32(_phone));
+            customerPhones.push(tempPhone);
             RegisterCustomer(msg.sender, 0, "注册成功");
             return;
         }
@@ -151,7 +154,7 @@ contract Score is Utils, Test {
     //查询客户的详细信息,已登录用户调用
     function getCustomerInfo(string _phone)constant returns(address, bytes32, uint) {
         address tempAddr = customerPhone[stringToBytes32(_phone)];
-        return (customer[tempAddr].customerAddr, customer[tempAddr].phone, customer[tempAddr].scoreAmount);
+        return (customer[tempAddr].customerAddr, customer[tempAddr].phone, customer[tempAddr].score);
     }
 
 
@@ -175,8 +178,9 @@ contract Score is Utils, Test {
 
     //判断一个客户是否已经注册
     function isCustomerAlreadyRegister(string _phone)internal returns(bool) {
+        bytes32 tempPhone = stringToBytes32(_phone);
         for(uint i = 0; i < customerPhones.length; i++) {
-            if(customerPhones[i] == stringToBytes32(_phone)) {
+            if(customerPhones[i] == tempPhone) {
                 return true;
             }
         }
@@ -195,23 +199,26 @@ contract Score is Utils, Test {
 
 
     //银行发送积分给客户,只能被银行调用，且只能发送给客户
-    // event SendScoreToCustomer(address sender, string message);
-    // function sendScoreToCustomer(address _receiver, 
-    //     uint _amount)onlyOwner {
+    event IssueScore(address sender, uint statusCode, string message);
+    function issueScore(string _phone, 
+        uint _score)onlyOwner {
+        bytes32 tempPhone = stringToBytes32(_phone);
 
-    //     if(isCustomerAlreadyRegister(_receiver)) {
-    //         //已经注册
-    //         issuedScoreAmount += _amount;
-    //         customer[_receiver].scoreAmount += _amount;
-    //         SendScoreToCustomer(msg.sender, "发行积分成功");
-    //         return;
-    //     }
-    //     else {
-    //         //还没注册
-    //         SendScoreToCustomer(msg.sender, "该账户未注册，发行积分失败");
-    //         return;
-    //     }
-    // }
+
+        if(isCustomerAlreadyRegister(_phone)) {
+            address tempAddr = customerPhone[tempPhone];
+            //已经注册
+            issuedScore += _score;
+            customer[tempAddr].score += _score;
+            IssueScore(msg.sender, 0, "发行积分成功");
+            return;
+        }
+        else {
+            //还没注册
+            IssueScore(msg.sender, 1, "该账户未注册，发行积分失败");
+            return;
+        }
+    }
 
     //根据商户address查找余额
     // function getScoreWithMerchantAddr(address merchantAddr)constant returns(uint) {

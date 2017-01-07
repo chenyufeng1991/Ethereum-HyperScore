@@ -33,6 +33,10 @@ app.get('/loginCustomer', loginCustomer.login);
 var loginMerchant = require('./routes/merchant/loginMerchant');
 app.get('/loginMerchant', loginMerchant.login);
 
+//银行管理员详细信息
+var getManagerInfo = require('./routes/manager/getManagerInfo');
+app.get('/getManagerInfo', getManagerInfo.query);
+
 //查询客户详细信息
 var getCustomerInfo = require('./routes/customer/getCustomerInfo');
 app.get('/getCustomerInfo', getCustomerInfo.query);
@@ -45,10 +49,6 @@ app.get('/getMerchantInfo', getMerchantInfo.query);
 //银行发行积分
 var issueScore = require('./routes/manager/issueScore');
 app.get('/issueScore', issueScore.issue);
-
-//查询银行已经发行的积分总数
-var getIssuedScore = require('./routes/manager/getIssuedScore');
-app.get('/getIssuedScore', getIssuedScore.query);
 
 //转让积分
 var transferScore = require('./routes/transferScore');

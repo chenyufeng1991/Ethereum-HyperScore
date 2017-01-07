@@ -9,6 +9,10 @@ app.get('/', function (req, res) {
     res.end();
 });
 
+//银行管理员注册
+var registerManager = require('./routes/manager/registerManager');
+app.get('/registerManager', registerManager.register);
+
 //客户注册
 var registerCustomer = require('./routes/customer/registerCustomer');
 app.get('/registerCustomer', registerCustomer.register);

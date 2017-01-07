@@ -1,5 +1,22 @@
 [
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   }
+  ],
+  "name": "settleScore",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [
    {
@@ -55,6 +72,10 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_managerAddr",
+    "type": "address"
+   },
+   {
     "name": "_phone",
     "type": "string"
    },
@@ -63,7 +84,7 @@
     "type": "string"
    }
   ],
-  "name": "loginMerchant",
+  "name": "registerManager",
   "outputs": [],
   "payable": false,
   "type": "function"
@@ -76,11 +97,11 @@
     "type": "string"
    },
    {
-    "name": "_score",
-    "type": "uint256"
+    "name": "_password",
+    "type": "string"
    }
   ],
-  "name": "issueScore",
+  "name": "loginMerchant",
   "outputs": [],
   "payable": false,
   "type": "function"
@@ -192,6 +213,27 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_managerPhone",
+    "type": "string"
+   },
+   {
+    "name": "_customerPhone",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   }
+  ],
+  "name": "issueScore",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [],
   "name": "getIssuedScore",
@@ -224,6 +266,28 @@
  {
   "inputs": [],
   "type": "constructor"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "RegisterManager",
+  "type": "event"
  },
  {
   "anonymous": false,
@@ -333,6 +397,28 @@
    }
   ],
   "name": "IssueScore",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "SettleScore",
   "type": "event"
  },
  {

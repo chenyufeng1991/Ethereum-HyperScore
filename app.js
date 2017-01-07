@@ -29,6 +29,11 @@ app.get('/loginMerchant', loginMerchant.login);
 var getCustomerInfo = require('./routes/customer/getCustomerInfo');
 app.get('/getCustomerInfo', getCustomerInfo.query);
 
+//查询商户详细信息
+var getMerchantInfo = require('./routes/merchant/getMerchantInfo');
+app.get('/getMerchantInfo', getMerchantInfo.query);
+
+
 //银行发行积分
 var issueScore = require('./routes/manager/issueScore');
 app.get('/issueScore', issueScore.issue);

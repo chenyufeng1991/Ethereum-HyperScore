@@ -272,8 +272,8 @@ contract Score is Utils, Test {
         string _sender, 
         string _receiver, 
         uint _score) {
-        // if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver));  如果加入商户，则执行这个判断
-        if(!isCustomerAlreadyRegister(_receiver)){
+
+        if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver)){
             //目的账户不存在
             TransferScore(msg.sender, 1, "目标账户不存在，请确认后再转移！");
             return;
@@ -281,21 +281,24 @@ contract Score is Utils, Test {
 
         bytes32 tempSenderPhone = stringToBytes32(_sender);
         bytes32 tempReceivedPhone = stringToBytes32(_receiver);
+        address tempSenderAddr;
+        address tempReceivedAddr;
         
         if(_senderType == 0) {
             //客户转移
-            address tempSenderAddr = customerPhone[tempSenderPhone];
+            tempSenderAddr = customerPhone[tempSenderPhone];
             if(customer[tempSenderAddr].score >= _score) {
                 customer[tempSenderAddr].score -= _score;
         
                 if(isCustomerAlreadyRegister(_receiver)) {
                     //目的地址是客户
-                    address tempReceivedAddr = customerPhone[tempReceivedPhone];
+                    tempReceivedAddr = customerPhone[tempReceivedPhone];
                     customer[tempReceivedAddr].score += _score;
-                }else {
+                }
+                else {
                     //目的地址是商户
-                    // address tempReceivedAddr = customerPhone[tempReceivedPhone];
-                    // merchant[_receiver].score += _score;
+                    tempReceivedAddr = merchantPhone[tempReceivedPhone];
+                    merchant[tempReceivedAddr].score += _score;
                 }
                 TransferScore(msg.sender, 0, "积分转让成功！");
                 return;
@@ -305,24 +308,29 @@ contract Score is Utils, Test {
                 return;
             }
         }
-        // else {
-        //     //商户转移
-        //     if(merchant[_sender].scoreAmount >= _amount) {
-        //         merchant[_sender].scoreAmount -= _amount;
-        //         if(isCustomerAlreadyRegister(_receiver)) {
-        //             //目的地址是客户
-        //             customer[_receiver].scoreAmount += _amount;
-        //         }else {
-        //             merchant[_receiver].scoreAmount += _amount;
-        //         }
-        //         TransferScore(msg.sender, "积分转让成功！");
-        //         return;
-        //     }
-        //     else {
-        //         TransferScore(msg.sender, "你的积分余额不足，转让失败！");
-        //         return;
-        //     }
-        // }
+        else {
+            //商户转移
+            tempSenderAddr = merchantPhone[tempSenderPhone];
+            if(merchant[tempSenderAddr].score >= _score) {
+                merchant[tempSenderAddr].score -= _score;
+                if(isCustomerAlreadyRegister(_receiver)) {
+                    //目的地址是客户
+                    tempReceivedAddr = customerPhone[tempReceivedPhone];
+                    customer[tempReceivedAddr].score += _score;
+                }
+                else {
+                    //目的地址是商户
+                    tempReceivedAddr = merchantPhone[tempReceivedPhone];
+                    merchant[tempReceivedAddr].score += _score;
+                }
+                TransferScore(msg.sender, 0, "积分转让成功！");
+                return;
+            }
+            else {
+                TransferScore(msg.sender, 1, "你的积分余额不足，转让失败！");
+                return;
+            }
+        }
     }
 
     //银行查找已经发行的积分总数

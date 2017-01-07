@@ -45,6 +45,9 @@ app.get('/getCustomerInfo', getCustomerInfo.query);
 var getMerchantInfo = require('./routes/merchant/getMerchantInfo');
 app.get('/getMerchantInfo', getMerchantInfo.query);
 
+//商户与银行清算积分
+var settleScore = require('./routes/merchant/settleScore');
+app.get('/settleScore', settleScore.settle);
 
 //银行发行积分
 var issueScore = require('./routes/manager/issueScore');

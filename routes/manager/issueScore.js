@@ -1,16 +1,9 @@
 //处理银行发行积分的路由
-var Web3 = require('web3');
 var express = require('express');
-var fs = require('fs');
+var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 
 //web3初始化
-var web3;
-if(typeof web3 !== 'undefined') {
-    web3 = new Web3(web3.currentProvider);
-}
-else {
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-}
+var web3 = web3Instance.web3;
 
 /**
  * 返回码说明：

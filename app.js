@@ -1,6 +1,6 @@
 var express = require('express'); // 项目服务端使用express框架
 var app = express();
-var contractInstance = require('./routes/contractInstance');
+var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
 
 //主页
 app.get('/', function (req, res) {
@@ -24,6 +24,9 @@ app.get('/getCustomerInfo', getCustomerInfo.query);
 //银行发行积分
 var issueScore = require('./routes/manager/issueScore');
 app.get('/issueScore', issueScore.issue);
+
+//查询银行已经发行的积分总数
+
 
 var server = app.listen(8000, function () {
     console.log("服务端地址为：http://localhost:8000");

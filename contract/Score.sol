@@ -275,9 +275,9 @@ contract Score is Utils, Test {
     // }
 
     //银行查找已经发行的积分总数
-    // function getIssuedScoreAmount()constant returns(uint) {
-    //     return issuedScoreAmount;
-    // }
+    function getIssuedScore()constant returns(uint) {
+        return issuedScore;
+    }
 
     //（1）商户添加一件商品:（1）（2）（3）方法分拆解决out of gas
     // event AddGood(address sender, bool isSuccess, string message);

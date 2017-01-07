@@ -22,4 +22,3 @@ fs.readFile("./contract/abiString.txt", function (error, result) {
         global.contractInstance = web3.eth.contract(JSON.parse(abiString)).at(contractAddress);
     });
 });
-

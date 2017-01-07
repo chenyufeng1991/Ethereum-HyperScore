@@ -178,6 +178,23 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   }
+  ],
+  "name": "loginManager",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
     "name": "_age",
     "type": "uint256"
    }
@@ -287,6 +304,28 @@
    }
   ],
   "name": "RegisterManager",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "LoginManager",
   "type": "event"
  },
  {

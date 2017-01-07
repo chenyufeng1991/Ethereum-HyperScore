@@ -118,7 +118,7 @@ contract Score is Utils, Test {
         return owner;
     }
 
-    //创建一个银行管理员
+    //注册一个银行管理员
     event RegisterManager(address sender, uint statusCode, string message);
     function registerManager(address _managerAddr, 
         string _phone, 
@@ -143,6 +143,32 @@ contract Score is Utils, Test {
         else {
             //已经注册
             RegisterManager(msg.sender, 0, "该管理员已经注册");
+            return;
+        }
+    }
+
+    //登录一个银行管理员
+    event LoginManager(address sender, uint statusCode, string message);
+    function loginManager(string _phone, 
+        string _password) {
+        //判断是否已经注册
+        if(isManagerAlreadyRegister(_phone)) {
+            //已经注册，可以进行登录操作
+            address tempAddr = managerPhone[stringToBytes32(_phone)];
+            if(stringToBytes32(_password) == manager[tempAddr].password) {
+                //登录成功
+                LoginManager(msg.sender, 0, "管理员登录成功");
+                return;
+            }
+            else {
+                //登录失败
+                LoginManager(msg.sender, 1, "管理员密码错误，登录失败");
+                return;
+            }
+        }
+        else {
+            //还未注册
+            LoginManager(msg.sender, 1, "该管理员未注册，请确认后登录");
             return;
         }
     }

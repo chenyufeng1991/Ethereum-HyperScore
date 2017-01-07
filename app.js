@@ -21,6 +21,10 @@ app.get('/registerCustomer', registerCustomer.register);
 var registerMerchant = require('./routes/merchant/registerMerchant');
 app.get('/registerMerchant', registerMerchant.register);
 
+//银行管理员登录
+var loginManager = require('./routes/manager/loginManager');
+app.get('/loginManager', loginManager.login);
+
 //客户登录
 var loginCustomer = require('./routes/customer/loginCustomer');
 app.get('/loginCustomer', loginCustomer.login);

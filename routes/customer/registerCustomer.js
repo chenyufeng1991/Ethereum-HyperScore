@@ -1,20 +1,12 @@
 //处理客户注册的路由
-
-var Web3 = require('web3');
 var express = require('express');
-var fs = require('fs');
-var generateKey = require('../../public/javascripts/utils/generateKey');
-var generateAccount = require('../../public/javascripts/utils/generateAccount');
-var judgeNodeType = require('../../public/javascripts/utils/judgeNodeType');
+var generateKey = require('../../public/javascripts/utils/ethereumUtils/generateKey');
+var generateAccount = require('../../public/javascripts/utils/ethereumUtils/generateAccount');
+var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeNodeType');
+var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 
 //web3初始化
-var web3;
-if(typeof web3 !== 'undefined') {
-    web3 = new Web3(web3.currentProvider);
-}
-else {
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-}
+var web3 = web3Instance.web3;
 
 /**
  * 状态码说明：

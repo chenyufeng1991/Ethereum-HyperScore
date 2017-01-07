@@ -29,6 +29,10 @@ app.get('/issueScore', issueScore.issue);
 var getIssuedScore = require('./routes/manager/getIssuedScore');
 app.get('/getIssuedScore', getIssuedScore.query);
 
+//转让积分
+var transferScore = require('./routes/transferScore');
+app.get('/transferScore', transferScore.transfer);
+
 
 var server = app.listen(8000, function () {
     console.log("服务端地址为：http://localhost:8000");

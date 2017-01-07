@@ -48,8 +48,15 @@ contract Utils {
 contract Score is Utils, Test {
 
     address owner; //合约的拥有者，银行
-    uint issuedScore; //银行已经发行的积分总数
+    uint issuedScore; //银行发行的积分总数
     uint settledScore; //银行已经清算的积分总数
+   
+    struct Manager {
+        address managerAddr; //银行管理员address
+        bytes32 phone; //管理员手机
+        bytes32 password; //管理员密码
+        uint issuedScore; //该管理员发行的积分总数
+    }
 
     struct Customer {
         address customerAddr; //客户address
@@ -75,14 +82,24 @@ contract Score is Utils, Test {
 
     mapping (address=>Customer) customer; 
     mapping (bytes32=>address) customerPhone; //根据用户手机查找账户address
+
     mapping (address=>Merchant) merchant; 
     mapping (bytes32=>address) merchantPhone; //根据商户手机查找账户address
+
+    mapping (address=>Manager) manager;
+    mapping (bytes32=>address) managerPhone; //根据管理员手机查找账户address
+
     mapping (bytes32=>Good) good; //根据商品Id查找该件商品
 
     address[] customerAddrs; //已注册的客户地址数组
     bytes32[] customerPhones; //已注册的客户手机数组
+
     address[] merchantAddrs; //已注册的商户地址数组
     bytes32[] merchantPhones; //已注册的商户手机数组
+
+    address[] managerAddrs; //已注册的管理员地址数组
+    bytes32[] managerPhones; //已注册的管理员手机数组
+
     bytes32[] goods; //已经上线的商品数组
 
     //增加权限控制，某些方法只能由合约的创建者调用
@@ -99,6 +116,35 @@ contract Score is Utils, Test {
     //返回合约调用者地址
     function getOwner() constant returns(address) {
         return owner;
+    }
+
+    //创建一个银行管理员
+    event RegisterManager(address sender, uint statusCode, string message);
+    function registerManager(address _managerAddr, 
+        string _phone, 
+        string _password) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempPassword = stringToBytes32(_password);
+
+        //判断该账号是否已经注册
+        if(!isManagerAlreadyRegister(_phone)) {
+            //还未注册
+            manager[_managerAddr].managerAddr = _managerAddr;
+            manager[_managerAddr].phone = tempPhone;
+            manager[_managerAddr].password = tempPassword;
+
+            managerPhone[tempPhone] = _managerAddr;
+            managerAddrs.push(_managerAddr);
+            managerPhones.push(tempPhone);
+
+            RegisterManager(msg.sender, 0, "管理员注册成功");
+            return;
+        }
+        else {
+            //已经注册
+            RegisterManager(msg.sender, 0, "该管理员已经注册");
+            return;
+        }
     }
 
     //注册一个客户
@@ -220,6 +266,17 @@ contract Score is Utils, Test {
         return (merchant[tempAddr].merchantAddr, merchant[tempAddr].phone, merchant[tempAddr].score);
     }
 
+    //判断一个管理员是否已经注册
+    function isManagerAlreadyRegister(string _phone)internal returns(bool) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        for(uint i = 0; i < managerPhones.length; i++) {
+            if(managerPhones[i] == tempPhone) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //判断一个客户是否已经注册
     function isCustomerAlreadyRegister(string _phone)internal returns(bool) {
         bytes32 tempPhone = stringToBytes32(_phone);
@@ -243,24 +300,48 @@ contract Score is Utils, Test {
     }
 
 
-    //银行发送积分给客户,只能被银行调用，且只能发送给客户
+    //管理员发送积分给客户,只能发送给客户
     event IssueScore(address sender, uint statusCode, string message);
-    function issueScore(string _phone, 
+    function issueScore(string _managerPhone ,
+        string _customerPhone, 
         uint _score)onlyOwner {
-        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempManagerPhone = stringToBytes32(_managerPhone);
+        bytes32 tempCustomerPhone = stringToBytes32(_customerPhone);
 
-
-        if(isCustomerAlreadyRegister(_phone)) {
-            address tempAddr = customerPhone[tempPhone];
+        if(isCustomerAlreadyRegister(_customerPhone)) {
             //已经注册
+            address tempManagerAddr = managerPhone[tempManagerPhone];
+            address tempCustomerAddr = customerPhone[tempCustomerPhone];
+            
             issuedScore += _score;
-            customer[tempAddr].score += _score;
+            customer[tempCustomerAddr].score += _score;
+            manager[tempManagerAddr].issuedScore += _score;
             IssueScore(msg.sender, 0, "发行积分成功");
             return;
         }
         else {
             //还没注册
             IssueScore(msg.sender, 1, "该账户未注册，发行积分失败");
+            return;
+        }
+    }
+
+    //商户和银行之间清算积分
+    event SettleScore(address sender, uint statusCode, string message);
+    function settleScore(string _phone, 
+        uint _score) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        address tempAddr = merchantPhone[tempPhone];
+        if(merchant[tempAddr].score >= _score) {
+            //可以清算
+            merchant[tempAddr].score -= _score;
+            settledScore += _score;
+            SettleScore(msg.sender, 0, "商户积分清算成功");
+            return;
+        }
+        else {
+            //余额不足，清算失败
+            SettleScore(msg.sender, 1, "积分余额不足，清算失败");
             return;
         }
     }

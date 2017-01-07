@@ -50,8 +50,8 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
     console.log("code字节码：" + codeString);
     fs.writeFile("../../../contract/codeString.txt", codeString);
 
-    //根据abi和bytecode部署合约
-    web3.eth.contract(JSON.parse(abiString)).new({data: codeString, from: web3.eth.accounts[0], gas: 1600000}, function (error, contract) {
+    //根据abi和bytecode部署合约;如果这里error，有可能是OOG造成的
+    web3.eth.contract(JSON.parse(abiString)).new({data: codeString, from: web3.eth.accounts[0], gas: 2000000}, function (error, contract) {
         if(!contract.address) {
             console.log("交易hash：" + contract.transactionHash);
         }

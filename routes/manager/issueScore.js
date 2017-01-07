@@ -22,9 +22,9 @@ var web3 = web3Instance.web3;
  * txInfo:区块链交易信息
  */
 module.exports.issue = function (req, res) {
-    console.log("请求参数：" + req.query.phone + "    " + req.query.score);
+    console.log("管理员账号：" + req.query.managerPhone + "用户账号：" + req.query.customerPhone + "积分数量：" + req.query.score);
 
-    global.contractInstance.issueScore(req.query.phone, req.query.score, {from: web3.eth.accounts[0]}, function (error, result) {
+    global.contractInstance.issueScore(req.query.managerPhone, req.query.customerPhone, req.query.score, {from: web3.eth.accounts[0]}, function (error, result) {
         if (!error) {
             var eventIssueScore = global.contractInstance.IssueScore();
             eventIssueScore.watch(function (error, result) {

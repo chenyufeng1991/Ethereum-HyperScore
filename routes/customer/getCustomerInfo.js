@@ -3,9 +3,6 @@ var express = require('express');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 
-//web3初始化
-var web3 = web3Instance.web3;
-
 /**
  * 注意交易方法和Constant方法的调用，目前指定以下规范：
  * （1）Constant方法不发送from,gas参数；

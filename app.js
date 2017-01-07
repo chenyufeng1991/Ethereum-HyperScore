@@ -26,6 +26,8 @@ var issueScore = require('./routes/manager/issueScore');
 app.get('/issueScore', issueScore.issue);
 
 //查询银行已经发行的积分总数
+var getIssuedScore = require('./routes/manager/getIssuedScore');
+app.get('/getIssuedScore', getIssuedScore.query);
 
 
 var server = app.listen(8000, function () {

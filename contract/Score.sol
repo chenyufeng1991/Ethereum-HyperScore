@@ -61,8 +61,9 @@ contract Score is Utils, Test {
 
     struct Merchant {
         address merchantAddr; //商户address
+        bytes32 phone; //商户手机
         bytes32 password; //商户密码
-        uint scoreAmount; //积分余额
+        uint score; //积分余额
         bytes32[] sellGoods; //发布的商品数组
     }
 
@@ -75,11 +76,13 @@ contract Score is Utils, Test {
     mapping (address=>Customer) customer; 
     mapping (bytes32=>address) customerPhone; //根据用户手机查找账户address
     mapping (address=>Merchant) merchant; 
+    mapping (bytes32=>address) merchantPhone; //根据商户手机查找账户address
     mapping (bytes32=>Good) good; //根据商品Id查找该件商品
 
     address[] customerAddrs; //已注册的客户地址数组
     bytes32[] customerPhones; //已注册的客户手机数组
-    address[] merchants; //已注册的商户数组
+    address[] merchantAddrs; //已注册的商户地址数组
+    bytes32[] merchantPhones; //已注册的商户手机数组
     bytes32[] goods; //已经上线的商品数组
 
     //增加权限控制，某些方法只能由合约的创建者调用
@@ -116,11 +119,11 @@ contract Score is Utils, Test {
             customerPhone[tempPhone] = _customerAddr;
             customerAddrs.push(_customerAddr);
             customerPhones.push(tempPhone);
-            RegisterCustomer(msg.sender, 0, "注册成功");
+            RegisterCustomer(msg.sender, 0, "用户注册成功");
             return;
         }
         else {
-            RegisterCustomer(msg.sender, 1, "该账户已经注册");
+            RegisterCustomer(msg.sender, 1, "该用户已经注册");
             return;
         }
     }
@@ -135,12 +138,12 @@ contract Score is Utils, Test {
             address tempAddr = customerPhone[stringToBytes32(_phone)];
             if(stringToBytes32(_password) == customer[tempAddr].password) {
                 //登录成功
-                LoginCustomer(msg.sender, 0, "登录成功");
+                LoginCustomer(msg.sender, 0, "用户登录成功");
                 return;
             }
             else {
                 //登录失败
-                LoginCustomer(msg.sender, 1, "密码错误，登录失败");
+                LoginCustomer(msg.sender, 1, "用户密码错误，登录失败");
                 return;
             }
         }
@@ -159,22 +162,31 @@ contract Score is Utils, Test {
 
 
     //注册一个商户
-    // event NewMerchant(address sender, bool isSuccess, string message);
-    // function newMerchant(address _merchantAddr) {
+    event RegisterMerchant(address sender, uint statusCode, string message);
+    function registerMerchant(address _merchantAddr, 
+        string _phone, 
+        string _password) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempPassword = stringToBytes32(_password);
 
-    //     //判断是否已经注册
-    //     if(!isMerchantAlreadyRegister(_merchantAddr)) {
-    //         //还未注册
-    //         merchant[_merchantAddr].merchantAddr = _merchantAddr;
-    //         merchants.push(_merchantAddr);
-    //         NewMerchant(msg.sender, true, "注册成功");
-    //         return;
-    //     }
-    //     else {
-    //         NewMerchant(msg.sender, false, "该账户已经注册");
-    //         return;
-    //     }
-    // }
+        //判断是否已经注册
+        if(!isMerchantAlreadyRegister(_phone)) {
+            //还未注册
+            merchant[_merchantAddr].merchantAddr = _merchantAddr;
+            merchant[_merchantAddr].phone = tempPhone;
+            merchant[_merchantAddr].password = tempPassword;
+
+            merchantPhone[tempPhone] = _merchantAddr;
+            merchantAddrs.push(_merchantAddr);
+            merchantPhones.push(tempPhone);
+            RegisterMerchant(msg.sender, 0, "商户注册成功");
+            return;
+        }
+        else {
+            RegisterMerchant(msg.sender, 1, "该商户已经注册");
+            return;
+        }
+    }
 
     //判断一个客户是否已经注册
     function isCustomerAlreadyRegister(string _phone)internal returns(bool) {
@@ -188,14 +200,15 @@ contract Score is Utils, Test {
     }
 
     //判断一个商户是否已经注册
-    // function isMerchantAlreadyRegister(address _merchantAddr)internal returns(bool) {
-    //     for(uint i = 0; i < merchants.length; i++) {
-    //         if(merchants[i] == _merchantAddr) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
+    function isMerchantAlreadyRegister(string _phone)internal returns(bool) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        for(uint i = 0; i < merchantPhones.length; i++) {
+            if(merchantPhones[i] == tempPhone) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     //银行发送积分给客户,只能被银行调用，且只能发送给客户
@@ -230,7 +243,7 @@ contract Score is Utils, Test {
         // if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver));  如果加入商户，则执行这个判断
         if(!isCustomerAlreadyRegister(_receiver)){
             //目的账户不存在
-            TransferScore(msg.sender, 1, "目的账户不存在，请确认后再转移！");
+            TransferScore(msg.sender, 1, "目标账户不存在，请确认后再转移！");
             return;
         }
 

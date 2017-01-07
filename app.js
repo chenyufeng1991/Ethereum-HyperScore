@@ -13,6 +13,10 @@ app.get('/', function (req, res) {
 var registerCustomer = require('./routes/customer/registerCustomer');
 app.get('/registerCustomer', registerCustomer.register);
 
+//商户注册
+var registerMerchant = require('./routes/merchant/registerMerchant');
+app.get('/registerMerchant', registerMerchant.register);
+
 //客户登录
 var loginCustomer = require('./routes/customer/loginCustomer');
 app.get('/loginCustomer', loginCustomer.login);

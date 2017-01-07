@@ -103,6 +103,31 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_senderType",
+    "type": "uint256"
+   },
+   {
+    "name": "_sender",
+    "type": "string"
+   },
+   {
+    "name": "_receiver",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   }
+  ],
+  "name": "transferScore",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [],
   "name": "getIssuedScore",
@@ -200,6 +225,28 @@
    }
   ],
   "name": "IssueScore",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "TransferScore",
   "type": "event"
  },
  {

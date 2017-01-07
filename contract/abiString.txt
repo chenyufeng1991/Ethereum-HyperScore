@@ -33,6 +33,23 @@
     "type": "string"
    },
    {
+    "name": "_password",
+    "type": "string"
+   }
+  ],
+  "name": "loginMerchant",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
     "name": "_score",
     "type": "uint256"
    }
@@ -246,6 +263,28 @@
    }
   ],
   "name": "RegisterMerchant",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "LoginMerchant",
   "type": "event"
  },
  {

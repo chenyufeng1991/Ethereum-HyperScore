@@ -21,6 +21,10 @@ app.get('/registerMerchant', registerMerchant.register);
 var loginCustomer = require('./routes/customer/loginCustomer');
 app.get('/loginCustomer', loginCustomer.login);
 
+//商户登录
+var loginMerchant = require('./routes/merchant/loginMerchant');
+app.get('/loginMerchant', loginMerchant.login);
+
 //查询客户详细信息
 var getCustomerInfo = require('./routes/customer/getCustomerInfo');
 app.get('/getCustomerInfo', getCustomerInfo.query);

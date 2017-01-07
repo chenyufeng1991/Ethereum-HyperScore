@@ -188,6 +188,32 @@ contract Score is Utils, Test {
         }
     }
 
+    //登录一个商户
+    event LoginMerchant(address sender, uint statusCode, string message);
+    function loginMerchant(string _phone, 
+        string _password) {
+        //判断是否已经注册
+        if(isMerchantAlreadyRegister(_phone)) {
+            //已经注册，可以进行登录操作
+            address tempAddr = merchantPhone[stringToBytes32(_phone)];
+            if(stringToBytes32(_password) == merchant[tempAddr].password) {
+                //登录成功
+                LoginMerchant(msg.sender, 0, "商户登录成功");
+                return;
+            }
+            else {
+                //登录失败
+                LoginMerchant(msg.sender, 1, "商户密码错误，登录失败");
+                return;
+            }
+        }
+        else {
+            //还未注册
+            LoginMerchant(msg.sender, 1, "该商户未注册，请确认后登录");
+            return;
+        }
+    }
+
     //判断一个客户是否已经注册
     function isCustomerAlreadyRegister(string _phone)internal returns(bool) {
         bytes32 tempPhone = stringToBytes32(_phone);

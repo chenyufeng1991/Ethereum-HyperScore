@@ -174,9 +174,9 @@ contract Score is Utils, Test {
     }
 
     //查询银行管理员的详细信息,已登录的管理员调用
-    function getManagerInfo(string _phone)constant returns(address, bytes32, uint, uint) {
+    function getManagerInfo(string _phone)constant returns(address, bytes32, uint, uint, uint) {
         address tempAddr = managerPhone[stringToBytes32(_phone)];
-        return (manager[tempAddr].managerAddr, manager[tempAddr].phone, manager[tempAddr].issuedScore, totalIssuedScore);
+        return (manager[tempAddr].managerAddr, manager[tempAddr].phone, manager[tempAddr].issuedScore, totalIssuedScore, totalSettledScore);
     }
 
     //注册一个客户

@@ -30,13 +30,14 @@ module.exports.query = function (req, res) {
     console.log("请求参数：" + req.query.phone);
     global.contractInstance.getManagerInfo(req.query.phone, function (error, result) {
         if (!error) {
-            console.log("管理员address： " + result[0] + "；管理员手机：" + commonUtils.hexCharCodeToStr(result[1]) + "；发行积分：" + result[2] + "银行发行总积分：" + result[3]);
+            console.log("管理员address： " + result[0] + "；管理员手机：" + commonUtils.hexCharCodeToStr(result[1]) + "；发行积分：" + result[2] + "银行发行总积分：" + result[3] + "银行已经清算的积分：" + result[4]);
 
             var obj = {
                 address: result[0],
                 phone: commonUtils.hexCharCodeToStr(result[1]),
                 issuedScore: result[2],
-                totalIssuedScore: result[3]
+                totalIssuedScore: result[3],
+                totalSettledScore: result[4]
             };
 
             var response = {

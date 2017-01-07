@@ -1,4 +1,4 @@
-//处理商户查询详情的路由
+//处理客户查询详情的路由
 var express = require('express');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
@@ -23,19 +23,20 @@ var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Ins
  * @param res
  * code:状态码
  * message:消息
- * info:商户的详情
+ * info:管理员的详情
  */
 module.exports.query = function (req, res) {
 
     console.log("请求参数：" + req.query.phone);
-    global.contractInstance.getMerchantInfo(req.query.phone, function (error, result) {
+    global.contractInstance.getManagerInfo(req.query.phone, function (error, result) {
         if (!error) {
-            console.log("商户address： " + result[0] + "商户手机：" + commonUtils.hexCharCodeToStr(result[1]) + "积分余额：" + result[2]);
+            console.log("管理员address： " + result[0] + "；管理员手机：" + commonUtils.hexCharCodeToStr(result[1]) + "；发行积分：" + result[2] + "银行发行总积分：" + result[3]);
 
             var obj = {
                 address: result[0],
                 phone: commonUtils.hexCharCodeToStr(result[1]),
-                score: result[2]
+                issuedScore: result[2],
+                totalIssuedScore: result[3]
             };
 
             var response = {

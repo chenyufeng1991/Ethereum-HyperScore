@@ -48,8 +48,8 @@ contract Utils {
 contract Score is Utils, Test {
 
     address owner; //合约的拥有者，银行
-    uint issuedScore; //银行发行的积分总数
-    uint settledScore; //银行已经清算的积分总数
+    uint totalIssuedScore; //银行发行的积分总数
+    uint totalSettledScore; //银行已经清算的积分总数
    
     struct Manager {
         address managerAddr; //银行管理员address
@@ -171,6 +171,12 @@ contract Score is Utils, Test {
             LoginManager(msg.sender, 1, "该管理员未注册，请确认后登录");
             return;
         }
+    }
+
+    //查询银行管理员的详细信息,已登录的管理员调用
+    function getManagerInfo(string _phone)constant returns(address, bytes32, uint, uint) {
+        address tempAddr = managerPhone[stringToBytes32(_phone)];
+        return (manager[tempAddr].managerAddr, manager[tempAddr].phone, manager[tempAddr].issuedScore, totalIssuedScore);
     }
 
     //注册一个客户
@@ -339,7 +345,7 @@ contract Score is Utils, Test {
             address tempManagerAddr = managerPhone[tempManagerPhone];
             address tempCustomerAddr = customerPhone[tempCustomerPhone];
             
-            issuedScore += _score;
+            totalIssuedScore += _score;
             customer[tempCustomerAddr].score += _score;
             manager[tempManagerAddr].issuedScore += _score;
             IssueScore(msg.sender, 0, "发行积分成功");
@@ -361,7 +367,7 @@ contract Score is Utils, Test {
         if(merchant[tempAddr].score >= _score) {
             //可以清算
             merchant[tempAddr].score -= _score;
-            settledScore += _score;
+            totalSettledScore += _score;
             SettleScore(msg.sender, 0, "商户积分清算成功");
             return;
         }
@@ -438,11 +444,6 @@ contract Score is Utils, Test {
                 return;
             }
         }
-    }
-
-    //银行查找已经发行的积分总数
-    function getIssuedScore()constant returns(uint) {
-        return issuedScore;
     }
 
     //（1）商户添加一件商品:（1）（2）（3）方法分拆解决out of gas

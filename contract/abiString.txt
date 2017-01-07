@@ -129,6 +129,36 @@
  },
  {
   "constant": true,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   }
+  ],
+  "name": "getManagerInfo",
+  "outputs": [
+   {
+    "name": "",
+    "type": "address"
+   },
+   {
+    "name": "",
+    "type": "bytes32"
+   },
+   {
+    "name": "",
+    "type": "uint256"
+   },
+   {
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": true,
   "inputs": [],
   "name": "getOwner",
   "outputs": [
@@ -247,19 +277,6 @@
   ],
   "name": "issueScore",
   "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [],
-  "name": "getIssuedScore",
-  "outputs": [
-   {
-    "name": "",
-    "type": "uint256"
-   }
-  ],
   "payable": false,
   "type": "function"
  },

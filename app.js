@@ -21,6 +21,10 @@ app.get('/loginCustomer', loginCustomer.login);
 var getCustomerInfo = require('./routes/customer/getCustomerInfo');
 app.get('/getCustomerInfo', getCustomerInfo.query);
 
+//银行发行积分
+var issueScore = require('./routes/manager/issueScore');
+app.get('/issueScore', issueScore.issue);
+
 var server = app.listen(8000, function () {
     console.log("服务端地址为：http://localhost:8000");
 });

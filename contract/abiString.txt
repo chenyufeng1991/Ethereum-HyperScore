@@ -29,6 +29,23 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   }
+  ],
+  "name": "issueScore",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
     "name": "_customerAddr",
     "type": "address"
    },
@@ -148,6 +165,28 @@
    }
   ],
   "name": "LoginCustomer",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "IssueScore",
   "type": "event"
  },
  {

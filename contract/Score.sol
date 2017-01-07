@@ -154,7 +154,7 @@ contract Score is Utils, Test {
         }
     }
 
-    //查询客户的详细信息,已登录用户调用
+    //查询客户的详细信息,已登录的用户调用
     function getCustomerInfo(string _phone)constant returns(address, bytes32, uint) {
         address tempAddr = customerPhone[stringToBytes32(_phone)];
         return (customer[tempAddr].customerAddr, customer[tempAddr].phone, customer[tempAddr].score);
@@ -212,6 +212,12 @@ contract Score is Utils, Test {
             LoginMerchant(msg.sender, 1, "该商户未注册，请确认后登录");
             return;
         }
+    }
+
+    //查询商户的详细信息,已登录的商户调用
+    function getMerchantInfo(string _phone)constant returns(address, bytes32, uint) {
+        address tempAddr = merchantPhone[stringToBytes32(_phone)];
+        return (merchant[tempAddr].merchantAddr, merchant[tempAddr].phone, merchant[tempAddr].score);
     }
 
     //判断一个客户是否已经注册

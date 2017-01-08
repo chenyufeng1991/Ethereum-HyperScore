@@ -494,7 +494,7 @@ contract Score is Utils, Test {
         return merchant[tempMerchantAddr].sellGoods;
     }
 
-    //（1）用户用积分购买一件商品,拆分方法，解决out of gas
+    //用户用积分购买一件商品
     event BuyGood(address sender, uint statusCode, string message);
     function buyGood(string _phone, 
         string _goodId) {
@@ -526,12 +526,12 @@ contract Score is Utils, Test {
         }
     }
 
-    //客户查找自己的商品数组
-    // function getGoodsByCustomer(address _customerAddr)constant returns(bytes32[]) {
-    //     return customer[_customerAddr].buyGoods;
-    // }
-
- 
+    //客户查找自己已购买的商品数组
+    function getGoodsByCustomer(string _phone)constant returns(bytes32[]) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        address tempCustomerAddr = customerPhone[tempPhone];
+        return customer[tempCustomerAddr].buyGoods;
+    }
 }
 
 

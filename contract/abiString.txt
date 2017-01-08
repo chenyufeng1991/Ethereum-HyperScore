@@ -75,6 +75,24 @@
     "type": "string"
    }
   ],
+  "name": "getGoodsByCustomer",
+  "outputs": [
+   {
+    "name": "",
+    "type": "bytes32[]"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": true,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   }
+  ],
   "name": "getMerchantInfo",
   "outputs": [
    {

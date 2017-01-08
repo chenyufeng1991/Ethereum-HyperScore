@@ -69,6 +69,9 @@ app.get('/getGoodsByMerchant', getGoodsByMerchant.query);
 var buyGood = require('./routes/customer/buyGood');
 app.get('/buyGood', buyGood.buy);
 
+//用户查询已经购买商品的数组
+var getGoodsByCustomer = require('./routes/customer/getGoodsByCustomer');
+app.get('/getGoodsByCustomer', getGoodsByCustomer.query);
 
 var server = app.listen(8000, function () {
     console.log("服务端地址为：http://localhost:8000");

@@ -54,11 +54,11 @@
     "type": "string"
    },
    {
-    "name": "_name",
+    "name": "_goodName",
     "type": "string"
    },
    {
-    "name": "_price",
+    "name": "_goodPrice",
     "type": "uint256"
    }
   ],

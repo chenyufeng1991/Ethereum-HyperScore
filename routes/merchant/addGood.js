@@ -8,11 +8,11 @@ var web3 = web3Instance.web3;
 module.exports.add = function (req, res) {
     var phone = req.query.phone;
     var goodId = req.query.goodId;
-    var name = req.query.name;
-    var price = req.query.price;
-    console.log("商户手机：" + phone + ";商品Id：" + goodId + ";商品名称：" + name + ";商品价格：" + price);
+    var goodName = req.query.goodName;
+    var goodPrice = req.query.goodPrice;
+    console.log("商户手机：" + phone + ";商品Id：" + goodId + ";商品名称：" + goodName + ";商品价格：" + goodPrice);
 
-    global.contractInstance.addGood(phone, goodId, name, price, {from: web3.eth.accounts[0], gas: 1000000}, function (error, result) {
+    global.contractInstance.addGood(phone, goodId, goodName, goodPrice, {from: web3.eth.accounts[0], gas: 1000000}, function (error, result) {
         if (!error) {
             var eventAddGood = global.contractInstance.AddGood();
             eventAddGood.watch(function (error, result) {

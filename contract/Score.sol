@@ -495,36 +495,36 @@ contract Score is Utils, Test {
     }
 
     //（1）用户用积分购买一件商品,拆分方法，解决out of gas
-    // event BuyGood(address sender, bool isSuccess, string message);
-    // function buyGood(address _customerAddr, string _goodId) {
-    //     //首先判断输入的商品Id是否存在
-    //     bytes32 tempId = stringToBytes32(_goodId);
-    //     if(isGoodAlreadyAdd(tempId)) {
-    //         //该件商品已经添加，可以购买
-    //         if(customer[_customerAddr].scoreAmount < good[tempId].price) {
-    //             BuyGood(msg.sender, false, "余额不足，购买商品失败");
-    //             return;
-    //         }
-    //         else {
-    //             //对这里的方法抽取      
-    //             BuyGood(msg.sender, true, "购买商品成功");
-    //             return;
-    //         }
-    //     }
-    //     else {
-    //         //没有这个Id的商品
-    //         BuyGood(msg.sender, false, "输入商品Id不存在，请确定后购买");
-    //         return;
-    //     }
-    // }
+    event BuyGood(address sender, uint statusCode, string message);
+    function buyGood(string _phone, 
+        string _goodId) {
+        //首先判断输入的商品Id是否存在
+        bytes32 tempGoodId = stringToBytes32(_goodId);
+        bytes32 tempPhone = stringToBytes32(_phone);
+        address customerAddr = customerPhone[tempPhone];
+        address merchantAddr = good[tempGoodId].merchantAddr;
+        if(isGoodAlreadyAdd(_goodId)) {
+            //该件商品已经添加，可以购买
+            if(customer[customerAddr].score >= good[tempGoodId].goodPrice) {
+                customer[customerAddr].score -= good[tempGoodId].goodPrice;
+                merchant[merchantAddr].score += good[tempGoodId].goodPrice;
+                customer[customerAddr].buyGoods.push(tempGoodId);
 
-    //（2）对上面buyGood()方法的拆分
-    // function buyGoodSuccess(address _customerAddr, string _goodId) {
-    //      bytes32 tempId = stringToBytes32(_goodId);
-    //      customer[_customerAddr].scoreAmount -= good[tempId].price;
-    //      merchant[good[tempId].belong].scoreAmount += good[tempId].price;
-    //      customer[_customerAddr].buyGoods.push(tempId);
-    // }
+                BuyGood(msg.sender, 0, "用户购买商品成功");
+                return;
+            }
+            else {
+                //对这里的方法抽取      
+                BuyGood(msg.sender, 1, "余额不足，购买商品失败");
+                return;
+            }
+        }
+        else {
+            //没有这个Id的商品
+            BuyGood(msg.sender, 1, "输入商品Id不存在，请确定后购买");
+            return;
+        }
+    }
 
     //客户查找自己的商品数组
     // function getGoodsByCustomer(address _customerAddr)constant returns(bytes32[]) {

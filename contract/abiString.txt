@@ -335,6 +335,23 @@
     "type": "string"
    },
    {
+    "name": "_goodId",
+    "type": "string"
+   }
+  ],
+  "name": "buyGood",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
     "name": "_password",
     "type": "string"
    }
@@ -566,6 +583,28 @@
    }
   ],
   "name": "AddGood",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "BuyGood",
   "type": "event"
  },
  {

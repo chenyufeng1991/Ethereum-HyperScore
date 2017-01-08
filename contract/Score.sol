@@ -76,8 +76,8 @@ contract Score is Utils, Test {
 
     struct Good {
         bytes32 goodId; //商品Id;
-        bytes32 name; //商品名称；
-        uint price; //价格；
+        bytes32 goodName; //商品名称；
+        uint goodPrice; //价格；
         address merchantAddr; //商品属于哪个商户address；
     }
 
@@ -451,18 +451,18 @@ contract Score is Utils, Test {
     event AddGood(address sender, uint statusCode, string message);
     function addGood(string _phone, 
         string _goodId, 
-        string _name, 
-        uint _price) {
+        string _goodName, 
+        uint _goodPrice) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempGoodId = stringToBytes32(_goodId);
-        bytes32 tempName = stringToBytes32(_name);
+        bytes32 tempName = stringToBytes32(_goodName);
         address tempMerchantAddr = merchantPhone[tempPhone]; 
 
         //首先判断该商品Id是否已经存在
         if(!isGoodAlreadyAdd(_goodId)) {
             good[tempGoodId].goodId = tempGoodId;
-            good[tempGoodId].name = tempName;
-            good[tempGoodId].price = _price;
+            good[tempGoodId].goodName = tempName;
+            good[tempGoodId].goodPrice = _goodPrice;
             good[tempGoodId].merchantAddr = tempMerchantAddr;
 
             goods.push(tempGoodId);

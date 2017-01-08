@@ -57,6 +57,10 @@ app.get('/issueScore', issueScore.issue);
 var transferScore = require('./routes/transferScore');
 app.get('/transferScore', transferScore.transfer);
 
+//发布商品
+var addGood = require('./routes/merchant/addGood');
+app.get('/addGood', addGood.add);
+
 
 var server = app.listen(8000, function () {
     console.log("服务端地址为：http://localhost:8000");

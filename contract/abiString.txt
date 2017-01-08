@@ -43,6 +43,31 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_goodId",
+    "type": "string"
+   },
+   {
+    "name": "_name",
+    "type": "string"
+   },
+   {
+    "name": "_price",
+    "type": "uint256"
+   }
+  ],
+  "name": "addGood",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [
    {
@@ -222,6 +247,24 @@
   ],
   "name": "loginManager",
   "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": true,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   }
+  ],
+  "name": "getGoodsByMerchant",
+  "outputs": [
+   {
+    "name": "",
+    "type": "bytes32[]"
+   }
+  ],
   "payable": false,
   "type": "function"
  },
@@ -501,6 +544,28 @@
    }
   ],
   "name": "TransferScore",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+   },
+   {
+    "indexed": false,
+    "name": "statusCode",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "message",
+    "type": "string"
+   }
+  ],
+  "name": "AddGood",
   "type": "event"
  },
  {

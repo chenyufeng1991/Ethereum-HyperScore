@@ -76,8 +76,9 @@ contract Score is Utils, Test {
 
     struct Good {
         bytes32 goodId; //商品Id;
+        bytes32 name; //商品名称；
         uint price; //价格；
-        address belong; //商品属于哪个商户address；
+        address merchantAddr; //商品属于哪个商户address；
     }
 
     mapping (address=>Customer) customer; 
@@ -100,7 +101,7 @@ contract Score is Utils, Test {
     address[] managerAddrs; //已注册的管理员地址数组
     bytes32[] managerPhones; //已注册的管理员手机数组
 
-    bytes32[] goods; //已经上线的商品数组
+    bytes32[] goods; //已经上线的商品id数组
 
     //增加权限控制，某些方法只能由合约的创建者调用
     modifier onlyOwner(){
@@ -446,43 +447,52 @@ contract Score is Utils, Test {
         }
     }
 
-    //（1）商户添加一件商品:（1）（2）（3）方法分拆解决out of gas
-    // event AddGood(address sender, bool isSuccess, string message);
-    // function addGood(address _merchantAddr, string _goodId, uint _price) {
-    //     bytes32 tempId = stringToBytes32(_goodId);
+    //商户添加一件商品
+    event AddGood(address sender, uint statusCode, string message);
+    function addGood(string _phone, 
+        string _goodId, 
+        string _name, 
+        uint _price) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempGoodId = stringToBytes32(_goodId);
+        bytes32 tempName = stringToBytes32(_name);
+        address tempMerchantAddr = merchantPhone[tempPhone]; 
 
-    //     //首先判断该商品Id是否已经存在
-    //     if(!isGoodAlreadyAdd(tempId)) {
-    //         good[tempId].goodId = tempId;
-    //         good[tempId].price = _price;
-    //         good[tempId].belong = _merchantAddr;
-    //         AddGood(msg.sender, true, "创建商品成功");
-    //         return;
-    //     }
-    //     else {
-    //         AddGood(msg.sender, false, "该件商品已经添加，请确认后操作");
-    //         return;
-    //     }
-    // }
+        //首先判断该商品Id是否已经存在
+        if(!isGoodAlreadyAdd(_goodId)) {
+            good[tempGoodId].goodId = tempGoodId;
+            good[tempGoodId].name = tempName;
+            good[tempGoodId].price = _price;
+            good[tempGoodId].merchantAddr = tempMerchantAddr;
 
-    //（2）商户添加一件商品
-    // event PutGoodToArray(address sender, string message);
-    // function putGoodToArray(string _goodId) {
-    //     goods.push(stringToBytes32(_goodId));  
-    //     PutGoodToArray(msg.sender, "添加到全局商品数组成功");
-    // }
+            goods.push(tempGoodId);
+            merchant[tempMerchantAddr].sellGoods.push(tempGoodId);
+            AddGood(msg.sender, 0, "商户添加商品成功");
+            return;
+        }
+        else {
+            AddGood(msg.sender, 1, "该件商品已经添加，请确认后操作");
+            return;
+        }
+    }
 
-    //（3）商户添加一件商品
-    // event PutGoodToMerchant(address sender, string message);
-    // function putGoodToMerchant(address _merchantAddr, string _goodId) {
-    //      merchant[_merchantAddr].sellGoods.push(stringToBytes32(_goodId)); 
-    //      PutGoodToMerchant(msg.sender, "添加到商户的商品数组成功");
-    // }
+    //首先判断输入的商品Id是否存在
+    function isGoodAlreadyAdd(string _goodId)internal returns(bool) {
+        bytes32 tempGoodId = stringToBytes32(_goodId);
+        for(uint i = 0; i < goods.length; i++) {
+            if(goods[i] == tempGoodId) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     //商户查找自己的商品数组
-    // function getGoodsByMerchant(address _merchantAddr)constant returns(bytes32[]) {
-    //     return merchant[_merchantAddr].sellGoods;
-    // }
+    function getGoodsByMerchant(string _phone)constant returns(bytes32[]) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        address tempMerchantAddr = merchantPhone[tempPhone];
+        return merchant[tempMerchantAddr].sellGoods;
+    }
 
     //（1）用户用积分购买一件商品,拆分方法，解决out of gas
     // event BuyGood(address sender, bool isSuccess, string message);
@@ -521,15 +531,7 @@ contract Score is Utils, Test {
     //     return customer[_customerAddr].buyGoods;
     // }
 
-    //首先判断输入的商品Id是否存在
-    // function isGoodAlreadyAdd(bytes32 _goodId)internal returns(bool) {
-    //     for(uint i = 0; i < goods.length; i++) {
-    //         if(goods[i] == _goodId) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
+ 
 }
 
 

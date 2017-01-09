@@ -1,5 +1,4 @@
 //处理客户登录的路由
-var express = require('express');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 
 //web3初始化

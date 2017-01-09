@@ -1,6 +1,4 @@
 //处理用户查询已购买商品Id的路由
-var express = require('express');
-var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 
 module.exports.query = function (req, res) {

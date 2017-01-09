@@ -11,15 +11,15 @@ app.get('/', function (req, res) {
 
 //银行管理员注册
 var registerManager = require('./routes/manager/registerManager');
-app.get('/registerManager', registerManager.register);
+app.post('/registerManager', registerManager.register);
 
 //客户注册
 var registerCustomer = require('./routes/customer/registerCustomer');
-app.get('/registerCustomer', registerCustomer.register);
+app.post('/registerCustomer', registerCustomer.register);
 
 //商户注册
 var registerMerchant = require('./routes/merchant/registerMerchant');
-app.get('/registerMerchant', registerMerchant.register);
+app.post('/registerMerchant', registerMerchant.register);
 
 //银行管理员登录
 var loginManager = require('./routes/manager/loginManager');
@@ -47,19 +47,19 @@ app.get('/getMerchantInfo', getMerchantInfo.query);
 
 //商户与银行清算积分
 var settleScore = require('./routes/merchant/settleScore');
-app.get('/settleScore', settleScore.settle);
+app.post('/settleScore', settleScore.settle);
 
 //银行发行积分
 var issueScore = require('./routes/manager/issueScore');
-app.get('/issueScore', issueScore.issue);
+app.post('/issueScore', issueScore.issue);
 
 //转让积分
 var transferScore = require('./routes/transferScore');
-app.get('/transferScore', transferScore.transfer);
+app.post('/transferScore', transferScore.transfer);
 
 //发布商品
 var addGood = require('./routes/merchant/addGood');
-app.get('/addGood', addGood.add);
+app.post('/addGood', addGood.add);
 
 //商户查询发布的商品数组
 var getGoodsByMerchant = require('./routes/merchant/getGoodsByMerchant');
@@ -67,7 +67,7 @@ app.get('/getGoodsByMerchant', getGoodsByMerchant.query);
 
 //购买商品
 var buyGood = require('./routes/customer/buyGood');
-app.get('/buyGood', buyGood.buy);
+app.post('/buyGood', buyGood.buy);
 
 //用户查询已经购买商品的数组
 var getGoodsByCustomer = require('./routes/customer/getGoodsByCustomer');

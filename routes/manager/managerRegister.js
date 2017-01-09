@@ -38,7 +38,7 @@ module.exports.register = function (req, res) {
         console.log("qqqqqq=" + keys.publicKey);
         console.log("wwwwww=" + keys.privateKey);
         console.log("eeeeee=" + keys.accountAddress);
-        global.contractInstance.registerManager(keys.accountAddress, req.query.phone, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {
+        global.contractInstance.registerManager(keys.accountAddress, req.query.phone, req.query.password, {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
             if (!error) {
                 var eventRegisterManager = global.contractInstance.RegisterManager();
                 eventRegisterManager.watch(function (error, result) {
@@ -74,7 +74,7 @@ module.exports.register = function (req, res) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
-                global.contractInstance.registerManager(result.account, req.query.phone, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {
+                global.contractInstance.registerManager(result.account, req.query.phone, req.query.password, {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
                     if (!error) {
                         var eventRegisterManager = global.contractInstance.RegisterManager();
                         eventRegisterManager.watch(function (error, result) {

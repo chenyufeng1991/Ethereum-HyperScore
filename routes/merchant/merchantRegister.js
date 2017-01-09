@@ -38,7 +38,7 @@ module.exports.register = function (req, res) {
         console.log("椭圆曲线加密公钥：" + keys.publicKey);
         console.log("椭圆曲线加密公钥：" + keys.privateKey);
         console.log("椭圆曲线加密address：" + keys.accountAddress);
-        global.contractInstance.registerMerchant(keys.accountAddress, req.query.phone, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {
+        global.contractInstance.registerMerchant(keys.accountAddress, req.query.phone, req.query.password, {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
             if (!error) {
                 var eventRegisterMerchant = global.contractInstance.RegisterMerchant();
                 eventRegisterMerchant.watch(function (error, result) {
@@ -74,7 +74,7 @@ module.exports.register = function (req, res) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
-                global.contractInstance.registerMerchant(result.account, req.query.phone, req.query.password, {from: web3.eth.accounts[0], gas: 1600000}, function (error, result) {
+                global.contractInstance.registerMerchant(result.account, req.query.phone, req.query.password, {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
                     if (!error) {
                         var eventRegisterMerchant = global.contractInstance.RegisterMerchant();
                         eventRegisterMerchant.watch(function (error, result) {

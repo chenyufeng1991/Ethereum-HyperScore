@@ -30,8 +30,8 @@ var customerLogin = require('./routes/customer/customerLogin');
 app.get('/v1_0/user/customer/login', customerLogin.login);
 
 //商户登录
-var loginMerchant = require('./routes/merchant/loginMerchant');
-app.get('/loginMerchant', loginMerchant.login);
+var merchantLogin = require('./routes/merchant/merchantLogin');
+app.get('/v1_0/user/merchant/login', merchantLogin.login);
 
 //银行管理员详细信息
 var getManagerInfo = require('./routes/manager/getManagerInfo');

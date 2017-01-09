@@ -1,5 +1,4 @@
 //处理客户注册的路由
-var express = require('express');
 var generateKey = require('../../public/javascripts/utils/ethereumUtils/generateKey');
 var generateAccount = require('../../public/javascripts/utils/ethereumUtils/generateAccount');
 var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeNodeType');

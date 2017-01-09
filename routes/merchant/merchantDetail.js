@@ -1,7 +1,5 @@
 //处理商户查询详情的路由
-var express = require('express');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
-var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 
 /**
  * 注意交易方法和Constant方法的调用，目前指定以下规范：

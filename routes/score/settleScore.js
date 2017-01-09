@@ -1,5 +1,4 @@
 //处理商户与银行清算积分的路由
-var express = require('express');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 
 //web3初始化

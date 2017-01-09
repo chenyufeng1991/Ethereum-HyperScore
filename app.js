@@ -10,8 +10,8 @@ app.get('/', function (req, res) {
 });
 
 //银行管理员注册
-var registerManager = require('./routes/manager/registerManager');
-app.post('/registerManager', registerManager.register);
+var managerRegister = require('./routes/manager/managerRegister');
+app.post('/v1_0/user/manager/register', managerRegister.register);
 
 //客户注册
 var registerCustomer = require('./routes/customer/registerCustomer');

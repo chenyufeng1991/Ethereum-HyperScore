@@ -22,8 +22,8 @@ var merchantRegister = require('./routes/merchant/merchantRegister');
 app.post('/v1_0/user/merchant/register', merchantRegister.register);
 
 //银行管理员登录
-var loginManager = require('./routes/manager/loginManager');
-app.get('/loginManager', loginManager.login);
+var managerLogin = require('./routes/manager/managerLogin');
+app.get('/v1_0/user/manager/login', managerLogin.login);
 
 //客户登录
 var loginCustomer = require('./routes/customer/loginCustomer');

@@ -26,8 +26,8 @@ var managerLogin = require('./routes/manager/managerLogin');
 app.get('/v1_0/user/manager/login', managerLogin.login);
 
 //客户登录
-var loginCustomer = require('./routes/customer/loginCustomer');
-app.get('/loginCustomer', loginCustomer.login);
+var customerLogin = require('./routes/customer/customerLogin');
+app.get('/v1_0/user/customer/login', customerLogin.login);
 
 //商户登录
 var loginMerchant = require('./routes/merchant/loginMerchant');

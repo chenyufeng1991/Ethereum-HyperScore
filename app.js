@@ -34,8 +34,8 @@ var merchantLogin = require('./routes/merchant/merchantLogin');
 app.get('/v1_0/user/merchant/login', merchantLogin.login);
 
 //银行管理员详细信息
-var getManagerInfo = require('./routes/manager/getManagerInfo');
-app.get('/getManagerInfo', getManagerInfo.query);
+var managerDetail = require('./routes/manager/managerDetail');
+app.get('/v1_0/user/manager/detail', managerDetail.query);
 
 //查询客户详细信息
 var getCustomerInfo = require('./routes/customer/getCustomerInfo');

@@ -66,12 +66,12 @@ var merchantGoods = require('./routes/merchant/merchantGoods');
 app.get('/v1_0/user/merchant/goods', merchantGoods.query);
 
 //购买商品
-var buyGood = require('./routes/customer/buyGood');
-app.post('/buyGood', buyGood.buy);
+var buyGood = require('./routes/good/buyGood');
+app.post('/v1_0/good/buy', buyGood.buy);
 
 //用户查询已经购买商品的数组
-var getGoodsByCustomer = require('./routes/customer/getGoodsByCustomer');
-app.get('/getGoodsByCustomer', getGoodsByCustomer.query);
+var customerGoods = require('./routes/customer/customerGoods');
+app.get('/v1_0/user/customer/goods', customerGoods.query);
 
 app.listen(8000, function () {
     console.log("服务器开启，地址为：http://localhost:8000");

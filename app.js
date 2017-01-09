@@ -62,8 +62,8 @@ var addGood = require('./routes/good/addGood');
 app.post('/v1_0/good/add', addGood.add);
 
 //商户查询发布的商品数组
-var getGoodsByMerchant = require('./routes/merchant/getGoodsByMerchant');
-app.get('/getGoodsByMerchant', getGoodsByMerchant.query);
+var merchantGoods = require('./routes/merchant/merchantGoods');
+app.get('/v1_0/user/merchant/goods', merchantGoods.query);
 
 //购买商品
 var buyGood = require('./routes/customer/buyGood');

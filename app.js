@@ -73,8 +73,8 @@ app.get('/buyGood', buyGood.buy);
 var getGoodsByCustomer = require('./routes/customer/getGoodsByCustomer');
 app.get('/getGoodsByCustomer', getGoodsByCustomer.query);
 
-var server = app.listen(8000, function () {
-    console.log("服务端地址为：http://localhost:8000");
+app.listen(8000, function () {
+    console.log("服务器开启，地址为：http://localhost:8000");
 });
 
 

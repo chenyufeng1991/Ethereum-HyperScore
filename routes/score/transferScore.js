@@ -1,6 +1,6 @@
 //处理客户商户转让积分的路由
 var express = require('express');
-var web3Instance = require('../public/javascripts/utils/ethereumUtils/web3Instance');
+var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 
 //web3初始化
 var web3 = web3Instance.web3;

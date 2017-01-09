@@ -54,8 +54,8 @@ var issueScore = require('./routes/score/issueScore');
 app.post('/v1_0/score/issue', issueScore.issue);
 
 //转让积分
-var transferScore = require('./routes/transferScore');
-app.post('/transferScore', transferScore.transfer);
+var transferScore = require('./routes/score/transferScore');
+app.post('/v1_0/score/transfer', transferScore.transfer);
 
 //发布商品
 var addGood = require('./routes/merchant/addGood');

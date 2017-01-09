@@ -14,8 +14,8 @@ var managerRegister = require('./routes/manager/managerRegister');
 app.post('/v1_0/user/manager/register', managerRegister.register);
 
 //客户注册
-var registerCustomer = require('./routes/customer/registerCustomer');
-app.post('/registerCustomer', registerCustomer.register);
+var customerRegister = require('./routes/customer/customerRegister');
+app.post('/v1_0/user/customer/register', customerRegister.register);
 
 //商户注册
 var registerMerchant = require('./routes/merchant/registerMerchant');

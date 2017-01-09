@@ -58,8 +58,8 @@ var transferScore = require('./routes/score/transferScore');
 app.post('/v1_0/score/transfer', transferScore.transfer);
 
 //发布商品
-var addGood = require('./routes/merchant/addGood');
-app.post('/addGood', addGood.add);
+var addGood = require('./routes/good/addGood');
+app.post('/v1_0/good/add', addGood.add);
 
 //商户查询发布的商品数组
 var getGoodsByMerchant = require('./routes/merchant/getGoodsByMerchant');

@@ -38,8 +38,8 @@ var managerDetail = require('./routes/manager/managerDetail');
 app.get('/v1_0/user/manager/detail', managerDetail.query);
 
 //查询客户详细信息
-var getCustomerInfo = require('./routes/customer/getCustomerInfo');
-app.get('/getCustomerInfo', getCustomerInfo.query);
+var customerDetail = require('./routes/customer/customerDetail');
+app.get('/v1_0/user/customer/detail', customerDetail.query);
 
 //查询商户详细信息
 var getMerchantInfo = require('./routes/merchant/getMerchantInfo');

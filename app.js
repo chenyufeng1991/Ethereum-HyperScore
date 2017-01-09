@@ -42,8 +42,8 @@ var customerDetail = require('./routes/customer/customerDetail');
 app.get('/v1_0/user/customer/detail', customerDetail.query);
 
 //查询商户详细信息
-var getMerchantInfo = require('./routes/merchant/getMerchantInfo');
-app.get('/getMerchantInfo', getMerchantInfo.query);
+var merchantDetail = require('./routes/merchant/merchantDetail');
+app.get('/v1_0/user/merchant/detail', merchantDetail.query);
 
 //商户与银行清算积分
 var settleScore = require('./routes/merchant/settleScore');

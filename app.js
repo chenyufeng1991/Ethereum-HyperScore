@@ -18,8 +18,8 @@ var customerRegister = require('./routes/customer/customerRegister');
 app.post('/v1_0/user/customer/register', customerRegister.register);
 
 //商户注册
-var registerMerchant = require('./routes/merchant/registerMerchant');
-app.post('/registerMerchant', registerMerchant.register);
+var merchantRegister = require('./routes/merchant/merchantRegister');
+app.post('/v1_0/user/merchant/register', merchantRegister.register);
 
 //银行管理员登录
 var loginManager = require('./routes/manager/loginManager');

@@ -50,8 +50,8 @@ var settleScore = require('./routes/score/settleScore');
 app.post('/v1_0/score/settle', settleScore.settle);
 
 //银行发行积分
-var issueScore = require('./routes/manager/issueScore');
-app.post('/issueScore', issueScore.issue);
+var issueScore = require('./routes/score/issueScore');
+app.post('/v1_0/score/issue', issueScore.issue);
 
 //转让积分
 var transferScore = require('./routes/transferScore');

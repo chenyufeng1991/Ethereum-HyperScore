@@ -22,7 +22,7 @@ var web3 = web3Instance.web3;
 module.exports.login = function (req, res){
 
     console.log("请求参数：" + req.query.phone + "    " + req.query.password);
-    global.contractInstance.loginManager(req.query.phone, req.query.password, {from: web3.eth.accounts[0]}, function (error, result) {
+    global.contractInstance.loginManager(req.query.phone, req.query.password, {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
             var eventLoginManager = global.contractInstance.LoginManager();
             eventLoginManager.watch(function (error, result) {

@@ -51,7 +51,7 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
     fs.writeFile("../../../contract/codeString.txt", codeString);
 
     //根据abi和bytecode部署合约;如果这里error，有可能是OOG造成的
-    web3.eth.contract(JSON.parse(abiString)).new({data: codeString, from: web3.eth.accounts[0], gas: 3000000}, function (error, contract) {
+    web3.eth.contract(JSON.parse(abiString)).new({data: codeString, from: web3.eth.coinbase, gas: 3000000}, function (error, contract) {
         if(!contract.address) {
             console.log("交易hash：" + contract.transactionHash);
         }
@@ -61,7 +61,7 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
             console.log("合约地址：" + contractAddress);
             fs.writeFile("../../../contract/contractAddress.txt", contractAddress);
 
-            contract.setAge(8888, {from: web3.eth.accounts[0]}, function (error, result) {
+            contract.setAge(8888, {from: web3.eth.coinbase}, function (error, result) {
                 console.log(result);
             });
             contract.getAge(function (error, result) {

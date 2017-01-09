@@ -10,7 +10,7 @@ module.exports.buy = function (req, res) {
     var goodId = req.query.goodId;
     console.log("用户手机：" + phone + ";商品Id：" + goodId);
 
-    global.contractInstance.buyGood(phone, goodId, {from: web3.eth.accounts[0], gas:1000000}, function (error, result) {
+    global.contractInstance.buyGood(phone, goodId, {from: web3.eth.coinbase, gas:1000000}, function (error, result) {
         if (!error) {
             var eventBuyGood = global.contractInstance.BuyGood();
             eventBuyGood.watch(function (error, result) {

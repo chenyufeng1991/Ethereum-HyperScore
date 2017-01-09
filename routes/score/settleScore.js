@@ -8,7 +8,7 @@ var web3 = web3Instance.web3;
 module.exports.settle = function (req, res) {
     console.log("商户账号：" + req.query.phone + "积分数量：" + req.query.score);
 
-    global.contractInstance.settleScore(req.query.phone, req.query.score, {from: web3.eth.accounts[0]}, function (error, result) {
+    global.contractInstance.settleScore(req.query.phone, req.query.score, {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
             var eventSettleScore = global.contractInstance.SettleScore();
             eventSettleScore.watch(function (error, result) {

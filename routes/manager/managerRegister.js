@@ -3,6 +3,7 @@ var generateKey = require('../../public/javascripts/utils/ethereumUtils/generate
 var generateAccount = require('../../public/javascripts/utils/ethereumUtils/generateAccount');
 var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeNodeType');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
+var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -39,7 +40,7 @@ module.exports.register = function (req, res) {
         console.log("qqqqqq=" + keys.publicKey);
         console.log("wwwwww=" + keys.privateKey);
         console.log("eeeeee=" + keys.accountAddress);
-        global.contractInstance.registerManager(keys.accountAddress, req.query.phone, req.query.password, {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+        global.contractInstance.registerManager(keys.accountAddress, req.query.phone, commonUtils.toMD5(req.query.password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
             if (!error) {
                 var eventRegisterManager = global.contractInstance.RegisterManager();
                 eventRegisterManager.watch(function (error, result) {

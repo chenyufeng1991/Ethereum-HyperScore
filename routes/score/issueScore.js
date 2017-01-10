@@ -17,8 +17,10 @@ var web3 = web3Instance.web3;
  *
  * @param res
  * code:状态码
- * message:消息
+ * error:错误消息
+ * result:返回信息
  * txInfo:区块链交易信息
+ * requestUrl:请求url的path
  */
 module.exports.issue = function (req, res) {
     console.log("管理员账号：" + req.query.managerPhone + "用户账号：" + req.query.customerPhone + "积分数量：" + req.query.score);
@@ -30,8 +32,10 @@ module.exports.issue = function (req, res) {
                 console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                 var response = {
                     code: result.args.statusCode,
-                    message: result.args.message,
-                    txInfo: result
+                    error: "",
+                    result: result.args.message,
+                    txInfo: result,
+                    requestUrl: req.originalUrl
                 };
                 eventIssueScore.stopWatching();
                 res.send(JSON.stringify(response));
@@ -42,8 +46,10 @@ module.exports.issue = function (req, res) {
             console.log("发生错误：" + error);
             var response = {
                 code: 1,
-                message: error.toString(),
-                txInfo: ""
+                error: error.toString(),
+                result: "",
+                txInfo: "",
+                requestUrl: req.originalUrl
             };
             res.send(JSON.stringify(response));
             res.end();

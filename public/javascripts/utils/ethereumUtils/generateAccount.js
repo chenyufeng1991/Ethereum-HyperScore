@@ -30,20 +30,28 @@ function generateAccounts(password, callback) {
             code = 0;
             account = result;
             message = "以太坊创建账户成功";
+
+            var response = {
+                code: code,
+                account: account,
+                message: message
+            };
+            callback(null, response);
         }
         else {
             console.log("错误：" + error.toString());
             code = 1;
             account = "";
             message = error.toString();
-        }
-        var response = {
-            code: code,
-            account: account,
-            message: message
-        };
 
-        callback(null, response);
+            var response = {
+                code: code,
+                account: account,
+                message: message
+            };
+
+            callback(error, response);
+        }
     });
 }
 

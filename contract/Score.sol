@@ -143,7 +143,7 @@ contract Score is Utils, Test {
         }
         else {
             //已经注册
-            RegisterManager(msg.sender, 0, "该管理员已经注册");
+            RegisterManager(msg.sender, 1, "该管理员已经注册");
             return;
         }
     }

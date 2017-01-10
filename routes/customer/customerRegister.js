@@ -23,8 +23,10 @@ var web3 = web3Instance.web3;
  *
  * @param res
  * code:状态码
- * message:消息
+ * error:错误消息
+ * result:返回信息
  * txInfo:区块链交易信息
+ * requestUrl:请求url的path
  */
 module.exports.register = function (req, res) {
 
@@ -44,8 +46,10 @@ module.exports.register = function (req, res) {
                     console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                     var response = {
                         code: result.args.statusCode,
-                        message: result.args.message,
-                        txInfo: result
+                        error: "",
+                        result: result.args.message,
+                        txInfo: result,
+                        requestUrl: req.originalUrl
                     };
                     eventRegisterCustomer.stopWatching();
                     res.send(JSON.stringify(response));
@@ -56,8 +60,10 @@ module.exports.register = function (req, res) {
                 console.log("发生错误：" + error);
                 var response = {
                     code: 1,
-                    message: error.toString(),
-                    txInfo: ""
+                    error: error.toString(),
+                    result: "",
+                    txInfo: "",
+                    requestUrl: req.originalUrl
                 };
                 res.send(JSON.stringify(response));
                 res.end();
@@ -69,7 +75,7 @@ module.exports.register = function (req, res) {
         //可以使用web3.js API生成以太坊账户
         generateAccount.generateAccounts(req.query.password, function (error, result) {
             console.log("1111111111111111111" + JSON.stringify(result));
-            if (result.code == 0) {
+            if (!error) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
@@ -80,8 +86,10 @@ module.exports.register = function (req, res) {
                             console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                             var response = {
                                 code: result.args.statusCode,
-                                message: result.args.message,
-                                txInfo: result
+                                error: "",
+                                result: result.args.message,
+                                txInfo: result,
+                                requestUrl: req.originalUrl
                             };
                             eventRegisterCustomer.stopWatching();
                             res.send(JSON.stringify(response));
@@ -92,8 +100,10 @@ module.exports.register = function (req, res) {
                         console.log("发生错误：" + error);
                         var response = {
                             code: 1,
-                            message: error.toString(),
-                            txInfo: ""
+                            error: error.toString(),
+                            result: "",
+                            txInfo: "",
+                            requestUrl: req.originalUrl
                         };
                         res.send(JSON.stringify(response));
                         res.end();
@@ -103,9 +113,11 @@ module.exports.register = function (req, res) {
             else {
                 //以太坊创建账户失败
                 var response = {
-                    code: 1,
-                    message: result.message,
-                    txInfo: ""
+                    code: result.code,
+                    error: error.toString(),
+                    result: "",
+                    txInfo: "",
+                    requestUrl: req.originalUrl
                 };
                 res.send(JSON.stringify(response));
                 res.end();

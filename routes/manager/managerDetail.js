@@ -20,8 +20,10 @@ var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtil
  *
  * @param res
  * code:状态码
- * message:消息
- * info:管理员的详情
+ * error:错误消息
+ * result:返回信息
+ * txInfo:区块链交易信息
+ * requestUrl:请求url的path
  */
 module.exports.query = function (req, res) {
 
@@ -40,8 +42,10 @@ module.exports.query = function (req, res) {
 
             var response = {
                 code: 0,
-                message: "查询信息成功",
-                info: obj
+                error: "",
+                result: obj,
+                txInfo: "",
+                requestUrl: req.originalUrl
             };
 
             res.send(JSON.stringify(response));
@@ -51,8 +55,10 @@ module.exports.query = function (req, res) {
             console.log("发生错误：" + error);
             var response = {
                 code: 1,
-                message: error.toString(),
-                info: ""
+                error: error.toString(),
+                result: "",
+                txInfo: "",
+                requestUrl: req.originalUrl
             };
             res.send(JSON.stringify(response));
             res.end();

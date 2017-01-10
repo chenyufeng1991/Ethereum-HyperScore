@@ -4,6 +4,22 @@ var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Ins
 //web3初始化
 var web3 = web3Instance.web3;
 
+/**
+ * 返回码说明：
+ * 0：成功；
+ * 1：失败；
+ *
+ * @param req
+ * phone:手机号码；
+ * goodId:商品Id；
+ *
+ * @param res
+ * code:状态码
+ * error:错误消息
+ * result:返回信息
+ * txInfo:区块链交易信息
+ * requestUrl:请求url的path
+ */
 module.exports.buy = function (req, res) {
     var phone = req.query.phone;
     var goodId = req.query.goodId;
@@ -16,8 +32,10 @@ module.exports.buy = function (req, res) {
                 console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                 var response = {
                     code: result.args.statusCode,
-                    message: result.args.message,
-                    txInfo: result
+                    error: "",
+                    result: result.args.message,
+                    txInfo: result,
+                    requestUrl: req.originalUrl
                 };
                 eventBuyGood.stopWatching();
                 res.send(JSON.stringify(response));
@@ -28,8 +46,10 @@ module.exports.buy = function (req, res) {
             console.log("发生错误：" + error);
             var response = {
                 code: 1,
-                message: error.toString(),
-                info: ""
+                error: error.toString(),
+                result: "",
+                txInfo: "",
+                requestUrl: req.originalUrl
             };
             res.send(JSON.stringify(response));
             res.end();

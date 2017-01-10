@@ -15,8 +15,10 @@ var web3 = web3Instance.web3;
  *
  * @param res
  * code:状态码
- * message:消息
+ * error:错误消息
+ * result:返回信息
  * txInfo:区块链交易信息
+ * requestUrl:请求url的path
  */
 module.exports.login = function (req, res){
 

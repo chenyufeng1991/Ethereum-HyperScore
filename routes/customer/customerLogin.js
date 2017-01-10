@@ -1,5 +1,6 @@
 //处理客户登录的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
+var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -23,7 +24,7 @@ var web3 = web3Instance.web3;
 module.exports.login = function (req, res){
 
     console.log("请求参数：" + req.query.phone + "    " + req.query.password);
-    global.contractInstance.loginCustomer(req.query.phone, req.query.password, {from: web3.eth.coinbase}, function (error, result) {
+    global.contractInstance.loginCustomer(req.query.phone, commonUtils.toMD5(req.query.password), {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
             var eventLoginCustomer = global.contractInstance.LoginCustomer();
             eventLoginCustomer.watch(function (error, result) {

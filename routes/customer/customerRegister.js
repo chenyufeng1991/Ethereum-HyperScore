@@ -3,6 +3,7 @@ var generateKey = require('../../public/javascripts/utils/ethereumUtils/generate
 var generateAccount = require('../../public/javascripts/utils/ethereumUtils/generateAccount');
 var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeNodeType');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
+var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -31,7 +32,6 @@ var web3 = web3Instance.web3;
 module.exports.register = function (req, res) {
 
     console.log("请求参数："+ req.query.phone + "    " + req.query.password);
-
     if(judgeNodeType.nodeType == 0) {
         //testrpc
         // 可以使用椭圆曲线加密获得公私钥
@@ -39,7 +39,7 @@ module.exports.register = function (req, res) {
         console.log("qqqqqq=" + keys.publicKey);
         console.log("wwwwww=" + keys.privateKey);
         console.log("eeeeee=" + keys.accountAddress);
-        global.contractInstance.registerCustomer(keys.accountAddress, req.query.phone, req.query.password, {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+        global.contractInstance.registerCustomer(keys.accountAddress, req.query.phone, commonUtils.toMD5(req.query.password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
             if (!error) {
                 var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                 eventRegisterCustomer.watch(function (error, result) {
@@ -79,7 +79,7 @@ module.exports.register = function (req, res) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
-                global.contractInstance.registerCustomer(result.account, req.query.phone, req.query.password, {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+                global.contractInstance.registerCustomer(result.account, req.query.phone, commonUtils.toMD5(req.query.password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
                     if (!error) {
                         var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                         eventRegisterCustomer.watch(function (error, result) {

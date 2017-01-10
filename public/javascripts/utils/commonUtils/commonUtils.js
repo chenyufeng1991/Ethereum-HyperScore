@@ -1,3 +1,12 @@
+/**
+ * 项目常见工具类封装
+ *
+ * @param hexCharCodeStr
+ * @returns {*}
+ */
+
+var crypto = require('crypto');
+
 //十六进制转化为字符串
 module.exports.hexCharCodeToStr = function(hexCharCodeStr) {
     var trimedStr = hexCharCodeStr.trim();
@@ -18,4 +27,10 @@ module.exports.hexCharCodeToStr = function(hexCharCodeStr) {
         }
     }
     return resultStr.join("");
+};
+
+//MD5散列
+module.exports.toMD5 = function (str) {
+    var md5 = crypto.createHash('md5');
+    return md5.update(str).digest('hex');
 };

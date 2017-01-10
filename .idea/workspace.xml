@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/score/issueScore.js" afterPath="$PROJECT_DIR$/routes/score/issueScore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/score/settleScore.js" afterPath="$PROJECT_DIR$/routes/score/settleScore.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,8 +23,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="60" column="47" lean-forward="true" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+            <state relative-caret-position="119">
+              <caret line="48" column="47" lean-forward="false" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -60,16 +60,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="buyGood.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/good/buyGood.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="38" column="18" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="managerDetail.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/manager/managerDetail.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -80,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="issueScore.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="issueScore.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/score/issueScore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="57" column="1" lean-forward="true" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
+            <state relative-caret-position="102">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="23" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -95,6 +85,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
               <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="20" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settleScore.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/score/settleScore.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="666">
+              <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -200,7 +200,6 @@
         <option value="$PROJECT_DIR$/routes/customer/getGoodsByCustomer.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js" />
-        <option value="$PROJECT_DIR$/routes/score/settleScore.js" />
         <option value="$PROJECT_DIR$/routes/score/transferScore.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateAccount.js" />
         <option value="$PROJECT_DIR$/routes/customer/customerRegister.js" />
@@ -217,6 +216,7 @@
         <option value="$PROJECT_DIR$/routes/good/addGood.js" />
         <option value="$PROJECT_DIR$/routes/good/buyGood.js" />
         <option value="$PROJECT_DIR$/routes/score/issueScore.js" />
+        <option value="$PROJECT_DIR$/routes/score/settleScore.js" />
       </list>
     </option>
   </component>
@@ -591,12 +591,12 @@
       <workItem from="1483969211256" duration="4429000" />
       <workItem from="1483973706122" duration="3265000" />
       <workItem from="1483978326412" duration="1900000" />
-      <workItem from="1484016364553" duration="10395000" />
+      <workItem from="1484016364553" duration="10645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147505000" />
+    <option name="totallyTimeSpent" value="147755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1250" height="777" extended-state="6" />
@@ -826,14 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/score/settleScore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/score/transferScore.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -962,18 +954,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/score/issueScore.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="60" column="47" lean-forward="true" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="23" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/score/issueScore.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="57" column="1" lean-forward="true" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
+        <state relative-caret-position="119">
+          <caret line="48" column="47" lean-forward="false" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/score/settleScore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
           <folding />
         </state>
       </provider>

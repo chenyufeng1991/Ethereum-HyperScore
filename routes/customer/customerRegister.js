@@ -113,7 +113,7 @@ module.exports.register = function (req, res) {
             else {
                 //以太坊创建账户失败
                 var response = {
-                    code: result.code,
+                    code: 1,
                     error: error.toString(),
                     result: "",
                     txInfo: "",

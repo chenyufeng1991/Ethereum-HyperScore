@@ -73,7 +73,7 @@ module.exports.register = function (req, res) {
     else {
         //geth
         //可以使用web3.js API生成以太坊账户
-        generateAccount.generateAccounts(req.query.password, function (error, result) {
+        generateAccount.generateAccounts(commonUtils.toMD5(req.query.password), function (error, result) {
             console.log("1111111111111111111" + JSON.stringify(result));
             if (!error) {
                 //以太坊创建账户成功

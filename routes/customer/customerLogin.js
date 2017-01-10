@@ -28,8 +28,10 @@ module.exports.login = function (req, res){
                 console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                 var response = {
                     code: result.args.statusCode,
-                    message: result.args.message,
-                    txInfo: result
+                    error: "",
+                    result: result.args.message,
+                    txInfo: result,
+                    requestUrl: req.originalUrl
                 };
                 eventLoginCustomer.stopWatching();
                 res.send(JSON.stringify(response));
@@ -40,8 +42,10 @@ module.exports.login = function (req, res){
             console.log("发生错误：" + error);
             var response = {
                 code: 1,
-                message: error.toString(),
-                txInfo: ""
+                error: error.toString(),
+                result: "",
+                txInfo: "",
+                requestUrl: req.originalUrl
             };
             res.send(JSON.stringify(response));
             res.end();

@@ -4,12 +4,11 @@ var generateAccount = require('../../public/javascripts/utils/ethereumUtils/gene
 var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeNodeType');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
+var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
 
-var mongoose = require('mongoose');
-var Customer = mongoose.model('Customer');
 
 /**
  * 状态码说明：
@@ -74,21 +73,7 @@ module.exports.register = function (req, res) {
         });
 
         //存储数据库
-        var customer = new Customer({
-            address: keys.accountAddress,
-            phone: req.query.phone,
-            password: commonUtils.toMD5(req.query.password),
-            score: 0,
-            buyGoods: []
-        });
-        customer.save(function (error) {
-            if(!error) {
-                console.log("客户插入数据库成功");
-            }
-            else {
-                console.log("客户插入数据库失败");
-            }
-        });
+        daoUtils.customerInsert(keys.accountAddress, req.query.phone, req.query.password);
     }
     else {
         //geth
@@ -131,21 +116,7 @@ module.exports.register = function (req, res) {
                 });
 
                 //存储数据库
-                var customer = new Customer({
-                    address: result.account,
-                    phone: req.query.phone,
-                    password: commonUtils.toMD5(req.query.password),
-                    score: 0,
-                    buyGoods: []
-                });
-                customer.save(function (error) {
-                    if(!error) {
-                        console.log("客户插入数据库成功");
-                    }
-                    else {
-                        console.log("客户插入数据库失败");
-                    }
-                });
+                daoUtils.customerInsert(result.account, req.query.phone, req.query.password);
             }
             else {
                 //以太坊创建账户失败

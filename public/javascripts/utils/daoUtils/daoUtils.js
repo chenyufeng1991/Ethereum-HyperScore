@@ -10,7 +10,7 @@ var Customer = mongoose.model('Customer');
 module.exports.customerInsert = function (address, phone, password) {
     //存储数据库
     var customer = new Customer({
-        address: address,
+        customerAddr: address,
         phone: phone,
         password: commonUtils.toMD5(password),
         score: 0,

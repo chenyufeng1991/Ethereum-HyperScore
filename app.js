@@ -2,6 +2,10 @@ var express = require('express'); // 项目服务端使用express框架
 var app = express();
 var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
 
+//DAO
+var connectMongoDB = require('./public/javascripts/dao/connectMongoDB');
+connectMongoDB.connect(); //连接数据库
+
 //主页
 app.get('/', function (req, res) {
     console.log("HyperScore Main Page");

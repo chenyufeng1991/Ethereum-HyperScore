@@ -50,7 +50,7 @@ module.exports.register = function (req, res) {
                     console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                     if(result.args.statusCode == 0) {
                         //该商户在区块链注册成功，插入数据库
-                        daoUtils.merchantInsert(keys.accountAddress, req.query.phone, req.query.password);
+                        daoUtils.merchantInsert(tempAccountAddress, tempPhone, tempPassword);
                     }
                     var response = {
                         code: result.args.statusCode,

@@ -8,6 +8,9 @@ var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtil
 //web3初始化
 var web3 = web3Instance.web3;
 
+var mongoose = require('mongoose');
+var Customer = mongoose.model('Customer');
+
 /**
  * 状态码说明：
  * 0：成功
@@ -69,6 +72,23 @@ module.exports.register = function (req, res) {
                 res.end();
             }
         });
+
+        //存储数据库
+        var customer = new Customer({
+            address: keys.accountAddress,
+            phone: req.query.phone,
+            password: commonUtils.toMD5(req.query.password),
+            score: 0,
+            buyGoods: []
+        });
+        customer.save(function (error) {
+            if(!error) {
+                console.log("客户插入数据库成功");
+            }
+            else {
+                console.log("客户插入数据库失败");
+            }
+        });
     }
     else {
         //geth
@@ -107,6 +127,23 @@ module.exports.register = function (req, res) {
                         };
                         res.send(JSON.stringify(response));
                         res.end();
+                    }
+                });
+
+                //存储数据库
+                var customer = new Customer({
+                    address: result.account,
+                    phone: req.query.phone,
+                    password: commonUtils.toMD5(req.query.password),
+                    score: 0,
+                    buyGoods: []
+                });
+                customer.save(function (error) {
+                    if(!error) {
+                        console.log("客户插入数据库成功");
+                    }
+                    else {
+                        console.log("客户插入数据库失败");
                     }
                 });
             }

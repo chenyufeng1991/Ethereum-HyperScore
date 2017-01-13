@@ -4,6 +4,7 @@ var generateAccount = require('../../public/javascripts/utils/ethereumUtils/gene
 var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeNodeType');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
+var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -70,6 +71,8 @@ module.exports.register = function (req, res) {
                 res.end();
             }
         });
+
+        daoUtils.merchantInsert(keys.accountAddress, req.query.phone, req.query.password);
     }
     else {
         //geth
@@ -110,6 +113,8 @@ module.exports.register = function (req, res) {
                         res.end();
                     }
                 });
+
+                daoUtils.merchantInsert(result.account, req.query.phone, req.query.password);
             }
             else {
                 //以太坊创建账户失败

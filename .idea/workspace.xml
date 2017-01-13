@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js" afterPath="$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/dao/model/merchant.server.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/codeString.txt" afterPath="$PROJECT_DIR$/contract/codeString.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/compileJSON.txt" afterPath="$PROJECT_DIR$/contract/compileJSON.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/contractAddress.txt" afterPath="$PROJECT_DIR$/contract/contractAddress.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js" afterPath="$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js" afterPath="$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/merchant/merchantRegister.js" afterPath="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,28 +30,28 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+            <state relative-caret-position="221">
+              <caret line="81" column="3" lean-forward="true" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customer.server.model.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js">
+      <file leaf-file-name="deployContract.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+            <state relative-caret-position="275">
+              <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_mongodb.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/test/test_mongodb.js">
+      <file leaf-file-name="merchant.server.model.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/merchant.server.model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="40" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="18" selection-end-column="40" />
+            <state relative-caret-position="170">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -54,8 +60,8 @@
       <file leaf-file-name="customerRegister.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="118" column="34" lean-forward="false" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+            <state relative-caret-position="-357">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#1380#2541#0" expanded="false" />
                 <element signature="e#3230#4623#0" expanded="false" />
@@ -67,39 +73,42 @@
       <file leaf-file-name="daoUtils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+            <state relative-caret-position="680">
+              <caret line="40" column="36" lean-forward="true" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_md5.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/test/test_md5.js">
+      <file leaf-file-name="configDAO.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/dao/configDAO.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="67" lean-forward="false" selection-start-line="6" selection-start-column="67" selection-end-line="6" selection-end-column="67" />
+            <state relative-caret-position="51">
+              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_secp256k1.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/test/test_secp256k1.js">
+      <file leaf-file-name="managerRegister.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/manager/managerRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="managerLogin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/manager/managerLogin.js">
+      <file leaf-file-name="merchantRegister.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="95" lean-forward="false" selection-start-line="26" selection-start-column="95" selection-end-line="26" selection-end-column="95" />
-              <folding />
+            <state relative-caret-position="376">
+              <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+              <folding>
+                <element signature="e#1391#2551#0" expanded="false" />
+                <element signature="e#3224#4617#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,8 +116,8 @@
       <file leaf-file-name="connectMongoDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="119">
+              <caret line="7" column="50" lean-forward="true" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -117,7 +126,7 @@
       <file leaf-file-name="commonUtils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/utils/commonUtils/commonUtils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
+            <state relative-caret-position="489">
               <caret line="31" column="7" lean-forward="false" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
               <folding />
             </state>
@@ -170,7 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/javascripts/utils/generateKey.js" />
         <option value="$PROJECT_DIR$/routes/loginCustomer.js" />
         <option value="$PROJECT_DIR$/routes/registerCustomer.js" />
         <option value="$PROJECT_DIR$/routes/customer/queryCustomerInfo.js" />
@@ -211,16 +219,17 @@
         <option value="$PROJECT_DIR$/routes/customer/customerLogin.js" />
         <option value="$PROJECT_DIR$/routes/manager/managerLogin.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
-        <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/configDAO.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js" />
         <option value="$PROJECT_DIR$/public/javascripts/test/test_mongodb.js" />
         <option value="$PROJECT_DIR$/routes/manager/managerRegister.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/mongoUtils/customerInsert.js" />
         <option value="$PROJECT_DIR$/routes/customer/customerRegister.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/dao/model/merchant.server.model.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js" />
+        <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js" />
       </list>
     </option>
   </component>
@@ -396,6 +405,10 @@
               <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ethereumUtils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -464,10 +477,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -690,23 +699,23 @@
       <workItem from="1484016364553" duration="16241000" />
       <workItem from="1484062868229" duration="606000" />
       <workItem from="1484272928671" duration="8802000" />
-      <workItem from="1484291207356" duration="76000" />
+      <workItem from="1484291207356" duration="1608000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162835000" />
+    <option name="totallyTimeSpent" value="164367000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="35" y="22" width="1245" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23366013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23202614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31195337" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41399416" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18238342" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -755,13 +764,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/6.9.1/core-modules/crypto.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="497" column="0" lean-forward="false" selection-start-line="497" selection-start-column="0" selection-end-line="497" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/truffle/Score/app/bank.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -970,13 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="23" lean-forward="false" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/contractInstance.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -988,28 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/configDAO.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/manager/managerRegister.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="31" column="44" lean-forward="false" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1038,14 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/commonUtils/commonUtils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="7" lean-forward="false" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/manager/managerLogin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1054,18 +1019,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="14" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/commonUtils/commonUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="31" column="7" lean-forward="false" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/merchant.server.model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/manager/managerRegister.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="118" column="34" lean-forward="false" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+        <state relative-caret-position="-357">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="e#1380#2541#0" expanded="false" />
             <element signature="e#3230#4623#0" expanded="false" />
@@ -1073,26 +1062,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js">
+    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="376">
+          <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+          <folding>
+            <element signature="e#1391#2551#0" expanded="false" />
+            <element signature="e#3224#4617#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        <state relative-caret-position="680">
+          <caret line="40" column="36" lean-forward="true" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/configDAO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="50" lean-forward="true" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+        <state relative-caret-position="221">
+          <caret line="81" column="3" lean-forward="true" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
           <folding />
         </state>
       </provider>

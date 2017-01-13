@@ -8,5 +8,6 @@ module.exports.connect = function () {
      var db = mongoose.connect(configDAO.mongodb);
      //这里加载模型
     require('./model/customer.server.model');
+    require('./model/merchant.server.model');
     return db;
 };

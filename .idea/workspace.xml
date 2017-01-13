@@ -6,7 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/codeString.txt" afterPath="$PROJECT_DIR$/contract/codeString.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/compileJSON.txt" afterPath="$PROJECT_DIR$/contract/compileJSON.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/contractAddress.txt" afterPath="$PROJECT_DIR$/contract/contractAddress.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/customer/customerRegister.js" afterPath="$PROJECT_DIR$/routes/customer/customerRegister.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/merchant/merchantRegister.js" afterPath="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +27,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+            <state relative-caret-position="212">
+              <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -37,8 +37,8 @@
       <file leaf-file-name="deployContract.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+            <state relative-caret-position="122">
+              <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -67,11 +67,9 @@
       <file leaf-file-name="customerRegister.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="-1352">
               <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding>
-                <element signature="e#1010#2826#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,12 +107,9 @@
       <file leaf-file-name="merchantRegister.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
-              <folding>
-                <element signature="e#1391#2551#0" expanded="false" />
-                <element signature="e#3224#4617#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="427">
+              <caret line="96" column="51" lean-forward="false" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -223,9 +218,9 @@
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/merchant.server.model.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js" />
-        <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js" />
         <option value="$PROJECT_DIR$/routes/customer/customerRegister.js" />
+        <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
       </list>
     </option>
   </component>
@@ -695,12 +690,12 @@
       <workItem from="1484016364553" duration="16241000" />
       <workItem from="1484062868229" duration="606000" />
       <workItem from="1484272928671" duration="8802000" />
-      <workItem from="1484291207356" duration="3878000" />
+      <workItem from="1484291207356" duration="5030000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166637000" />
+    <option name="totallyTimeSpent" value="167789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="35" y="22" width="1245" height="778" extended-state="0" />
@@ -711,7 +706,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28425655" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35568514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18238342" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1071,39 +1066,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
+    <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
-          <folding>
-            <element signature="e#1391#2551#0" expanded="false" />
-            <element signature="e#3224#4617#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-1352">
+          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
+    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="e#1010#2826#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="427">
+          <caret line="96" column="51" lean-forward="false" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        <state relative-caret-position="122">
+          <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state relative-caret-position="212">
+          <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
           <folding />
         </state>
       </provider>

@@ -24,21 +24,28 @@ var web3 = web3Instance.web3;
  * requestUrl:请求url的path
  */
 module.exports.issue = function (req, res) {
-    console.log("管理员账号：" + req.query.managerPhone + "用户账号：" + req.query.customerPhone + "积分数量：" + req.query.score);
 
-    global.contractInstance.issueScore(req.query.managerPhone, req.query.customerPhone, req.query.score, {from: web3.eth.coinbase}, function (error, result) {
+    var managerPhone = req.query.managerPhone;
+    var customerPhone = req.query.customerPhone;
+    var score = req.query.score;
+
+    console.log("管理员账号：" + managerPhone + ";用户账号：" + customerPhone + ";积分数量：" + score);
+
+    global.contractInstance.issueScore(managerPhone, customerPhone, score, {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
             var eventIssueScore = global.contractInstance.IssueScore();
             eventIssueScore.watch(function (error, result) {
-                if(result.args.statusCode == 0) {
+                var statusCode = result.args.statusCode;
+                var message = result.args.message;
+                console.log("状态码：" + statusCode + ";消息：" + message);
+                if(statusCode == 0) {
                     //更新数据库
-                    daoUtils.issueScore(req.query.managerPhone, req.query.customerPhone, req.query.score);
+                    daoUtils.issueScore(managerPhone, customerPhone, score);
                 }
-                console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                 var response = {
-                    code: result.args.statusCode,
+                    code: statusCode,
                     error: "",
-                    result: result.args.message,
+                    result: message,
                     txInfo: result,
                     requestUrl: req.originalUrl
                 };

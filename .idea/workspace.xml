@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/good/buyGood.js" afterPath="$PROJECT_DIR$/routes/good/buyGood.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/manager/managerLogin.js" afterPath="$PROJECT_DIR$/routes/manager/managerLogin.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,101 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
+      <file leaf-file-name="managerLogin.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/manager/managerLogin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1411">
-              <caret line="83" column="6" lean-forward="true" selection-start-line="83" selection-start-column="6" selection-end-line="83" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerDetail.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/customer/customerDetail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerGoods.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/customer/customerGoods.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="37" column="47" lean-forward="true" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerLogin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/customer/customerLogin.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerRegister.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-643">
-              <caret line="63" column="40" lean-forward="true" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addGood.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/good/addGood.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="46" column="37" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="buyGood.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/good/buyGood.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="issueScore.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/score/issueScore.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="66" column="22" lean-forward="true" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settleScore.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/score/settleScore.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transferScore.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/score/transferScore.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="68" column="9" lean-forward="true" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+            <state relative-caret-position="224">
+              <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -207,7 +117,6 @@
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js" />
         <option value="$PROJECT_DIR$/routes/customer/customerDetail.js" />
         <option value="$PROJECT_DIR$/routes/manager/managerDetail.js" />
-        <option value="$PROJECT_DIR$/routes/manager/managerLogin.js" />
         <option value="$PROJECT_DIR$/routes/manager/managerRegister.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantDetail.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
@@ -223,6 +132,7 @@
         <option value="$PROJECT_DIR$/routes/customer/customerRegister.js" />
         <option value="$PROJECT_DIR$/routes/good/addGood.js" />
         <option value="$PROJECT_DIR$/routes/good/buyGood.js" />
+        <option value="$PROJECT_DIR$/routes/manager/managerLogin.js" />
       </list>
     </option>
   </component>
@@ -535,12 +445,12 @@
       <workItem from="1484062868229" duration="606000" />
       <workItem from="1484272928671" duration="8802000" />
       <workItem from="1484291207356" duration="5864000" />
-      <workItem from="1484323074679" duration="30135000" />
+      <workItem from="1484323074679" duration="30190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198758000" />
+    <option name="totallyTimeSpent" value="198813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="0" />
@@ -840,22 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/manager/managerDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/manager/managerLogin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/manager/managerRegister.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1462">
@@ -972,6 +866,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
           <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/manager/managerDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/manager/managerLogin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding />
         </state>
       </provider>

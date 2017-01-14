@@ -16,7 +16,7 @@ var ethereumjs_util = require('ethereumjs-util');
  * 以太坊中是默认使用secp256k1
  */
 
-function generateKeys() {
+module.exports.generateKeys = function generateKeys() {
     //公私钥对需要保存在数据库中
     var privateKey = crypto.randomBytes(32);
     var publicKey = ethereumjs_util.privateToPublic(privateKey);
@@ -31,6 +31,4 @@ function generateKeys() {
         accountAddress: ethereumjs_util.bufferToHex(accountAddress)
     };
     return keys;
-}
-
-module.exports.generateKeys = generateKeys;
+};

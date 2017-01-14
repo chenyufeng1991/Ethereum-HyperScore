@@ -11,5 +11,6 @@ module.exports.connect = function () {
     require('./model/merchant.server.model');
     require('./model/manager.server.model');
     require('./model/bank.server.model');
+    require('./model/good.server.model');
     return db;
 };

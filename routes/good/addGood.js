@@ -30,14 +30,17 @@ module.exports.add = function (req, res) {
     var goodPrice = req.query.goodPrice;
     console.log("商户手机：" + phone + ";商品Id：" + goodId + ";商品名称：" + goodName + ";商品价格：" + goodPrice);
 
-    global.contractInstance.addGood(phone, goodId, goodName, goodPrice, {from: web3.eth.coinbase, gas: 1000000}, function (error, result) {
+    global.contractInstance.addGood(phone, goodId, goodName, goodPrice, {
+        from: web3.eth.coinbase,
+        gas: 1000000
+    }, function (error, result) {
         if (!error) {
             var eventAddGood = global.contractInstance.AddGood();
             eventAddGood.watch(function (error, result) {
                 var statusCode = result.args.statusCode;
                 var message = result.args.message;
                 console.log("状态码：" + statusCode + ";消息：" + message);
-                if(statusCode == 0) {
+                if (statusCode == 0) {
                     daoUtils.goodInsert(goodId, goodName, goodPrice, phone);
                 }
                 var response = {

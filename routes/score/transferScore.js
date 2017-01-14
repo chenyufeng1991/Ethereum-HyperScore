@@ -23,7 +23,7 @@ var web3 = web3Instance.web3;
  * txInfo:区块链交易信息
  * requestUrl:请求url的path
  */
-module.exports.transfer = function (req, res){
+module.exports.transfer = function (req, res) {
 
     var senderType = req.query.senderType;
     var sender = req.query.sender;
@@ -40,7 +40,7 @@ module.exports.transfer = function (req, res){
                 var message = result.args.message;
                 console.log("状态码：" + statusCode + ";消息：" + message);
                 //这里的判断应该使用==，而不是===
-                if(statusCode == 0) {
+                if (statusCode == 0) {
                     daoUtils.transferScore(senderType, sender, receiver, score);
                 }
                 var response = {

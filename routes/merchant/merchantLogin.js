@@ -21,7 +21,7 @@ var web3 = web3Instance.web3;
  * txInfo:区块链交易信息
  * requestUrl:请求url的path
  */
-module.exports.login = function (req, res){
+module.exports.login = function (req, res) {
 
     var phone = req.query.phone;
     var password = req.query.password;

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/merchant/merchantGoods.js" afterPath="$PROJECT_DIR$/routes/merchant/merchantGoods.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/merchant/merchantLogin.js" afterPath="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,11 +50,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="merchantGoods.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="merchantGoods.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/merchant/merchantGoods.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="544">
               <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="merchantLogin.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/merchant/merchantLogin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="581">
+              <caret line="46" column="15" lean-forward="true" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -147,7 +157,6 @@
         <option value="$PROJECT_DIR$/routes/customer/customerDetail.js" />
         <option value="$PROJECT_DIR$/routes/manager/managerDetail.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantDetail.js" />
-        <option value="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
         <option value="$PROJECT_DIR$/routes/score/issueScore.js" />
         <option value="$PROJECT_DIR$/routes/score/settleScore.js" />
@@ -163,6 +172,7 @@
         <option value="$PROJECT_DIR$/routes/manager/managerLogin.js" />
         <option value="$PROJECT_DIR$/routes/manager/managerRegister.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantGoods.js" />
+        <option value="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
       </list>
     </option>
   </component>
@@ -475,12 +485,12 @@
       <workItem from="1484062868229" duration="606000" />
       <workItem from="1484272928671" duration="8802000" />
       <workItem from="1484291207356" duration="5864000" />
-      <workItem from="1484323074679" duration="30362000" />
+      <workItem from="1484323074679" duration="30400000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198985000" />
+    <option name="totallyTimeSpent" value="199023000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="0" />
@@ -780,14 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantLogin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="57" column="47" lean-forward="true" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-622">
@@ -912,6 +914,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantLogin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="46" column="15" lean-forward="true" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
           <folding />
         </state>
       </provider>

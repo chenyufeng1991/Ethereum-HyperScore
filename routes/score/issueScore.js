@@ -38,7 +38,7 @@ module.exports.issue = function (req, res) {
                 var statusCode = result.args.statusCode;
                 var message = result.args.message;
                 console.log("状态码：" + statusCode + ";消息：" + message);
-                if(statusCode == 0) {
+                if (statusCode == 0) {
                     //更新数据库
                     daoUtils.issueScore(managerPhone, customerPhone, score);
                 }

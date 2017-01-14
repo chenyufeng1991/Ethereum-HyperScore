@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 });
 
 //中间件，所有的路由都经过这里，可以起到过滤器的作用
-app.use('*', function (req, res,next) {
+app.use('*', function (req, res, next) {
     console.log("所有路由都经过这里");
     next();
 });

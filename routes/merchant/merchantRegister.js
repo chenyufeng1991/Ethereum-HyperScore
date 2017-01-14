@@ -49,8 +49,8 @@ module.exports.register = function (req, res) {
                 eventRegisterMerchant.watch(function (error, result) {
                     var statusCode = result.args.statusCode;
                     var message = result.args.message;
-                    console.log("状态码：" + statusCode + "消息：" + message);
-                    if(result.args.statusCode == 0) {
+                    console.log("状态码：" + statusCode + ";消息：" + message);
+                    if(statusCode == 0) {
                         //该商户在区块链注册成功，插入数据库
                         daoUtils.merchantInsert(accountAddress, phone, password);
                     }

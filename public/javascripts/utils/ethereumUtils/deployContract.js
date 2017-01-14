@@ -8,7 +8,7 @@ var path = require('path');
 var judgeNodeType = require('./judgeNodeType');
 
 var web3;
-if(typeof web3 !== 'undefined') {
+if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 }
 else {
@@ -51,8 +51,12 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
     fs.writeFile("../../../contract/codeString.txt", codeString);
 
     //根据abi和bytecode部署合约;如果这里error，有可能是OOG造成的
-    web3.eth.contract(JSON.parse(abiString)).new({data: codeString, from: web3.eth.coinbase, gas: 3000000}, function (error, contract) {
-        if(!contract.address) {
+    web3.eth.contract(JSON.parse(abiString)).new({
+        data: codeString,
+        from: web3.eth.coinbase,
+        gas: 3000000
+    }, function (error, contract) {
+        if (!contract.address) {
             console.log("交易hash：" + contract.transactionHash);
         }
         else {

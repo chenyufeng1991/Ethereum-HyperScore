@@ -36,7 +36,7 @@ module.exports.register = function (req, res) {
     var phone = req.query.phone;
     var password = req.query.password;
 
-    console.log("请求参数："+ phone + "    " + password);
+    console.log("手机号码："+ phone + "；密码：" + password);
     if(judgeNodeType.nodeType == 0) {
         //testrpc
         // 可以使用椭圆曲线加密获得公私钥
@@ -48,15 +48,17 @@ module.exports.register = function (req, res) {
             if (!error) {
                 var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                 eventRegisterCustomer.watch(function (error, result) {
-                    console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
-                    if(result.args.statusCode == 0) {
+                    var statusCode = result.args.statusCode;
+                    var message = result.args.message;
+                    console.log("状态码：" + statusCode + ";消息：" + message);
+                    if(statusCode == 0) {
                         //该客户在区块链注册成功，插入数据库
                         daoUtils.customerInsert(accountAddress, phone, password);
                     }
                     var response = {
-                        code: result.args.statusCode,
+                        code: statusCode,
                         error: "",
-                        result: result.args.message,
+                        result: message,
                         txInfo: result,
                         requestUrl: req.originalUrl
                     };
@@ -84,7 +86,7 @@ module.exports.register = function (req, res) {
         //可以使用web3.js API生成以太坊账户
         generateAccount.generateAccounts(commonUtils.toMD5(password), function (error, result) {
             var accountAddress = result.account;
-            console.log("1111111111111111111" + JSON.stringify(result));
+            console.log("geth生成账户结果：" + JSON.stringify(result));
             if (!error) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
@@ -93,15 +95,17 @@ module.exports.register = function (req, res) {
                     if (!error) {
                         var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                         eventRegisterCustomer.watch(function (error, result) {
-                            console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
-                            if(result.args.statusCode == 0) {
+                            var statusCode = result.args.statusCode;
+                            var message = result.args.message;
+                            console.log("状态码：" + statusCode + ";消息：" + message);
+                            if(statusCode == 0) {
                                 //该客户在区块链注册成功，插入数据库
                                 daoUtils.customerInsert(accountAddress, phone, password);
                             }
                             var response = {
-                                code: result.args.statusCode,
+                                code: statusCode,
                                 error: "",
-                                result: result.args.message,
+                                result: message,
                                 txInfo: result,
                                 requestUrl: req.originalUrl
                             };

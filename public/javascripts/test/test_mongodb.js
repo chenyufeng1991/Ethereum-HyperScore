@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 
 //DAO
-var connectMongoDB = require('../dao/connectMongoDB');
+var connectMongoDB = require('../dao/connectDAO');
 connectMongoDB.connect(); //连接数据库
 var mongoose = require('mongoose');
 var Customer = mongoose.model('Customer');

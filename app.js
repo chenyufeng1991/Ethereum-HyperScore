@@ -3,14 +3,20 @@ var app = express();
 var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
 
 //DAO
-var connectMongoDB = require('./public/javascripts/dao/connectMongoDB');
-connectMongoDB.connect(); //连接数据库
+var connectDAO = require('./public/javascripts/dao/connectDAO');
+connectDAO.connect(); //连接数据库
 
 //主页
 app.get('/', function (req, res) {
     console.log("HyperScore Main Page");
     res.send("HyperScore Main Page");
     res.end();
+});
+
+//中间件，所有的路由都经过这里，可以起到过滤器的作用
+app.use('*', function (req, res,next) {
+    console.log("所有路由都经过这里");
+    next();
 });
 
 //银行管理员注册

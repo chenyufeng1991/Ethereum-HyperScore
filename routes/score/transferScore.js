@@ -30,7 +30,8 @@ module.exports.transfer = function (req, res){
         if (!error) {
             var eventTransferScore = global.contractInstance.TransferScore();
             eventTransferScore.watch(function (error, result) {
-                if(result.args.statusCode === 0) {
+                //这里的判断应该使用==，而不是===
+                if(result.args.statusCode == 0) {
                     daoUtils.transferScore(req.query.senderType, req.query.sender, req.query.receiver, req.query.score);
                 }
                 console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/good/addGood.js" afterPath="$PROJECT_DIR$/routes/good/addGood.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/good/buyGood.js" afterPath="$PROJECT_DIR$/routes/good/buyGood.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -70,7 +70,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addGood.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="addGood.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/good/addGood.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="428">
@@ -80,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="merchantRegister.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
+      <file leaf-file-name="buyGood.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/good/buyGood.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-622">
-              <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+            <state relative-caret-position="445">
+              <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -211,7 +211,6 @@
         <option value="$PROJECT_DIR$/routes/manager/managerRegister.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantDetail.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
-        <option value="$PROJECT_DIR$/routes/good/buyGood.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
         <option value="$PROJECT_DIR$/routes/score/issueScore.js" />
         <option value="$PROJECT_DIR$/routes/score/settleScore.js" />
@@ -223,6 +222,7 @@
         <option value="$PROJECT_DIR$/routes/customer/customerLogin.js" />
         <option value="$PROJECT_DIR$/routes/customer/customerRegister.js" />
         <option value="$PROJECT_DIR$/routes/good/addGood.js" />
+        <option value="$PROJECT_DIR$/routes/good/buyGood.js" />
       </list>
     </option>
   </component>
@@ -535,12 +535,12 @@
       <workItem from="1484062868229" duration="606000" />
       <workItem from="1484272928671" duration="8802000" />
       <workItem from="1484291207356" duration="5864000" />
-      <workItem from="1484323074679" duration="30086000" />
+      <workItem from="1484323074679" duration="30135000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198709000" />
+    <option name="totallyTimeSpent" value="198758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="0" />
@@ -840,14 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/good/buyGood.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="43" column="26" lean-forward="true" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/manager/managerDetail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="554">
@@ -972,6 +964,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
           <caret line="46" column="37" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/good/buyGood.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
           <folding />
         </state>
       </provider>

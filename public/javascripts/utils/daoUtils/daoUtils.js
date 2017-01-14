@@ -84,6 +84,11 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
     good.save(function (error) {
         if(!error) {
             console.log("商品插入数据库成功");
+            //同时把该件商品添加到商户的sellGoods数组
+            Merchant.findOne({phone: merchantPhone}, function (error, result) {
+                result.sellGoods.push(goodId);
+                result.save();
+            });
         }
         else {
             console.log("商品插入数据库失败");

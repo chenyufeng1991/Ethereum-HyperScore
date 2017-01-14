@@ -9,5 +9,6 @@ module.exports.connect = function () {
      //这里加载模型
     require('./model/customer.server.model');
     require('./model/merchant.server.model');
+    require('./model/manager.server.model');
     return db;
 };

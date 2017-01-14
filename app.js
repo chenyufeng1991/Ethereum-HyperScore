@@ -1,10 +1,16 @@
 var express = require('express'); // 项目服务端使用express框架
 var app = express();
+
+//web3
 var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
+var web3Instance = require('./public/javascripts/utils/ethereumUtils/web3Instance');
+var web3 = web3Instance.web3;
 
 //DAO
 var connectDAO = require('./public/javascripts/dao/connectDAO');
 connectDAO.connect(); //连接数据库
+var daoUtils = require('./public/javascripts/utils/daoUtils/daoUtils');
+daoUtils.bankCreate(web3.eth.coinbase, 0, 0);
 
 //主页
 app.get('/', function (req, res) {

@@ -23,17 +23,22 @@ var web3 = web3Instance.web3;
  * requestUrl:请求url的path
  */
 module.exports.settle = function (req, res) {
-    console.log("商户账号：" + req.query.phone + "积分数量：" + req.query.score);
 
-    global.contractInstance.settleScore(req.query.phone, req.query.score, {from: web3.eth.coinbase}, function (error, result) {
+    var phone = req.query.phone;
+    var score = req.query.score;
+    console.log("商户账号：" + phone + ";积分数量：" + score);
+
+    global.contractInstance.settleScore(phone, score, {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
             var eventSettleScore = global.contractInstance.SettleScore();
             eventSettleScore.watch(function (error, result) {
-                console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
+                var statusCode = result.args.statusCode;
+                var message = result.args.message;
+                console.log("状态码：" + statusCode + ";消息：" + message);
                 var response = {
-                    code: result.args.statusCode,
+                    code: statusCode,
                     error: "",
-                    result: result.args.message,
+                    result: message,
                     txInfo: result,
                     requestUrl: req.originalUrl
                 };

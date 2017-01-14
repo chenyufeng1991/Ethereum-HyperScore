@@ -34,14 +34,16 @@ module.exports.add = function (req, res) {
         if (!error) {
             var eventAddGood = global.contractInstance.AddGood();
             eventAddGood.watch(function (error, result) {
-                console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
-                if(result.args.statusCode == 0) {
+                var statusCode = result.args.statusCode;
+                var message = result.args.message;
+                console.log("状态码：" + statusCode + ";消息：" + message);
+                if(statusCode == 0) {
                     daoUtils.goodInsert(goodId, goodName, goodPrice, phone);
                 }
                 var response = {
-                    code: result.args.statusCode,
+                    code: statusCode,
                     error: "",
-                    result: result.args.message,
+                    result: message,
                     txInfo: result,
                     requestUrl: req.originalUrl
                 };

@@ -24,21 +24,29 @@ var web3 = web3Instance.web3;
  * requestUrl:请求url的path
  */
 module.exports.transfer = function (req, res){
-    console.log("发送参数：" + req.query.senderType + "积分发送者：" + req.query.sender + "；积分接收者：" + req.query.receiver + ";积分数额：" + req.query.score);
 
-    global.contractInstance.transferScore(req.query.senderType, req.query.sender, req.query.receiver, req.query.score, {from: web3.eth.coinbase}, function (error, result) {
+    var senderType = req.query.senderType;
+    var sender = req.query.sender;
+    var receiver = req.query.receiver;
+    var score = req.query.score;
+
+    console.log("发送参数：" + senderType + ";积分发送者：" + sender + "；积分接收者：" + receiver + ";积分数额：" + score);
+
+    global.contractInstance.transferScore(senderType, sender, receiver, score, {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
             var eventTransferScore = global.contractInstance.TransferScore();
             eventTransferScore.watch(function (error, result) {
+                var statusCode = result.args.statusCode;
+                var message = result.args.message;
+                console.log("状态码：" + statusCode + ";消息：" + message);
                 //这里的判断应该使用==，而不是===
-                if(result.args.statusCode == 0) {
-                    daoUtils.transferScore(req.query.senderType, req.query.sender, req.query.receiver, req.query.score);
+                if(statusCode == 0) {
+                    daoUtils.transferScore(senderType, sender, receiver, score);
                 }
-                console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                 var response = {
-                    code: result.args.statusCode,
+                    code: statusCode,
                     error: "",
-                    result: result.args.message,
+                    result: message,
                     txInfo: result,
                     requestUrl: req.originalUrl
                 };

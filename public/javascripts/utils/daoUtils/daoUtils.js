@@ -92,6 +92,15 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
 };
 
 //创建银行
+/**
+ * 注意mongodb中find和findOne的区别：
+ * -- find:如果找到result则返回数组(length大于等于1)，否则返回0数组；
+ * -- findOne:如果找到result则返回model模型，否则返回null;
+ *
+ * @param owner
+ * @param totalIssuedScore
+ * @param totalSettledScore
+ */
 module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore) {
     //首先查找银行中是否已经存在数据，如果存在数据，则不执行操作；否则才创建
     Bank.find({}, function (error, result) {

@@ -35,22 +35,25 @@ module.exports.register = function (req, res) {
     var phone = req.query.phone;
     var password = req.query.password;
 
-    console.log("手机号码："+ phone + "；密码：" + password);
+    console.log("手机号码：" + phone + "；密码：" + password);
 
-    if(judgeNodeType.nodeType == 0) {
+    if (judgeNodeType.nodeType == 0) {
         //testrpc
         // 可以使用椭圆曲线加密获得公私钥
         var keys = generateKey.generateKeys();
         console.log("公钥：" + keys.publicKey + "；私钥：" + keys.privateKey + "; 生成账户：" + keys.accountAddress);
         var accountAddress = keys.accountAddress;
-        global.contractInstance.registerManager(accountAddress, phone, commonUtils.toMD5(password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+        global.contractInstance.registerManager(accountAddress, phone, commonUtils.toMD5(password), {
+            from: web3.eth.coinbase,
+            gas: 1600000
+        }, function (error, result) {
             if (!error) {
                 var eventRegisterManager = global.contractInstance.RegisterManager();
                 eventRegisterManager.watch(function (error, result) {
                     var statusCode = result.args.statusCode;
                     var message = result.args.message;
                     console.log("状态码：" + statusCode + "；消息：" + message);
-                    if(statusCode == 0) {
+                    if (statusCode == 0) {
                         daoUtils.managerInsert(accountAddress, phone, password);
                     }
                     var response = {
@@ -89,14 +92,17 @@ module.exports.register = function (req, res) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
-                global.contractInstance.registerManager(accountAddress, phone, commonUtils.toMD5(password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+                global.contractInstance.registerManager(accountAddress, phone, commonUtils.toMD5(password), {
+                    from: web3.eth.coinbase,
+                    gas: 1600000
+                }, function (error, result) {
                     if (!error) {
                         var eventRegisterManager = global.contractInstance.RegisterManager();
                         eventRegisterManager.watch(function (error, result) {
                             var statusCode = result.args.statusCode;
                             var message = result.args.message;
                             console.log("状态码：" + statusCode + ";消息：" + message);
-                            if(statusCode == 0) {
+                            if (statusCode == 0) {
                                 daoUtils.managerInsert(accountAddress, phone, password);
                             }
                             var response = {

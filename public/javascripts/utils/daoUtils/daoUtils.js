@@ -146,24 +146,32 @@ module.exports.issueScore = function (managerPhone, customerPhone, score) {
 };
 
 //转让积分
+/**
+ * 注意这里的转移策略，如果一个手机号同时注册为客户和商户，向这个手机号转让积分时，会默认转移到客户的这个账户
+ * @param senderType
+ * @param sender
+ * @param receiver
+ * @param score
+ */
 module.exports.transferScore = function (senderType, sender, receiver, score) {
-    if(senderType === 0) {
+    //使用==判断，而不是===;因为传递进来的一般是String，所以必然不是严格等于0的，所以判断会失败；
+    if(senderType == 0) {
         //发送者为客户
         Customer.findOne({phone: sender}, function (error, result) {
-            result.score -= score;
+            result.score -= parseInt(score);
             result.save();
         });
         Customer.findOne({phone: receiver}, function (error, result) {
             if(!error) {
-                if(result.length !== 0) {
+                if(result != null) {
                     //由客户接收
-                    result.score += score;
+                    result.score += parseInt(score);
                     result.save();
                 }
                 else {
                     //由商户接收
                     Merchant.findOne({phone: receiver}, function (error, result) {
-                        result.score += score;
+                        result.score += parseInt(score);
                         result.save();
                     });
                 }
@@ -172,6 +180,25 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
     }
     else{
         //发送者为商户
+        Merchant.findOne({phone: sender}, function (error, result) {
+            result.score -= parseInt(score);
+            result.save();
+        });
+        Customer.findOne({phone: receiver}, function (error, result) {
+            if(!error) {
+                if(result != null) {
+                    //由客户接收
+                    result.score += parseInt(score);
+                    result.save();
+                }
+                else {
+                    //由商户接收
+                    Merchant.findOne({phone: receiver}, function (error, result) {
+                        result.score += parseInt(score);
+                        result.save();
+                    });
+                }
+            }
+        });
     }
-
 };

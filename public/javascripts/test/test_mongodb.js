@@ -11,26 +11,26 @@ var mongoose = require('mongoose');
 var Customer = mongoose.model('Customer');
 
 app.get('/', function (req, res, next) {
-   var customer = new Customer({
-       address: "0x222b0a38120ee113f05c35bc198f17a4a009bcc2",
-       phone: "18710498511",
-       password: "123456",
-       score: 3000,
-       buyGoods: ["we", "are", "winner"]
-   });
-   customer.save(function (error) {
-      if(!error) {
-          Customer.find({}, function (error, result) {
-              if(!error) {
-                  res.send(JSON.stringify(result));
-              }
-              else {
-                  res.send("error");
-              }
-              res.end();
-          });
-      }
-   });
+    var customer = new Customer({
+        address: "0x222b0a38120ee113f05c35bc198f17a4a009bcc2",
+        phone: "18710498511",
+        password: "123456",
+        score: 3000,
+        buyGoods: ["we", "are", "winner"]
+    });
+    customer.save(function (error) {
+        if (!error) {
+            Customer.find({}, function (error, result) {
+                if (!error) {
+                    res.send(JSON.stringify(result));
+                }
+                else {
+                    res.send("error");
+                }
+                res.end();
+            });
+        }
+    });
 });
 
 app.listen(8888, function () {

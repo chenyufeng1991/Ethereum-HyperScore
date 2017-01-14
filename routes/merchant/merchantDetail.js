@@ -27,8 +27,10 @@ var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtil
  */
 module.exports.query = function (req, res) {
 
-    console.log("请求参数：" + req.query.phone);
-    global.contractInstance.getMerchantInfo(req.query.phone, function (error, result) {
+    var phone = req.query.phone;
+
+    console.log("手机号码：" + phone);
+    global.contractInstance.getMerchantInfo(phone, function (error, result) {
         if (!error) {
             console.log("商户address： " + result[0] + "商户手机：" + commonUtils.hexCharCodeToStr(result[1]) + "积分余额：" + result[2]);
 

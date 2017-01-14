@@ -2,7 +2,7 @@ var Web3 = require('web3');
 
 //web3初始化
 var web3;
-if(typeof web3 !== 'undefined') {
+if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 }
 else {
@@ -15,7 +15,7 @@ var nodeType;
 if (web3.version.node.indexOf("Geth") != -1) {
     nodeType = 1;
 }
-else if(web3.version.node.indexOf("TestRPC") != -1) {
+else if (web3.version.node.indexOf("TestRPC") != -1) {
     nodeType = 0;
 }
 

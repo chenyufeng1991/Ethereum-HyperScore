@@ -33,25 +33,25 @@ var web3 = web3Instance.web3;
  */
 module.exports.register = function (req, res) {
 
-    var tempPhone = req.query.phone;
-    var tempPassword = req.query.password;
+    var phone = req.query.phone;
+    var password = req.query.password;
 
-    console.log("请求参数："+ tempPhone + "    " + tempPassword);
+    console.log("请求参数："+ phone + "    " + password);
     if(judgeNodeType.nodeType == 0) {
         //testrpc
         // 可以使用椭圆曲线加密获得公私钥
         var keys = generateKey.generateKeys();
         console.log("公钥：" + keys.publicKey + "；私钥：" + keys.privateKey + "；账户地址：" + keys.accountAddress);
-        var tempAccountAddress = keys.accountAddress;
+        var accountAddress = keys.accountAddress;
 
-        global.contractInstance.registerCustomer(tempAccountAddress, tempPhone, commonUtils.toMD5(tempPassword), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+        global.contractInstance.registerCustomer(accountAddress, phone, commonUtils.toMD5(password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
             if (!error) {
                 var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                 eventRegisterCustomer.watch(function (error, result) {
                     console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                     if(result.args.statusCode == 0) {
                         //该客户在区块链注册成功，插入数据库
-                        daoUtils.customerInsert(tempAccountAddress, tempPhone, tempPassword);
+                        daoUtils.customerInsert(accountAddress, phone, password);
                     }
                     var response = {
                         code: result.args.statusCode,
@@ -82,21 +82,21 @@ module.exports.register = function (req, res) {
     else {
         //geth
         //可以使用web3.js API生成以太坊账户
-        generateAccount.generateAccounts(commonUtils.toMD5(tempPassword), function (error, result) {
-            var tempAccountAddress = result.account;
+        generateAccount.generateAccounts(commonUtils.toMD5(password), function (error, result) {
+            var accountAddress = result.account;
             console.log("1111111111111111111" + JSON.stringify(result));
             if (!error) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
-                global.contractInstance.registerCustomer(tempAccountAddress, tempPhone, commonUtils.toMD5(tempPassword), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+                global.contractInstance.registerCustomer(accountAddress, phone, commonUtils.toMD5(password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
                     if (!error) {
                         var eventRegisterCustomer = global.contractInstance.RegisterCustomer();
                         eventRegisterCustomer.watch(function (error, result) {
                             console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                             if(result.args.statusCode == 0) {
                                 //该客户在区块链注册成功，插入数据库
-                                daoUtils.customerInsert(tempAccountAddress, tempPhone, tempPassword);
+                                daoUtils.customerInsert(accountAddress, phone, password);
                             }
                             var response = {
                                 code: result.args.statusCode,

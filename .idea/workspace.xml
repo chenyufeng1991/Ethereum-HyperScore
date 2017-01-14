@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/customer/customerLogin.js" afterPath="$PROJECT_DIR$/routes/customer/customerLogin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/customer/customerRegister.js" afterPath="$PROJECT_DIR$/routes/customer/customerRegister.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerRegister.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="customerRegister.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="53" column="41" lean-forward="false" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+            <state relative-caret-position="493">
+              <caret line="52" column="56" lean-forward="false" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -90,7 +91,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerLogin.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="customerLogin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/customer/customerLogin.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="205">
@@ -207,7 +208,6 @@
         <option value="$PROJECT_DIR$/public/javascripts/utils/mongoUtils/customerInsert.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/merchant.server.model.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/manager.server.model.js" />
-        <option value="$PROJECT_DIR$/routes/customer/customerRegister.js" />
         <option value="$PROJECT_DIR$/routes/manager/managerRegister.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/bank.server.model.js" />
@@ -223,6 +223,7 @@
         <option value="$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js" />
         <option value="$PROJECT_DIR$/routes/customer/customerDetail.js" />
         <option value="$PROJECT_DIR$/routes/customer/customerLogin.js" />
+        <option value="$PROJECT_DIR$/routes/customer/customerRegister.js" />
       </list>
     </option>
   </component>
@@ -491,12 +492,12 @@
       <workItem from="1484062868229" duration="606000" />
       <workItem from="1484272928671" duration="8802000" />
       <workItem from="1484291207356" duration="5864000" />
-      <workItem from="1484323074679" duration="22357000" />
+      <workItem from="1484323074679" duration="22793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190980000" />
+    <option name="totallyTimeSpent" value="191416000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="0" />
@@ -876,14 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="53" column="41" lean-forward="false" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/score/issueScore.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -912,6 +905,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="34" column="52" lean-forward="false" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/customer/customerRegister.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="52" column="56" lean-forward="false" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
           <folding />
         </state>
       </provider>

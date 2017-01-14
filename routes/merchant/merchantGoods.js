@@ -24,7 +24,7 @@ module.exports.query = function (req, res) {
         if (!error) {
             console.log("返回的商品数组长度：" + result.length);
             var goodArray = [];
-            for(var i = 0; i < result.length; i++) {
+            for (var i = 0; i < result.length; i++) {
                 goodArray.push(commonUtils.hexCharCodeToStr(result[i]));
             }
             console.log("返回的商品数组：" + goodArray);

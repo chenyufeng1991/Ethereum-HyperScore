@@ -29,11 +29,13 @@ module.exports.buy = function (req, res) {
         if (!error) {
             var eventBuyGood = global.contractInstance.BuyGood();
             eventBuyGood.watch(function (error, result) {
-                console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
+                var statusCode = result.args.statusCode;
+                var message = result.args.message;
+                console.log("状态码：" + statusCode + ";消息：" + message);
                 var response = {
-                    code: result.args.statusCode,
+                    code: statusCode,
                     error: "",
-                    result: result.args.message,
+                    result: message,
                     txInfo: result,
                     requestUrl: req.originalUrl
                 };

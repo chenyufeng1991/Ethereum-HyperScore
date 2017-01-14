@@ -7,5 +7,5 @@
  * @type {{mongodb: string}}
  */
 module.exports = {
-  mongodb: "mongodb://localhost/HyperScore"
+    mongodb: "mongodb://localhost/HyperScore"
 };

@@ -4,6 +4,7 @@ var generateAccount = require('../../public/javascripts/utils/ethereumUtils/gene
 var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeNodeType');
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
+var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -31,20 +32,25 @@ var web3 = web3Instance.web3;
  */
 module.exports.register = function (req, res) {
 
-    console.log("请求参数："+ req.query.phone + "    " + req.query.password);
+    var tempPhone = req.query.phone;
+    var tempPassword = req.query.password;
+
+    console.log("请求参数："+ tempPhone + "    " + tempPassword);
 
     if(judgeNodeType.nodeType == 0) {
         //testrpc
         // 可以使用椭圆曲线加密获得公私钥
         var keys = generateKey.generateKeys();
-        console.log("qqqqqq=" + keys.publicKey);
-        console.log("wwwwww=" + keys.privateKey);
-        console.log("eeeeee=" + keys.accountAddress);
-        global.contractInstance.registerManager(keys.accountAddress, req.query.phone, commonUtils.toMD5(req.query.password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+        console.log("公钥：" + keys.publicKey + "；私钥：" + keys.privateKey + "; 生成账户：" + keys.accountAddress);
+        var tempAccountAddress = keys.accountAddress;
+        global.contractInstance.registerManager(tempAccountAddress, tempPhone, commonUtils.toMD5(tempPassword), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
             if (!error) {
                 var eventRegisterManager = global.contractInstance.RegisterManager();
                 eventRegisterManager.watch(function (error, result) {
                     console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
+                    if(result.args.statusCode == 0) {
+                        daoUtils.managerInsert(tempAccountAddress, tempPhone, tempPassword);
+                    }
                     var response = {
                         code: result.args.statusCode,
                         error: "",
@@ -74,17 +80,21 @@ module.exports.register = function (req, res) {
     else {
         //geth
         //可以使用web3.js API生成以太坊账户
-        generateAccount.generateAccounts(commonUtils.toMD5(req.query.password), function (error, result) {
+        generateAccount.generateAccounts(commonUtils.toMD5(tempPassword), function (error, result) {
+            var tempAccountAddress = result.account;
             console.log("1111111111111111111" + JSON.stringify(result));
             if (!error) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
-                global.contractInstance.registerManager(result.account, req.query.phone, commonUtils.toMD5(req.query.password), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
+                global.contractInstance.registerManager(tempAccountAddress, tempPhone, commonUtils.toMD5(tempPhone), {from: web3.eth.coinbase, gas: 1600000}, function (error, result) {
                     if (!error) {
                         var eventRegisterManager = global.contractInstance.RegisterManager();
                         eventRegisterManager.watch(function (error, result) {
                             console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
+                            if(result.args.statusCode == 0) {
+                                daoUtils.managerInsert(tempAccountAddress, tempPhone, tempPassword);
+                            }
                             var response = {
                                 code: result.args.statusCode,
                                 error: "",

@@ -6,6 +6,7 @@ var commonUtils = require('../commonUtils/commonUtils');
 var mongoose = require('mongoose');
 var Customer = mongoose.model('Customer');
 var Merchant = mongoose.model('Merchant');
+var Manager = mongoose.model('Manager');
 
 //向数据库中插入一个客户
 module.exports.customerInsert = function (customerAddr, phone, password) {
@@ -44,6 +45,26 @@ module.exports.merchantInsert = function (merchantAddr, phone, password) {
         }
         else {
             console.log("商户插入数据库失败");
+        }
+    });
+};
+
+//向数据库中插入一个商户
+module.exports.managerInsert = function (managerAddr, phone, password) {
+    //存储数据库
+    var manager = new Manager({
+        managerAddr: managerAddr,
+        phone: phone,
+        password: commonUtils.toMD5(password),
+        issuedScore: 0
+    });
+
+    manager.save(function (error) {
+        if(!error) {
+            console.log("管理员插入数据库成功");
+        }
+        else {
+            console.log("管理员插入数据库失败");
         }
     });
 };

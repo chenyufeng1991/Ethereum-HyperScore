@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/merchant/merchantLogin.js" afterPath="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/merchant/merchantRegister.js" afterPath="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -53,8 +53,8 @@
       <file leaf-file-name="managerRegister.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/manager/managerRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1826">
-              <caret line="135" column="18" lean-forward="true" selection-start-line="135" selection-start-column="18" selection-end-line="135" selection-end-column="18" />
+            <state relative-caret-position="517">
+              <caret line="86" column="36" lean-forward="false" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -80,21 +80,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="merchantLogin.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="merchantLogin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/merchant/merchantLogin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+            <state relative-caret-position="606">
+              <caret line="57" column="47" lean-forward="true" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerDetail.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/customer/customerDetail.js">
+      <file leaf-file-name="merchantRegister.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="47" column="19" lean-forward="false" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="19" />
+            <state relative-caret-position="1830">
+              <caret line="143" column="2" lean-forward="true" selection-start-line="143" selection-start-column="2" selection-end-line="143" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -203,7 +203,6 @@
         <option value="$PROJECT_DIR$/public/javascripts/utils/mongoUtils/customerInsert.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/merchant.server.model.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/manager.server.model.js" />
-        <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/bank.server.model.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/connectMongoDB.js" />
         <option value="$PROJECT_DIR$/routes/good/addGood.js" />
@@ -223,6 +222,7 @@
         <option value="$PROJECT_DIR$/routes/manager/managerRegister.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantDetail.js" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantLogin.js" />
+        <option value="$PROJECT_DIR$/routes/merchant/merchantRegister.js" />
       </list>
     </option>
   </component>
@@ -527,12 +527,12 @@
       <workItem from="1484062868229" duration="606000" />
       <workItem from="1484272928671" duration="8802000" />
       <workItem from="1484291207356" duration="5864000" />
-      <workItem from="1484323074679" duration="24630000" />
+      <workItem from="1484323074679" duration="25557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193253000" />
+    <option name="totallyTimeSpent" value="194180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="0" />
@@ -713,14 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="40" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="18" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="97" column="70" lean-forward="false" selection-start-line="97" selection-start-column="70" selection-end-line="97" selection-end-column="70" />
           <folding />
         </state>
       </provider>
@@ -925,14 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/manager/managerRegister.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1826">
-          <caret line="135" column="18" lean-forward="true" selection-start-line="135" selection-start-column="18" selection-end-line="135" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/merchant/merchantDetail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
@@ -951,8 +935,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/merchant/merchantLogin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+        <state relative-caret-position="606">
+          <caret line="57" column="47" lean-forward="true" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/manager/managerRegister.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="86" column="36" lean-forward="false" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/merchant/merchantRegister.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1830">
+          <caret line="143" column="2" lean-forward="true" selection-start-line="143" selection-start-column="2" selection-end-line="143" selection-end-column="2" />
           <folding />
         </state>
       </provider>

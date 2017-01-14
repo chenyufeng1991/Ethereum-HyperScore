@@ -21,7 +21,7 @@ module.exports.customerInsert = function (customerAddr, phone, password) {
         buyGoods: []
     });
     customer.save(function (error) {
-        if(!error) {
+        if (!error) {
             console.log("客户插入数据库成功");
         }
         else {
@@ -42,7 +42,7 @@ module.exports.merchantInsert = function (merchantAddr, phone, password) {
     });
 
     merchant.save(function (error) {
-        if(!error) {
+        if (!error) {
             console.log("商户插入数据库成功");
         }
         else {
@@ -62,7 +62,7 @@ module.exports.managerInsert = function (managerAddr, phone, password) {
     });
 
     manager.save(function (error) {
-        if(!error) {
+        if (!error) {
             console.log("管理员插入数据库成功");
         }
         else {
@@ -82,7 +82,7 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
     });
 
     good.save(function (error) {
-        if(!error) {
+        if (!error) {
             console.log("商品插入数据库成功");
             //同时把该件商品添加到商户的sellGoods数组
             Merchant.findOne({phone: merchantPhone}, function (error, result) {
@@ -140,22 +140,22 @@ module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore
 //需要使用parseInt()转换数据类型
 module.exports.issueScore = function (managerPhone, customerPhone, score) {
     Manager.findOne({phone: managerPhone}, function (error, result) {
-        if(!error) {
+        if (!error) {
             result.issuedScore += parseInt(score);
             result.save();
         }
     });
     Bank.findOne({}, function (error, result) {
-        if(!error) {
+        if (!error) {
             result.totalIssuedScore += parseInt(score);
             result.save();
         }
     });
     Customer.findOne({phone: customerPhone}, function (error, result) {
-       if(!error) {
-           result.score += parseInt(score);
-           result.save();
-       }
+        if (!error) {
+            result.score += parseInt(score);
+            result.save();
+        }
     });
 };
 
@@ -169,15 +169,15 @@ module.exports.issueScore = function (managerPhone, customerPhone, score) {
  */
 module.exports.transferScore = function (senderType, sender, receiver, score) {
     //使用==判断，而不是===;因为传递进来的一般是String，所以必然不是严格等于0的，所以判断会失败；
-    if(senderType == 0) {
+    if (senderType == 0) {
         //发送者为客户
         Customer.findOne({phone: sender}, function (error, result) {
             result.score -= parseInt(score);
             result.save();
         });
         Customer.findOne({phone: receiver}, function (error, result) {
-            if(!error) {
-                if(result != null) {
+            if (!error) {
+                if (result != null) {
                     //由客户接收
                     result.score += parseInt(score);
                     result.save();
@@ -192,15 +192,15 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
             }
         });
     }
-    else{
+    else {
         //发送者为商户
         Merchant.findOne({phone: sender}, function (error, result) {
             result.score -= parseInt(score);
             result.save();
         });
         Customer.findOne({phone: receiver}, function (error, result) {
-            if(!error) {
-                if(result != null) {
+            if (!error) {
+                if (result != null) {
                     //由客户接收
                     result.score += parseInt(score);
                     result.save();

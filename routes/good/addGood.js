@@ -1,5 +1,6 @@
 //处理商户上架一件商品的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
+var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -34,6 +35,9 @@ module.exports.add = function (req, res) {
             var eventAddGood = global.contractInstance.AddGood();
             eventAddGood.watch(function (error, result) {
                 console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
+                if(result.args.statusCode == 0) {
+                    daoUtils.goodInsert(goodId, goodName, goodPrice, phone);
+                }
                 var response = {
                     code: result.args.statusCode,
                     error: "",

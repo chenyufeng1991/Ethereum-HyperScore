@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var Customer = mongoose.model('Customer');
 var Merchant = mongoose.model('Merchant');
 var Manager = mongoose.model('Manager');
+var Good = mongoose.model('Good');
 
 //向数据库中插入一个客户
 module.exports.customerInsert = function (customerAddr, phone, password) {
@@ -65,6 +66,25 @@ module.exports.managerInsert = function (managerAddr, phone, password) {
         }
         else {
             console.log("管理员插入数据库失败");
+        }
+    });
+};
+
+module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone) {
+    //存储数据库
+    var good = new Good({
+        goodId: goodId,
+        goodName: goodName,
+        goodPrice: goodPrice,
+        merchantPhone: merchantPhone
+    });
+
+    good.save(function (error) {
+        if(!error) {
+            console.log("商品插入数据库成功");
+        }
+        else {
+            console.log("商品插入数据库失败");
         }
     });
 };

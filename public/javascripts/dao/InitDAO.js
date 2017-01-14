@@ -12,7 +12,8 @@ var Bank = mongoose.model('Bank');
 
 //初始化银行数据
 /**
- * 银行表banks：只有一条记录
+ * 银行表banks：只有一条记录；
+ * 这里之后要考虑每一次的部署需要把之前的数据保存下来，然后迁移到新的文档中
  * @type {*}
  */
 var bank = new Bank({

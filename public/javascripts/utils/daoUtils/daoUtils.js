@@ -121,3 +121,57 @@ module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore
         }
     });
 };
+
+//发行积分
+//需要使用parseInt()转换数据类型
+module.exports.issueScore = function (managerPhone, customerPhone, score) {
+    Manager.findOne({phone: managerPhone}, function (error, result) {
+        if(!error) {
+            result.issuedScore += parseInt(score);
+            result.save();
+        }
+    });
+    Bank.findOne({}, function (error, result) {
+        if(!error) {
+            result.totalIssuedScore += parseInt(score);
+            result.save();
+        }
+    });
+    Customer.findOne({phone: customerPhone}, function (error, result) {
+       if(!error) {
+           result.score += parseInt(score);
+           result.save();
+       }
+    });
+};
+
+//转让积分
+module.exports.transferScore = function (senderType, sender, receiver, score) {
+    if(senderType === 0) {
+        //发送者为客户
+        Customer.findOne({phone: sender}, function (error, result) {
+            result.score -= score;
+            result.save();
+        });
+        Customer.findOne({phone: receiver}, function (error, result) {
+            if(!error) {
+                if(result.length !== 0) {
+                    //由客户接收
+                    result.score += score;
+                    result.save();
+                }
+                else {
+                    //由商户接收
+                    Merchant.findOne({phone: receiver}, function (error, result) {
+                        result.score += score;
+                        result.save();
+                    });
+                }
+            }
+        });
+    }
+    else{
+        //发送者为商户
+    }
+
+};

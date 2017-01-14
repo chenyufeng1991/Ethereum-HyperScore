@@ -1,5 +1,6 @@
 //处理银行发行积分的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
+var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -29,6 +30,10 @@ module.exports.issue = function (req, res) {
         if (!error) {
             var eventIssueScore = global.contractInstance.IssueScore();
             eventIssueScore.watch(function (error, result) {
+                if(result.args.statusCode == 0) {
+                    //更新数据库
+                    daoUtils.issueScore(req.query.managerPhone, req.query.customerPhone, req.query.score);
+                }
                 console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                 var response = {
                     code: result.args.statusCode,

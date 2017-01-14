@@ -19,13 +19,13 @@ else {
  * @param password
  * @param callback
  */
-function generateAccounts(password, callback) {
+module.exports.generateAccounts = function (password, callback) {
     web3.personal.newAccount(password, function (error, result) {
         var code;
         var account;
         var message;
 
-        if(!error) {
+        if (!error) {
             console.log("结果：" + result);
             code = 0;
             account = result;
@@ -53,6 +53,4 @@ function generateAccounts(password, callback) {
             callback(error, response);
         }
     });
-}
-
-module.exports.generateAccounts = generateAccounts;
+};

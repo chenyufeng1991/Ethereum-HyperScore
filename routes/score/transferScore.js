@@ -1,5 +1,6 @@
 //处理客户商户转让积分的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
+var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -29,6 +30,9 @@ module.exports.transfer = function (req, res){
         if (!error) {
             var eventTransferScore = global.contractInstance.TransferScore();
             eventTransferScore.watch(function (error, result) {
+                if(result.args.statusCode === 0) {
+                    daoUtils.transferScore(req.query.senderType, req.query.sender, req.query.receiver, req.query.score);
+                }
                 console.log("状态码：" + result.args.statusCode + "消息：" + result.args.message);
                 var response = {
                     code: result.args.statusCode,

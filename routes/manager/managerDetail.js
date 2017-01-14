@@ -27,10 +27,12 @@ var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtil
  */
 module.exports.query = function (req, res) {
 
-    console.log("请求参数：" + req.query.phone);
-    global.contractInstance.getManagerInfo(req.query.phone, function (error, result) {
+    var phone = req.query.phone;
+
+    console.log("手机号码：" + phone);
+    global.contractInstance.getManagerInfo(phone, function (error, result) {
         if (!error) {
-            console.log("管理员address： " + result[0] + "；管理员手机：" + commonUtils.hexCharCodeToStr(result[1]) + "；发行积分：" + result[2] + "银行发行总积分：" + result[3] + "银行已经清算的积分：" + result[4]);
+            console.log("管理员address： " + result[0] + "；管理员手机：" + commonUtils.hexCharCodeToStr(result[1]) + "；发行积分：" + result[2] + "；银行发行总积分：" + result[3] + "；银行已经清算的积分：" + result[4]);
 
             var obj = {
                 address: result[0],

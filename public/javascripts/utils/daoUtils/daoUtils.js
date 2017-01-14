@@ -8,6 +8,7 @@ var Customer = mongoose.model('Customer');
 var Merchant = mongoose.model('Merchant');
 var Manager = mongoose.model('Manager');
 var Good = mongoose.model('Good');
+var Bank = mongoose.model('Bank');
 
 //向数据库中插入一个客户
 module.exports.customerInsert = function (customerAddr, phone, password) {
@@ -70,6 +71,7 @@ module.exports.managerInsert = function (managerAddr, phone, password) {
     });
 };
 
+//向数据库插入一件商品
 module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone) {
     //存储数据库
     var good = new Good({
@@ -85,6 +87,37 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
         }
         else {
             console.log("商品插入数据库失败");
+        }
+    });
+};
+
+//创建银行
+module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore) {
+    //首先查找银行中是否已经存在数据，如果存在数据，则不执行操作；否则才创建
+    Bank.find({}, function (error, result) {
+        if (!error) {
+            if (result.length === 0) {
+                //没有查找结果，需要初始化银行数据
+                var bank = new Bank({
+                    owner: owner,
+                    totalIssuedScore: totalIssuedScore,
+                    totalSettledScore: totalSettledScore
+                });
+                bank.save(function (error) {
+                    if (!error) {
+                        console.log("银行在数据库中创建成功");
+                    }
+                    else {
+                        console.log("银行在数据库中创建失败");
+                    }
+                });
+            }
+            else {
+                //存在银行数据，不创建
+            }
+        }
+        else {
+            console.log("查找数据失败");
         }
     });
 };

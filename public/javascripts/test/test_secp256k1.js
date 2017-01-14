@@ -53,7 +53,7 @@ console.log(ethereumjs_util.bufferToHex(ethereumjs_util.pubToAddress(pubKey, tru
 console.log(ethereumjs_util.toBuffer("123456"));
 
 //stripHexPrefix：移除十六进制前缀0x
-console.log("移除0x:" +  ethereumjs_util.stripHexPrefix(ethereumjs_util.bufferToHex(ethereumjs_util.pubToAddress(pubKey, true))));
+console.log("移除0x:" + ethereumjs_util.stripHexPrefix(ethereumjs_util.bufferToHex(ethereumjs_util.pubToAddress(pubKey, true))));
 
 //从私钥计算公钥(符合Ethereum格式)
 console.log("从私钥计算公钥：" + ethereumjs_util.bufferToHex(ethereumjs_util.privateToPublic(privKey)));

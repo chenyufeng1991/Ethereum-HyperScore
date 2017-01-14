@@ -27,10 +27,12 @@ var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtil
  */
 module.exports.query = function (req, res) {
 
-    console.log("请求参数：" + req.query.phone);
-    global.contractInstance.getCustomerInfo(req.query.phone, function (error, result) {
+    var phone = req.query.phone;
+
+    console.log("请求参数：" + phone);
+    global.contractInstance.getCustomerInfo(phone, function (error, result) {
         if (!error) {
-            console.log("客户address： " + result[0] + "客户手机：" + commonUtils.hexCharCodeToStr(result[1]) + "积分余额：" + result[2]);
+            console.log("客户address： " + result[0] + ";客户手机：" + commonUtils.hexCharCodeToStr(result[1]) + ";积分余额：" + result[2]);
 
             var obj = {
                 address: result[0],

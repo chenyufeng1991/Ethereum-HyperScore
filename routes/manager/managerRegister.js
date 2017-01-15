@@ -69,7 +69,7 @@ module.exports.register = function (req, res) {
                 });
             }
             else {
-                console.log("发生错误：" + error);
+                console.error("发生错误：" + error);
                 var response = {
                     code: 1,
                     error: error.toString(),
@@ -118,7 +118,7 @@ module.exports.register = function (req, res) {
                         });
                     }
                     else {
-                        console.log("发生错误：" + error);
+                        console.error("发生错误：" + error);
                         var response = {
                             code: 1,
                             error: error.toString(),
@@ -132,6 +132,7 @@ module.exports.register = function (req, res) {
                 });
             }
             else {
+                console.error("geth创建账户失败");
                 //以太坊创建账户失败
                 var response = {
                     code: 1,

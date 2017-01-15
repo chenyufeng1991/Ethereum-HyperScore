@@ -54,7 +54,7 @@ module.exports.query = function (req, res) {
             res.end();
         }
         else {
-            console.log("发生错误：" + error);
+            console.error("发生错误：" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

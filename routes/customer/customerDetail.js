@@ -29,7 +29,7 @@ module.exports.query = function (req, res) {
 
     var phone = req.query.phone;
 
-    console.log("请求参数：" + phone);
+    console.log("手机号码：" + phone);
     global.contractInstance.getCustomerInfo(phone, function (error, result) {
         if (!error) {
             console.log("客户address： " + result[0] + ";客户手机：" + commonUtils.hexCharCodeToStr(result[1]) + ";积分余额：" + result[2]);
@@ -52,7 +52,7 @@ module.exports.query = function (req, res) {
             res.end();
         }
         else {
-            console.log("发生错误：" + error);
+            console.error("发生错误：" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

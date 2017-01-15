@@ -1,5 +1,6 @@
 var express = require('express');
 var web3Instance = require('./web3Instance');
+var LOG = require('../commonUtils/LOG');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -20,10 +21,10 @@ module.exports.generateAccounts = function (password, callback) {
         var message;
 
         if (!error) {
-            console.log("结果：" + result);
+            console.log(LOG.ETH_GETH_ACCOUNT_RESULT + ":" + result);
             code = 0;
             account = result;
-            message = "以太坊创建账户成功";
+            message = LOG.ETH_GETH_CREATE_ACCOUNT_SUCCESS;
 
             var response = {
                 code: code,
@@ -33,7 +34,7 @@ module.exports.generateAccounts = function (password, callback) {
             callback(null, response);
         }
         else {
-            console.log("错误：" + error.toString());
+            console.log(LOG.ETH_GETH_CREATE_ACCOUNT_FAILED + ":" + error.toString());
             code = 1;
             account = "";
             message = error.toString();

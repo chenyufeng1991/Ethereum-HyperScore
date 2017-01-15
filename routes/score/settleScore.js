@@ -1,5 +1,6 @@
 //处理商户与银行清算积分的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
+var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -35,6 +36,9 @@ module.exports.settle = function (req, res) {
                 var statusCode = result.args.statusCode;
                 var message = result.args.message;
                 console.log("状态码：" + statusCode + ";消息：" + message);
+                if(statusCode == 0) {
+                    daoUtils.settleScore(phone, score);
+                }
                 var response = {
                     code: statusCode,
                     error: "",

@@ -86,8 +86,13 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
             console.log("商品插入数据库成功");
             //同时把该件商品添加到商户的sellGoods数组
             Merchant.findOne({phone: merchantPhone}, function (error, result) {
-                result.sellGoods.push(goodId);
-                result.save();
+                if (!error) {
+                    result.sellGoods.push(goodId);
+                    result.save();
+                }
+                else {
+                    console.log("查找该商户失败");
+                }
             });
         }
         else {
@@ -108,9 +113,9 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
  */
 module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore) {
     //首先查找银行中是否已经存在数据，如果存在数据，则不执行操作；否则才创建
-    Bank.find({}, function (error, result) {
+    Bank.findOne({}, function (error, result) {
         if (!error) {
-            if (result.length === 0) {
+            if (result == null) {
                 //没有查找结果，需要初始化银行数据
                 var bank = new Bank({
                     owner: owner,
@@ -126,12 +131,9 @@ module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore
                     }
                 });
             }
-            else {
-                //存在银行数据，不创建
-            }
         }
         else {
-            console.log("查找数据失败");
+            console.log("查找银行数据失败");
         }
     });
 };
@@ -141,20 +143,32 @@ module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore
 module.exports.issueScore = function (managerPhone, customerPhone, score) {
     Manager.findOne({phone: managerPhone}, function (error, result) {
         if (!error) {
+            console.log("查找管理员成功");
             result.issuedScore += parseInt(score);
             result.save();
+        }
+        else {
+            console.log("查找管理员失败");
         }
     });
     Bank.findOne({}, function (error, result) {
         if (!error) {
+            console.log("查找银行数据成功");
             result.totalIssuedScore += parseInt(score);
             result.save();
+        }
+        else {
+            console.log("查找银行数据失败");
         }
     });
     Customer.findOne({phone: customerPhone}, function (error, result) {
         if (!error) {
+            console.log("查找客户数据成功");
             result.score += parseInt(score);
             result.save();
+        }
+        else {
+            console.log("查找客户数据失败");
         }
     });
 };
@@ -172,8 +186,14 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
     if (senderType == 0) {
         //发送者为客户
         Customer.findOne({phone: sender}, function (error, result) {
-            result.score -= parseInt(score);
-            result.save();
+            if (!error) {
+                console.log("查找客户数据成功");
+                result.score -= parseInt(score);
+                result.save();
+            }
+            else {
+                console.log("查找客户数据失败");
+            }
         });
         Customer.findOne({phone: receiver}, function (error, result) {
             if (!error) {
@@ -185,18 +205,33 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                 else {
                     //由商户接收
                     Merchant.findOne({phone: receiver}, function (error, result) {
-                        result.score += parseInt(score);
-                        result.save();
+                        if (!error) {
+                            console.log("查找商户数据成功");
+                            result.score += parseInt(score);
+                            result.save();
+                        }
+                        else {
+                            console.log("查找商户数据失败");
+                        }
                     });
                 }
+            }
+            else {
+                console.log("查找客户数据失败");
             }
         });
     }
     else {
         //发送者为商户
         Merchant.findOne({phone: sender}, function (error, result) {
-            result.score -= parseInt(score);
-            result.save();
+            if (!error) {
+                console.log("查找商户数据成功");
+                result.score -= parseInt(score);
+                result.save();
+            }
+            else {
+                console.log("查找商户数据失败");
+            }
         });
         Customer.findOne({phone: receiver}, function (error, result) {
             if (!error) {
@@ -208,10 +243,19 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                 else {
                     //由商户接收
                     Merchant.findOne({phone: receiver}, function (error, result) {
-                        result.score += parseInt(score);
-                        result.save();
+                        if (!error) {
+                            console.log("查找商户数据成功");
+                            result.score += parseInt(score);
+                            result.save();
+                        }
+                        else {
+                            console.log("查找商户数据失败");
+                        }
                     });
                 }
+            }
+            else {
+                console.log("查找客户数据失败");
             }
         });
     }
@@ -221,14 +265,22 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
 module.exports.settleScore = function (phone, score) {
     Merchant.findOne({phone: phone}, function (error, result) {
         if (!error) {
+            console.log("查找商户数据成功");
             result.score -= parseInt(score);
             result.save();
+        }
+        else {
+            console.log("查找商户数据失败");
         }
     });
     Bank.findOne({}, function (error, result) {
         if (!error) {
+            console.log("查找银行数据成功");
             result.totalSettledScore += parseInt(score);
             result.save();
+        }
+        else {
+            console.log("查找银行数据失败");
         }
     });
 };
@@ -237,17 +289,33 @@ module.exports.settleScore = function (phone, score) {
 module.exports.buyGood = function (phone, goodId) {
     Good.findOne({goodId: goodId}, function (error, result) {
         if (!error) {
+            console.log("查找商品数据成功");
             var goodPrice = result.goodPrice;
             var merchantPhone = result.merchantPhone;
             Customer.findOne({phone: phone}, function (error, result) {
-                result.score -= parseInt(goodPrice);
-                result.buyGoods.push(goodId);
-                result.save();
+                if (!error) {
+                    console.log("查找客户数据成功");
+                    result.score -= parseInt(goodPrice);
+                    result.buyGoods.push(goodId);
+                    result.save();
+                }
+                else {
+                    console.log("查找客户数据失败");
+                }
             });
             Merchant.findOne({phone: merchantPhone}, function (error, result) {
-                result.score += parseInt(goodPrice);
-                result.save();
+                if (!error) {
+                    console.log("查找商户数据成功");
+                    result.score += parseInt(goodPrice);
+                    result.save();
+                }
+                else {
+                    console.log("查找商户数据失败");
+                }
             });
+        }
+        else {
+            console.log("查找商品数据失败");
         }
     });
 };

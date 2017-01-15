@@ -1,6 +1,7 @@
 //处理客户登录的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
+var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -25,14 +26,14 @@ module.exports.login = function (req, res) {
 
     var phone = req.query.phone;
     var password = req.query.password;
-    console.log("手机号码：" + phone + "；密码：" + password);
+    console.log(LOG.CS_PHONE + ":" + phone + LOG.CS_PASSWORD + ":" + password);
     global.contractInstance.loginCustomer(phone, commonUtils.toMD5(password), {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
             var eventLoginCustomer = global.contractInstance.LoginCustomer();
             eventLoginCustomer.watch(function (error, result) {
                 var statusCode = result.args.statusCode;
                 var message = result.args.message;
-                console.log("状态码：" + statusCode + ";消息：" + message);
+                console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                 var response = {
                     code: statusCode,
                     error: "",
@@ -46,7 +47,7 @@ module.exports.login = function (req, res) {
             });
         }
         else {
-            console.error("发生错误：" + error);
+            console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

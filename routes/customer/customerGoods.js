@@ -1,5 +1,6 @@
 //处理用户查询已购买商品Id的路由
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
+var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
 
 /**
  * 状态码：
@@ -18,7 +19,7 @@ var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtil
  */
 module.exports.query = function (req, res) {
     var phone = req.query.phone;
-    console.log("用户手机：" + phone);
+    console.log(LOG.CS_PHONE + ":" + phone);
 
     global.contractInstance.getGoodsByCustomer(phone, function (error, result) {
         if (!error) {
@@ -39,7 +40,7 @@ module.exports.query = function (req, res) {
             res.end();
         }
         else {
-            console.error("发生错误：" + error);
+            console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

@@ -41,6 +41,7 @@ module.exports = {
     CS_PHONE: "手机号码",
     CS_CUSTOMER_ADDRESS: "客户address",
     CS_MANAGER_ADDRESS: "管理员address",
+    CS_MERCHANT_ADDRESS: "商户address",
     CS_SCORE_BALANCE: "积分余额",
     CS_CALL_CONTRACT_METHOD_FAILED: "调用合约方法失败",
     CS_PASSWORD: "密码",

@@ -1,5 +1,6 @@
 //处理客户查询详情的路由
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
+var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
 
 /**
  * 注意交易方法和Constant方法的调用，目前指定以下规范：
@@ -29,10 +30,10 @@ module.exports.query = function (req, res) {
 
     var phone = req.query.phone;
 
-    console.log("手机号码：" + phone);
+    console.log(LOG.CS_PHONE + ":" + phone);
     global.contractInstance.getCustomerInfo(phone, function (error, result) {
         if (!error) {
-            console.log("客户address： " + result[0] + ";客户手机：" + commonUtils.hexCharCodeToStr(result[1]) + ";积分余额：" + result[2]);
+            console.log(LOG.CS_CUSTOMER_ADDRESS + ":" + result[0] + LOG.CS_PHONE + ":" + commonUtils.hexCharCodeToStr(result[1]) + LOG.CS_SCORE_BALANCE + ":" + result[2]);
 
             var obj = {
                 address: result[0],
@@ -52,7 +53,7 @@ module.exports.query = function (req, res) {
             res.end();
         }
         else {
-            console.error("发生错误：" + error);
+            console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

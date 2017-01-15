@@ -11,5 +11,8 @@ module.exports = {
     ETH_CONTRACT_ADDRESS: "合约地址",
     ETH_GETH_ACCOUNT_RESULT: "geth创建账户结果",
     ETH_GETH_CREATE_ACCOUNT_SUCCESS: "geth创建账户成功",
-    ETH_GETH_CREATE_ACCOUNT_FAILED: "geth创建账户失败"
+    ETH_GETH_CREATE_ACCOUNT_FAILED: "geth创建账户失败",
+    ETH_ECC_PRIVATE_KEY: "椭圆曲线加密生成私钥",
+    ETH_ECC_PUBLIC_KEY: "椭圆曲线加密生成公钥",
+    ETH_ECC_ACCOUNT: "椭圆曲线加密生成账户"
 };

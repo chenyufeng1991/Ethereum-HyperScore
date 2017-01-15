@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var ethereumjs_util = require('ethereumjs-util');
+var LOG = require('../commonUtils/LOG');
 
 /**
  曲线类型：
@@ -21,9 +22,9 @@ module.exports.generateKeys = function generateKeys() {
     var privateKey = crypto.randomBytes(32);
     var publicKey = ethereumjs_util.privateToPublic(privateKey);
     var accountAddress = ethereumjs_util.privateToAddress(privateKey);
-    console.log("公钥：" + ethereumjs_util.bufferToHex(publicKey));
-    console.log("私钥: " + ethereumjs_util.bufferToHex(privateKey));
-    console.log("公私钥对计算出账号：" + ethereumjs_util.bufferToHex(accountAddress));
+    console.log(LOG.ETH_ECC_PUBLIC_KEY + ":" + ethereumjs_util.bufferToHex(publicKey));
+    console.log(LOG.ETH_ECC_PRIVATE_KEY + ":" + ethereumjs_util.bufferToHex(privateKey));
+    console.log(LOG.ETH_ECC_ACCOUNT + ":" + ethereumjs_util.bufferToHex(accountAddress));
 
     var keys = {
         publicKey: ethereumjs_util.bufferToHex(publicKey),

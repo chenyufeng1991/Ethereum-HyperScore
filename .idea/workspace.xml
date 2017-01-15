@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/utils/commonUtils/LOG.js" afterPath="$PROJECT_DIR$/public/javascripts/utils/commonUtils/LOG.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateAccount.js" afterPath="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateAccount.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateKey.js" afterPath="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateKey.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,18 +24,28 @@
       <file leaf-file-name="LOG.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/utils/commonUtils/LOG.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+            <state relative-caret-position="272">
+              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generateAccount.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="generateAccount.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateAccount.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
               <caret line="35" column="14" lean-forward="true" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generateKey.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateKey.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="42" lean-forward="false" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -113,7 +122,6 @@
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/good.server.model.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/InitDAO.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/model/customer.server.model.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateKey.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dao/configDAO.js" />
         <option value="$PROJECT_DIR$/public/javascripts/test/test_mongodb.js" />
@@ -144,8 +152,9 @@
         <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/contractInstance.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/judgeNodeType.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/utils/commonUtils/LOG.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateAccount.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/utils/commonUtils/LOG.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateKey.js" />
       </list>
     </option>
   </component>
@@ -595,12 +604,12 @@
       <workItem from="1484272928671" duration="8802000" />
       <workItem from="1484291207356" duration="5864000" />
       <workItem from="1484323074679" duration="33311000" />
-      <workItem from="1484447864896" duration="12364000" />
+      <workItem from="1484447864896" duration="13012000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214298000" />
+    <option name="totallyTimeSpent" value="214946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="6" />
@@ -982,14 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateKey.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/web3Instance.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1022,18 +1023,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/commonUtils/LOG.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateAccount.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="35" column="14" lean-forward="true" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/commonUtils/LOG.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/generateKey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="42" lean-forward="false" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
           <folding />
         </state>
       </provider>

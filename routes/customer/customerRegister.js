@@ -71,7 +71,7 @@ module.exports.register = function (req, res) {
                 });
             }
             else {
-                console.log("发生错误：" + error);
+                console.error("发生错误：" + error);
                 var response = {
                     code: 1,
                     error: error.toString(),
@@ -88,9 +88,9 @@ module.exports.register = function (req, res) {
         //geth
         //可以使用web3.js API生成以太坊账户
         generateAccount.generateAccounts(commonUtils.toMD5(password), function (error, result) {
-            var accountAddress = result.account;
-            console.log("geth生成账户结果：" + JSON.stringify(result));
             if (!error) {
+                var accountAddress = result.account;
+                console.log("geth生成账户结果：" + JSON.stringify(result));
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
                 //默认交易发起者还是web3.eth.accounts[0]；
@@ -121,7 +121,7 @@ module.exports.register = function (req, res) {
                         });
                     }
                     else {
-                        console.log("发生错误：" + error);
+                        console.error("发生错误：" + error);
                         var response = {
                             code: 1,
                             error: error.toString(),
@@ -135,6 +135,7 @@ module.exports.register = function (req, res) {
                 });
             }
             else {
+                console.error("geth创建账户失败");
                 //以太坊创建账户失败
                 var response = {
                     code: 1,

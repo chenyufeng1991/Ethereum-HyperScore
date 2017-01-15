@@ -1,15 +1,8 @@
-var Web3 = require('web3');
 var express = require('express');
-var config = require('../../config/config');
+var web3Instance = require('./web3Instance');
 
 //web3初始化
-var web3;
-if (typeof web3 !== 'undefined') {
-    web3 = new Web3(web3.currentProvider);
-}
-else {
-    web3 = new Web3(new Web3.providers.HttpProvider(config.clientUrl));
-}
+var web3 = web3Instance.web3;
 
 /**
  * 返回JSON

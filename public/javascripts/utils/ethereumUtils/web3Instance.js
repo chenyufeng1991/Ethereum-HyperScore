@@ -10,4 +10,6 @@ else {
     web3 = new Web3(new Web3.providers.HttpProvider(config.clientUrl));
 }
 
-module.exports.web3 = web3;
+module.exports = {
+    web3: web3
+};

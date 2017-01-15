@@ -29,7 +29,8 @@ module.exports.add = function (req, res) {
     var goodId = req.query.goodId;
     var goodName = req.query.goodName;
     var goodPrice = req.query.goodPrice;
-    console.log(LOG.CS_PHONE + ":" + phone + LOG.CS_GOOD_ID + ":" + goodId + LOG.CS_GOOD_NAME + ":" + goodName + LOG.CS_GOOD_PRICE + ":" + goodPrice);
+    console.log(LOG.CS_PHONE + ":" + phone + LOG.CS_GOOD_ID + ":" + goodId + LOG.CS_GOOD_NAME + ":" +
+        goodName + LOG.CS_GOOD_PRICE + ":" + goodPrice);
 
     global.contractInstance.addGood(phone, goodId, goodName, goodPrice, {
         from: web3.eth.coinbase,

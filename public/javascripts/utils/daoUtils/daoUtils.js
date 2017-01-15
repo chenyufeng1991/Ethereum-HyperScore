@@ -220,15 +220,34 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
 //积分清算
 module.exports.settleScore = function (phone, score) {
     Merchant.findOne({phone: phone}, function (error, result) {
-        if(!error) {
+        if (!error) {
             result.score -= parseInt(score);
             result.save();
         }
     });
     Bank.findOne({}, function (error, result) {
-        if(!error) {
+        if (!error) {
             result.totalSettledScore += parseInt(score);
             result.save();
+        }
+    });
+};
+
+//客户购买商品
+module.exports.buyGood = function (phone, goodId) {
+    Good.findOne({goodId: goodId}, function (error, result) {
+        if (!error) {
+            var goodPrice = result.goodPrice;
+            var merchantPhone = result.merchantPhone;
+            Customer.findOne({phone: phone}, function (error, result) {
+                result.score -= parseInt(goodPrice);
+                result.buyGoods.push(goodId);
+                result.save();
+            });
+            Merchant.findOne({phone: merchantPhone}, function (error, result) {
+                result.score += parseInt(goodPrice);
+                result.save();
+            });
         }
     });
 };

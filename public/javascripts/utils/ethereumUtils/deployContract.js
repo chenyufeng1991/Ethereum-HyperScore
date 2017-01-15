@@ -2,19 +2,12 @@
  * 该文件为合约的自动化部署脚本，本次要部署新合约的时候，执行该文件即可。
  * 部署脚本不应该在服务端被调用，否则每次启动服务器都要部署新合约，不符合实际应用。
  */
-var Web3 = require('web3');
 var fs = require('fs');
 var path = require('path');
 var judgeNodeType = require('./judgeNodeType');
-var config = require('../../config/config');
+var web3Instance = require('./web3Instance');
 
-var web3;
-if (typeof web3 !== 'undefined') {
-    web3 = new Web3(web3.currentProvider);
-}
-else {
-    web3 = new Web3(new Web3.providers.HttpProvider(config.clientUrl));
-}
+var web3 = web3Instance.web3;
 
 //读取合约
 //如果由其他文件来调用该模块，则fs中写入的路径应该是相对于调用者来的，而不是该文件

@@ -5,6 +5,7 @@ var judgeNodeType = require('../../public/javascripts/utils/ethereumUtils/judgeN
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
+var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -35,13 +36,14 @@ module.exports.register = function (req, res) {
     var phone = req.query.phone;
     var password = req.query.password;
 
-    console.log("手机号码：" + phone + "；密码：" + password);
+    console.log(LOG.CS_PHONE + ":" + phone + LOG.CS_PASSWORD + ":" + password);
 
     if (judgeNodeType.nodeType == 0) {
         //testrpc
         // 可以使用椭圆曲线加密获得公私钥
         var keys = generateKey.generateKeys();
-        console.log("公钥：" + keys.publicKey + "；私钥：" + keys.privateKey + "; 生成账户：" + keys.accountAddress);
+        console.log(LOG.ETH_ECC_PUBLIC_KEY + ":" + keys.publicKey + LOG.ETH_ECC_PRIVATE_KEY + ":" + keys.privateKey +
+            LOG.ETH_ECC_ACCOUNT + ":" + keys.accountAddress);
         var accountAddress = keys.accountAddress;
         global.contractInstance.registerManager(accountAddress, phone, commonUtils.toMD5(password), {
             from: web3.eth.coinbase,
@@ -52,7 +54,7 @@ module.exports.register = function (req, res) {
                 eventRegisterManager.watch(function (error, result) {
                     var statusCode = result.args.statusCode;
                     var message = result.args.message;
-                    console.log("状态码：" + statusCode + "；消息：" + message);
+                    console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                     if (statusCode == 0) {
                         daoUtils.managerInsert(accountAddress, phone, password);
                     }
@@ -69,7 +71,7 @@ module.exports.register = function (req, res) {
                 });
             }
             else {
-                console.error("发生错误：" + error);
+                console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
                 var response = {
                     code: 1,
                     error: error.toString(),
@@ -87,7 +89,7 @@ module.exports.register = function (req, res) {
         //可以使用web3.js API生成以太坊账户
         generateAccount.generateAccounts(commonUtils.toMD5(password), function (error, result) {
             var accountAddress = result.account;
-            console.log("geth生成账户结果:" + JSON.stringify(result));
+            console.log(LOG.ETH_GETH_ACCOUNT_RESULT + ":" + JSON.stringify(result));
             if (!error) {
                 //以太坊创建账户成功
                 //如果出现OOG，则添加gas参数
@@ -101,7 +103,7 @@ module.exports.register = function (req, res) {
                         eventRegisterManager.watch(function (error, result) {
                             var statusCode = result.args.statusCode;
                             var message = result.args.message;
-                            console.log("状态码：" + statusCode + ";消息：" + message);
+                            console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                             if (statusCode == 0) {
                                 daoUtils.managerInsert(accountAddress, phone, password);
                             }
@@ -118,7 +120,7 @@ module.exports.register = function (req, res) {
                         });
                     }
                     else {
-                        console.error("发生错误：" + error);
+                        console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
                         var response = {
                             code: 1,
                             error: error.toString(),
@@ -132,7 +134,7 @@ module.exports.register = function (req, res) {
                 });
             }
             else {
-                console.error("geth创建账户失败");
+                console.error(LOG.ETH_GETH_CREATE_ACCOUNT_FAILED);
                 //以太坊创建账户失败
                 var response = {
                     code: 1,

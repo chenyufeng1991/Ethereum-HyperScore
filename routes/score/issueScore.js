@@ -1,6 +1,7 @@
 //处理银行发行积分的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
+var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -29,7 +30,7 @@ module.exports.issue = function (req, res) {
     var customerPhone = req.query.customerPhone;
     var score = req.query.score;
 
-    console.log("管理员账号：" + managerPhone + ";用户账号：" + customerPhone + ";积分数量：" + score);
+    console.log(LOG.CS_PHONE + ":" + managerPhone + LOG.CS_PHONE + ":" + customerPhone + LOG.CS_SCORE_BALANCE + ":" + score);
 
     global.contractInstance.issueScore(managerPhone, customerPhone, score, {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
@@ -37,7 +38,7 @@ module.exports.issue = function (req, res) {
             eventIssueScore.watch(function (error, result) {
                 var statusCode = result.args.statusCode;
                 var message = result.args.message;
-                console.log("状态码：" + statusCode + ";消息：" + message);
+                console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                 if (statusCode == 0) {
                     //更新数据库
                     daoUtils.issueScore(managerPhone, customerPhone, score);
@@ -55,7 +56,7 @@ module.exports.issue = function (req, res) {
             });
         }
         else {
-            console.error("发生错误：" + error);
+            console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

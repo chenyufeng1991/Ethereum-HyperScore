@@ -1,6 +1,7 @@
 //处理客户商户转让积分的路由
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
+var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -30,7 +31,8 @@ module.exports.transfer = function (req, res) {
     var receiver = req.query.receiver;
     var score = req.query.score;
 
-    console.log("发送参数：" + senderType + ";积分发送者：" + sender + "；积分接收者：" + receiver + ";积分数额：" + score);
+    console.log("发送参数：" + senderType + LOG.CS_PHONE + ":" + sender + LOG.CS_PHONE + ":" + receiver +
+        LOG.CS_SCORE_BALANCE + ":" + score);
 
     global.contractInstance.transferScore(senderType, sender, receiver, score, {from: web3.eth.coinbase}, function (error, result) {
         if (!error) {
@@ -38,7 +40,7 @@ module.exports.transfer = function (req, res) {
             eventTransferScore.watch(function (error, result) {
                 var statusCode = result.args.statusCode;
                 var message = result.args.message;
-                console.log("状态码：" + statusCode + ";消息：" + message);
+                console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                 //这里的判断应该使用==，而不是===
                 if (statusCode == 0) {
                     daoUtils.transferScore(senderType, sender, receiver, score);
@@ -56,7 +58,7 @@ module.exports.transfer = function (req, res) {
             });
         }
         else {
-            console.error("发生错误：" + error);
+            console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

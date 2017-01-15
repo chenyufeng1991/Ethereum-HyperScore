@@ -216,3 +216,19 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
         });
     }
 };
+
+//积分清算
+module.exports.settleScore = function (phone, score) {
+    Merchant.findOne({phone: phone}, function (error, result) {
+        if(!error) {
+            result.score -= parseInt(score);
+            result.save();
+        }
+    });
+    Bank.findOne({}, function (error, result) {
+        if(!error) {
+            result.totalSettledScore += parseInt(score);
+            result.save();
+        }
+    });
+};

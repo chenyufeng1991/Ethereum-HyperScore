@@ -6,16 +6,17 @@ var fs = require('fs');
 var path = require('path');
 var judgeNodeType = require('./judgeNodeType');
 var web3Instance = require('./web3Instance');
+var LOG = require('../commonUtils/LOG');
 
 var web3 = web3Instance.web3;
 
 //读取合约
 //如果由其他文件来调用该模块，则fs中写入的路径应该是相对于调用者来的，而不是该文件
 fs.readFile("../../../contract/Score.sol", function (error, result) {
-    console.log("合约：" + result.toString());
+    console.log(LOG.ETH_CONTRACT + ":" + result.toString());
     //编译合约
     var compileJSON = JSON.stringify(web3.eth.compile.solidity(result.toString()), null, " "); //格式化输出
-    console.log("编译合约后：" + compileJSON);
+    console.log(LOG.ETH_COMPILED_CONTRACT + ":" + compileJSON);
     fs.writeFile("../../../contract/compileJSON.txt", compileJSON); //写入文件
 
     //获得abi文件
@@ -28,7 +29,7 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
         //geth
         abiString = JSON.stringify(web3.eth.compile.solidity(result.toString()).Score.info.abiDefinition, null, " ");
     }
-    console.log("abi文件：" + abiString);
+    console.log(LOG.ETH_ABI_FILE + ":" + abiString);
     fs.writeFile("../../../contract/abiString.txt", abiString);
 
     //获得code字节码
@@ -41,7 +42,7 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
         //geth
         codeString = web3.eth.compile.solidity(result.toString()).Score.code;
     }
-    console.log("code字节码：" + codeString);
+    console.log(LOG.ETH_BINARY_CODE + ":" + codeString);
     fs.writeFile("../../../contract/codeString.txt", codeString);
 
     //根据abi和bytecode部署合约;如果这里error，有可能是OOG造成的
@@ -51,12 +52,12 @@ fs.readFile("../../../contract/Score.sol", function (error, result) {
         gas: 3000000
     }, function (error, contract) {
         if (!contract.address) {
-            console.log("交易hash：" + contract.transactionHash);
+            console.log(LOG.ETH_TRANSACTION_HASH + ":" + contract.transactionHash);
         }
         else {
             //获得部署的合约地址
             var contractAddress = contract.address;
-            console.log("合约地址：" + contractAddress);
+            console.log(LOG.ETH_CONTRACT_ADDRESS + ":" + contractAddress);
             fs.writeFile("../../../contract/contractAddress.txt", contractAddress);
 
             contract.setAge(8888, {from: web3.eth.coinbase}, function (error, result) {

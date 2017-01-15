@@ -1,5 +1,7 @@
 var express = require('express'); // 项目服务端使用express框架
 var app = express();
+var config = require('./public/javascripts/config/config');
+var LOG = require('./public/javascripts/utils/commonUtils/LOG');
 
 //web3
 var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
@@ -89,8 +91,8 @@ app.post('/v1_0/good/buy', buyGood.buy);
 var customerGoods = require('./routes/customer/customerGoods');
 app.get('/v1_0/user/customer/goods', customerGoods.query);
 
-app.listen(8000, function () {
-    console.log("服务器开启，地址为：http://localhost:8000");
+app.listen(config.serverPort, function () {
+    console.log(LOG.CS_START_SERVER_MESSAGE + config.serverPort);
 });
 
 

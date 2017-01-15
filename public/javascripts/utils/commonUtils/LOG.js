@@ -52,7 +52,9 @@ module.exports = {
     CS_GOOD_PRICE: "商品价格",
     CS_MANAGER_ISSUED_SCORE: "管理员已发行积分",
     CS_BANK_ISSUED_SCORE: "银行已发行积分",
-    CS_BANK_SETTLED_SCORE: "银行已清算积分"
+    CS_BANK_SETTLED_SCORE: "银行已清算积分",
+
+    CS_START_SERVER_MESSAGE: "服务器开启，地址为：http://localhost:"
 
 
 

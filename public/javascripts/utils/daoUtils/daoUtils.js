@@ -25,7 +25,7 @@ module.exports.customerInsert = function (customerAddr, phone, password) {
             console.log("客户插入数据库成功");
         }
         else {
-            console.log("客户插入数据库失败");
+            console.error("客户插入数据库失败");
         }
     });
 };
@@ -46,7 +46,7 @@ module.exports.merchantInsert = function (merchantAddr, phone, password) {
             console.log("商户插入数据库成功");
         }
         else {
-            console.log("商户插入数据库失败");
+            console.error("商户插入数据库失败");
         }
     });
 };
@@ -66,7 +66,7 @@ module.exports.managerInsert = function (managerAddr, phone, password) {
             console.log("管理员插入数据库成功");
         }
         else {
-            console.log("管理员插入数据库失败");
+            console.error("管理员插入数据库失败");
         }
     });
 };
@@ -91,12 +91,12 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
                     result.save();
                 }
                 else {
-                    console.log("查找该商户失败");
+                    console.error("查找该商户失败");
                 }
             });
         }
         else {
-            console.log("商品插入数据库失败");
+            console.error("商品插入数据库失败");
         }
     });
 };
@@ -127,13 +127,13 @@ module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore
                         console.log("银行在数据库中创建成功");
                     }
                     else {
-                        console.log("银行在数据库中创建失败");
+                        console.error("银行在数据库中创建失败");
                     }
                 });
             }
         }
         else {
-            console.log("查找银行数据失败");
+            console.error("查找银行数据失败");
         }
     });
 };
@@ -148,7 +148,7 @@ module.exports.issueScore = function (managerPhone, customerPhone, score) {
             result.save();
         }
         else {
-            console.log("查找管理员失败");
+            console.error("查找管理员失败");
         }
     });
     Bank.findOne({}, function (error, result) {
@@ -158,7 +158,7 @@ module.exports.issueScore = function (managerPhone, customerPhone, score) {
             result.save();
         }
         else {
-            console.log("查找银行数据失败");
+            console.error("查找银行数据失败");
         }
     });
     Customer.findOne({phone: customerPhone}, function (error, result) {
@@ -168,7 +168,7 @@ module.exports.issueScore = function (managerPhone, customerPhone, score) {
             result.save();
         }
         else {
-            console.log("查找客户数据失败");
+            console.error("查找客户数据失败");
         }
     });
 };
@@ -192,7 +192,7 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                 result.save();
             }
             else {
-                console.log("查找客户数据失败");
+                console.error("查找客户数据失败");
             }
         });
         Customer.findOne({phone: receiver}, function (error, result) {
@@ -211,13 +211,13 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                             result.save();
                         }
                         else {
-                            console.log("查找商户数据失败");
+                            console.error("查找商户数据失败");
                         }
                     });
                 }
             }
             else {
-                console.log("查找客户数据失败");
+                console.error("查找客户数据失败");
             }
         });
     }
@@ -230,7 +230,7 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                 result.save();
             }
             else {
-                console.log("查找商户数据失败");
+                console.error("查找商户数据失败");
             }
         });
         Customer.findOne({phone: receiver}, function (error, result) {
@@ -249,13 +249,13 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                             result.save();
                         }
                         else {
-                            console.log("查找商户数据失败");
+                            console.error("查找商户数据失败");
                         }
                     });
                 }
             }
             else {
-                console.log("查找客户数据失败");
+                console.error("查找客户数据失败");
             }
         });
     }
@@ -270,7 +270,7 @@ module.exports.settleScore = function (phone, score) {
             result.save();
         }
         else {
-            console.log("查找商户数据失败");
+            console.error("查找商户数据失败");
         }
     });
     Bank.findOne({}, function (error, result) {
@@ -280,7 +280,7 @@ module.exports.settleScore = function (phone, score) {
             result.save();
         }
         else {
-            console.log("查找银行数据失败");
+            console.error("查找银行数据失败");
         }
     });
 };
@@ -300,7 +300,7 @@ module.exports.buyGood = function (phone, goodId) {
                     result.save();
                 }
                 else {
-                    console.log("查找客户数据失败");
+                    console.error("查找客户数据失败");
                 }
             });
             Merchant.findOne({phone: merchantPhone}, function (error, result) {
@@ -310,12 +310,12 @@ module.exports.buyGood = function (phone, goodId) {
                     result.save();
                 }
                 else {
-                    console.log("查找商户数据失败");
+                    console.error("查找商户数据失败");
                 }
             });
         }
         else {
-            console.log("查找商品数据失败");
+            console.error("查找商品数据失败");
         }
     });
 };

@@ -26,7 +26,6 @@ module.exports = {
     DB_GOOD_INSERT_FAILED: "商品插入数据库失败",
     DB_BANK_CREATE_SUCCESS: "银行在数据库中创建成功",
     DB_BANK_CREATE_FAILED: "银行在数据库中创建失败",
-
     DB_FIND_MERCHANT_SUCCESS: "查找商户成功",
     DB_FIND_MERCHANT_FAILED: "查找商户失败",
     DB_FIND_BANK_SUCCESS: "查找银行成功",
@@ -36,5 +35,15 @@ module.exports = {
     DB_FIND_CUSTOMER_SUCCESS: "查找客户成功",
     DB_FIND_CUSTOMER_FAILED: "查找客户失败",
     DB_FIND_GOOD_SUCCESS: "查找商品成功",
-    DB_FIND_GOOD_FAILED: "查找商品失败"
+    DB_FIND_GOOD_FAILED: "查找商品失败",
+
+    //common string
+    CS_PHONE: "手机号码",
+    CS_CUSTOMER_ADDRESS: "客户address",
+    CS_SCORE_BALANCE: "积分余额",
+    CS_CALL_CONTRACT_METHOD_FAILED: "调用合约方法失败"
+
+
+
+
 };

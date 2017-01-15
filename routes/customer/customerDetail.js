@@ -33,7 +33,8 @@ module.exports.query = function (req, res) {
     console.log(LOG.CS_PHONE + ":" + phone);
     global.contractInstance.getCustomerInfo(phone, function (error, result) {
         if (!error) {
-            console.log(LOG.CS_CUSTOMER_ADDRESS + ":" + result[0] + LOG.CS_PHONE + ":" + commonUtils.hexCharCodeToStr(result[1]) + LOG.CS_SCORE_BALANCE + ":" + result[2]);
+            console.log(LOG.CS_CUSTOMER_ADDRESS + ":" + result[0] + LOG.CS_PHONE + ":" +
+                commonUtils.hexCharCodeToStr(result[1]) + LOG.CS_SCORE_BALANCE + ":" + result[2]);
 
             var obj = {
                 address: result[0],

@@ -42,7 +42,8 @@ module.exports.register = function (req, res) {
         //testrpc
         // 可以使用椭圆曲线加密获得公私钥
         var keys = generateKey.generateKeys();
-        console.log(LOG.ETH_ECC_PUBLIC_KEY + ":" + keys.publicKey + LOG.ETH_ECC_PRIVATE_KEY + ":" + keys.privateKey + LOG.ETH_ECC_ACCOUNT + ":" + keys.accountAddress);
+        console.log(LOG.ETH_ECC_PUBLIC_KEY + ":" + keys.publicKey + LOG.ETH_ECC_PRIVATE_KEY + ":" +
+            keys.privateKey + LOG.ETH_ECC_ACCOUNT + ":" + keys.accountAddress);
         var accountAddress = keys.accountAddress;
 
         global.contractInstance.registerCustomer(accountAddress, phone, commonUtils.toMD5(password), {

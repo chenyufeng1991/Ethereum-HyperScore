@@ -1,5 +1,6 @@
 //处理客户查询详情的路由
 var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
+var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
 
 /**
  * 注意交易方法和Constant方法的调用，目前指定以下规范：
@@ -29,10 +30,12 @@ module.exports.query = function (req, res) {
 
     var phone = req.query.phone;
 
-    console.log("手机号码：" + phone);
+    console.log(LOG.CS_PHONE + ":" + phone);
     global.contractInstance.getManagerInfo(phone, function (error, result) {
         if (!error) {
-            console.log("管理员address： " + result[0] + "；管理员手机：" + commonUtils.hexCharCodeToStr(result[1]) + "；发行积分：" + result[2] + "；银行发行总积分：" + result[3] + "；银行已经清算的积分：" + result[4]);
+            console.log(LOG.CS_MANAGER_ADDRESS + ":" + result[0] + LOG.CS_PHONE + ":" +
+                commonUtils.hexCharCodeToStr(result[1]) + LOG.CS_MANAGER_ISSUED_SCORE + ":" + result[2] +
+                LOG.CS_BANK_ISSUED_SCORE + ":" + result[3] + LOG.CS_BANK_SETTLED_SCORE + ":" + result[4]);
 
             var obj = {
                 address: result[0],
@@ -54,7 +57,7 @@ module.exports.query = function (req, res) {
             res.end();
         }
         else {
-            console.error("发生错误：" + error);
+            console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
             var response = {
                 code: 1,
                 error: error.toString(),

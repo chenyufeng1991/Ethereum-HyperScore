@@ -40,6 +40,7 @@ module.exports = {
     //common string
     CS_PHONE: "手机号码",
     CS_CUSTOMER_ADDRESS: "客户address",
+    CS_MANAGER_ADDRESS: "管理员address",
     CS_SCORE_BALANCE: "积分余额",
     CS_CALL_CONTRACT_METHOD_FAILED: "调用合约方法失败",
     CS_PASSWORD: "密码",
@@ -47,7 +48,10 @@ module.exports = {
     CS_CONTRACT_EVENT_MESSAGE: "合约消息",
     CS_GOOD_ID: "商品ID",
     CS_GOOD_NAME: "商品名称",
-    CS_GOOD_PRICE: "商品价格"
+    CS_GOOD_PRICE: "商品价格",
+    CS_MANAGER_ISSUED_SCORE: "管理员已发行积分",
+    CS_BANK_ISSUED_SCORE: "银行已发行积分",
+    CS_BANK_SETTLED_SCORE: "银行已清算积分"
 
 
 

@@ -6,13 +6,14 @@ var Web3 = require('web3');
 var fs = require('fs');
 var path = require('path');
 var judgeNodeType = require('./judgeNodeType');
+var config = require('../../config/config');
 
 var web3;
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 }
 else {
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    web3 = new Web3(new Web3.providers.HttpProvider(config.clientUrl));
 }
 
 //读取合约

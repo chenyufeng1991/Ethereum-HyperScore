@@ -2,10 +2,10 @@
  * Created by chenyufeng on 13/01/2017.
  */
 var mongoose = require('mongoose');
-var configDAO = require('./configDAO');
+var config = require('../config/config');
 
 module.exports.connect = function () {
-    var db = mongoose.connect(configDAO.mongodb);
+    var db = mongoose.connect(config.mongodb);
     //这里加载模型
     require('./model/customer.server.model');
     require('./model/merchant.server.model');

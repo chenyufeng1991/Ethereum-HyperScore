@@ -44,7 +44,10 @@ module.exports = {
     CS_CALL_CONTRACT_METHOD_FAILED: "调用合约方法失败",
     CS_PASSWORD: "密码",
     CS_CONTRACT_STATUS_CODE: "合约状态码",
-    CS_CONTRACT_EVENT_MESSAGE: "合约消息"
+    CS_CONTRACT_EVENT_MESSAGE: "合约消息",
+    CS_GOOD_ID: "商品ID",
+    CS_GOOD_NAME: "商品名称",
+    CS_GOOD_PRICE: "商品价格"
 
 
 

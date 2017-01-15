@@ -10,6 +10,8 @@ var Manager = mongoose.model('Manager');
 var Good = mongoose.model('Good');
 var Bank = mongoose.model('Bank');
 
+var LOG = require('../commonUtils/LOG');
+
 //向数据库中插入一个客户
 module.exports.customerInsert = function (customerAddr, phone, password) {
     //存储数据库
@@ -22,10 +24,10 @@ module.exports.customerInsert = function (customerAddr, phone, password) {
     });
     customer.save(function (error) {
         if (!error) {
-            console.log("客户插入数据库成功");
+            console.log(LOG.DB_CUSTOMER_INSERT_SUCCESS);
         }
         else {
-            console.error("客户插入数据库失败");
+            console.error(LOG.DB_CUSTOMER_INSERT_FAILED);
         }
     });
 };
@@ -43,10 +45,10 @@ module.exports.merchantInsert = function (merchantAddr, phone, password) {
 
     merchant.save(function (error) {
         if (!error) {
-            console.log("商户插入数据库成功");
+            console.log(LOG.DB_MERCHANT_INSERT_SUCCESS);
         }
         else {
-            console.error("商户插入数据库失败");
+            console.error(LOG.DB_MERCHANT_INSERT_FAILED);
         }
     });
 };
@@ -63,10 +65,10 @@ module.exports.managerInsert = function (managerAddr, phone, password) {
 
     manager.save(function (error) {
         if (!error) {
-            console.log("管理员插入数据库成功");
+            console.log(LOG.DB_MANAGER_INSERT_SUCCESS);
         }
         else {
-            console.error("管理员插入数据库失败");
+            console.error(LOG.DB_MANAGER_INSERT_FAILED);
         }
     });
 };
@@ -83,20 +85,21 @@ module.exports.goodInsert = function (goodId, goodName, goodPrice, merchantPhone
 
     good.save(function (error) {
         if (!error) {
-            console.log("商品插入数据库成功");
+            console.log(LOG.DB_GOOD_INSERT_SUCCESS);
             //同时把该件商品添加到商户的sellGoods数组
             Merchant.findOne({phone: merchantPhone}, function (error, result) {
                 if (!error) {
+                    console.log(LOG.DB_FIND_MERCHANT_SUCCESS);
                     result.sellGoods.push(goodId);
                     result.save();
                 }
                 else {
-                    console.error("查找该商户失败");
+                    console.error(LOG.DB_FIND_MERCHANT_FAILED);
                 }
             });
         }
         else {
-            console.error("商品插入数据库失败");
+            console.error(LOG.DB_GOOD_INSERT_FAILED);
         }
     });
 };
@@ -124,16 +127,16 @@ module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore
                 });
                 bank.save(function (error) {
                     if (!error) {
-                        console.log("银行在数据库中创建成功");
+                        console.log(LOG.DB_BANK_CREATE_SUCCESS);
                     }
                     else {
-                        console.error("银行在数据库中创建失败");
+                        console.error(LOG.DB_BANK_CREATE_FAILED);
                     }
                 });
             }
         }
         else {
-            console.error("查找银行数据失败");
+            console.error(LOG.DB_FIND_BANK_FAILED);
         }
     });
 };
@@ -143,32 +146,32 @@ module.exports.bankCreate = function (owner, totalIssuedScore, totalSettledScore
 module.exports.issueScore = function (managerPhone, customerPhone, score) {
     Manager.findOne({phone: managerPhone}, function (error, result) {
         if (!error) {
-            console.log("查找管理员成功");
+            console.log(LOG.DB_FIND_MANAGER_SUCCESS);
             result.issuedScore += parseInt(score);
             result.save();
         }
         else {
-            console.error("查找管理员失败");
+            console.error(LOG.DB_FIND_MANAGER_FAILED);
         }
     });
     Bank.findOne({}, function (error, result) {
         if (!error) {
-            console.log("查找银行数据成功");
+            console.log(LOG.DB_FIND_BANK_SUCCESS);
             result.totalIssuedScore += parseInt(score);
             result.save();
         }
         else {
-            console.error("查找银行数据失败");
+            console.error(LOG.DB_FIND_BANK_FAILED);
         }
     });
     Customer.findOne({phone: customerPhone}, function (error, result) {
         if (!error) {
-            console.log("查找客户数据成功");
+            console.log(LOG.DB_FIND_CUSTOMER_SUCCESS);
             result.score += parseInt(score);
             result.save();
         }
         else {
-            console.error("查找客户数据失败");
+            console.error(LOG.DB_FIND_CUSTOMER_FAILED);
         }
     });
 };
@@ -187,12 +190,12 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
         //发送者为客户
         Customer.findOne({phone: sender}, function (error, result) {
             if (!error) {
-                console.log("查找客户数据成功");
+                console.log(LOG.DB_FIND_CUSTOMER_SUCCESS);
                 result.score -= parseInt(score);
                 result.save();
             }
             else {
-                console.error("查找客户数据失败");
+                console.error(LOG.DB_FIND_CUSTOMER_FAILED);
             }
         });
         Customer.findOne({phone: receiver}, function (error, result) {
@@ -206,18 +209,18 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                     //由商户接收
                     Merchant.findOne({phone: receiver}, function (error, result) {
                         if (!error) {
-                            console.log("查找商户数据成功");
+                            console.log(LOG.DB_FIND_MERCHANT_SUCCESS);
                             result.score += parseInt(score);
                             result.save();
                         }
                         else {
-                            console.error("查找商户数据失败");
+                            console.error(LOG.DB_FIND_MERCHANT_FAILED);
                         }
                     });
                 }
             }
             else {
-                console.error("查找客户数据失败");
+                console.error(LOG.DB_FIND_CUSTOMER_FAILED);
             }
         });
     }
@@ -225,12 +228,12 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
         //发送者为商户
         Merchant.findOne({phone: sender}, function (error, result) {
             if (!error) {
-                console.log("查找商户数据成功");
+                console.log(LOG.DB_FIND_MERCHANT_SUCCESS);
                 result.score -= parseInt(score);
                 result.save();
             }
             else {
-                console.error("查找商户数据失败");
+                console.error(LOG.DB_FIND_MERCHANT_FAILED);
             }
         });
         Customer.findOne({phone: receiver}, function (error, result) {
@@ -244,18 +247,18 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
                     //由商户接收
                     Merchant.findOne({phone: receiver}, function (error, result) {
                         if (!error) {
-                            console.log("查找商户数据成功");
+                            console.log(LOG.DB_FIND_MERCHANT_SUCCESS);
                             result.score += parseInt(score);
                             result.save();
                         }
                         else {
-                            console.error("查找商户数据失败");
+                            console.error(LOG.DB_FIND_MERCHANT_FAILED);
                         }
                     });
                 }
             }
             else {
-                console.error("查找客户数据失败");
+                console.error(LOG.DB_FIND_CUSTOMER_FAILED);
             }
         });
     }
@@ -265,22 +268,22 @@ module.exports.transferScore = function (senderType, sender, receiver, score) {
 module.exports.settleScore = function (phone, score) {
     Merchant.findOne({phone: phone}, function (error, result) {
         if (!error) {
-            console.log("查找商户数据成功");
+            console.log(LOG.DB_FIND_MERCHANT_SUCCESS);
             result.score -= parseInt(score);
             result.save();
         }
         else {
-            console.error("查找商户数据失败");
+            console.error(LOG.DB_FIND_MERCHANT_FAILED);
         }
     });
     Bank.findOne({}, function (error, result) {
         if (!error) {
-            console.log("查找银行数据成功");
+            console.log(LOG.DB_FIND_BANK_SUCCESS);
             result.totalSettledScore += parseInt(score);
             result.save();
         }
         else {
-            console.error("查找银行数据失败");
+            console.error(LOG.DB_FIND_BANK_FAILED);
         }
     });
 };
@@ -289,33 +292,33 @@ module.exports.settleScore = function (phone, score) {
 module.exports.buyGood = function (phone, goodId) {
     Good.findOne({goodId: goodId}, function (error, result) {
         if (!error) {
-            console.log("查找商品数据成功");
+            console.log(LOG.DB_FIND_GOOD_SUCCESS);
             var goodPrice = result.goodPrice;
             var merchantPhone = result.merchantPhone;
             Customer.findOne({phone: phone}, function (error, result) {
                 if (!error) {
-                    console.log("查找客户数据成功");
+                    console.log(LOG.DB_FIND_CUSTOMER_SUCCESS);
                     result.score -= parseInt(goodPrice);
                     result.buyGoods.push(goodId);
                     result.save();
                 }
                 else {
-                    console.error("查找客户数据失败");
+                    console.error(LOG.DB_FIND_CUSTOMER_FAILED);
                 }
             });
             Merchant.findOne({phone: merchantPhone}, function (error, result) {
                 if (!error) {
-                    console.log("查找商户数据成功");
+                    console.log(LOG.DB_FIND_MERCHANT_SUCCESS);
                     result.score += parseInt(goodPrice);
                     result.save();
                 }
                 else {
-                    console.error("查找商户数据失败");
+                    console.error(LOG.DB_FIND_MERCHANT_FAILED);
                 }
             });
         }
         else {
-            console.error("查找商品数据失败");
+            console.error(LOG.DB_FIND_GOOD_FAILED);
         }
     });
 };

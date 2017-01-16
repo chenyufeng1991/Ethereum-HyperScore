@@ -2,6 +2,7 @@ var express = require('express'); // 项目服务端使用express框架
 var app = express();
 var config = require('./public/javascripts/config/config');
 var LOG = require('./public/javascripts/utils/commonUtils/LOG');
+var log4js = require('log4js');
 
 //web3
 var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
@@ -13,6 +14,13 @@ var connectDAO = require('./public/javascripts/dao/connectDAO');
 connectDAO.connect(); //连接数据库
 var daoUtils = require('./public/javascripts/utils/daoUtils/daoUtils');
 daoUtils.bankCreate(web3.eth.coinbase, 0, 0);
+
+//log4js
+var log4jsConfig = require('./public/javascripts/config/log4jsConfig');
+app.use(log4js.connectLogger(log4jsConfig.logger, {
+    level: log4jsConfig.connectLogLevel,
+    format: log4jsConfig.connectLogFormat
+}));
 
 //主页
 app.get('/', function (req, res) {

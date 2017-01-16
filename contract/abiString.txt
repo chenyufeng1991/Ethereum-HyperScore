@@ -679,6 +679,16 @@
     "indexed": false,
     "name": "message",
     "type": "string"
+   },
+   {
+    "indexed": false,
+    "name": "goodPrice",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "name": "merchantPhone",
+    "type": "bytes32"
    }
   ],
   "name": "BuyGood",

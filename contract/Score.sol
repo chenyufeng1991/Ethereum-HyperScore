@@ -508,8 +508,8 @@ contract Score is Utils, Test {
         return merchant[tempMerchantAddr].sellGoods;
     }
 
-    //用户用积分购买一件商品
-    event BuyGood(address sender, uint statusCode, string message);
+    //用户用积分购买一件商品,后台需要获得商品价格，使用event返回
+    event BuyGood(address sender, uint statusCode, string message, uint goodPrice, bytes32 merchantPhone);
     function buyGood(string _phone, 
         string _goodId) {
         //首先判断输入的商品Id是否存在
@@ -517,25 +517,28 @@ contract Score is Utils, Test {
         bytes32 tempPhone = stringToBytes32(_phone);
         address customerAddr = customerPhone[tempPhone];
         address merchantAddr = good[tempGoodId].merchantAddr;
+        bytes32 merchantPhone = merchant[merchantAddr].phone;
+        uint goodPrice = good[tempGoodId].goodPrice;
+
         if(isGoodAlreadyAdd(_goodId)) {
             //该件商品已经添加，可以购买
-            if(customer[customerAddr].score >= good[tempGoodId].goodPrice) {
-                customer[customerAddr].score -= good[tempGoodId].goodPrice;
-                merchant[merchantAddr].score += good[tempGoodId].goodPrice;
+            if(customer[customerAddr].score >= goodPrice) {
+                customer[customerAddr].score -= goodPrice;
+                merchant[merchantAddr].score += goodPrice;
                 customer[customerAddr].buyGoods.push(tempGoodId);
 
-                BuyGood(msg.sender, 0, "用户购买商品成功");
+                BuyGood(msg.sender, 0, "用户购买商品成功", goodPrice, merchantPhone);
                 return;
             }
             else {
                 //对这里的方法抽取      
-                BuyGood(msg.sender, 1, "余额不足，购买商品失败");
+                BuyGood(msg.sender, 1, "余额不足，购买商品失败", goodPrice, merchantPhone);
                 return;
             }
         }
         else {
             //没有这个Id的商品
-            BuyGood(msg.sender, 1, "输入商品Id不存在，请确定后购买");
+            BuyGood(msg.sender, 1, "输入商品Id不存在，请确定后购买", goodPrice, merchantPhone);
             return;
         }
     }

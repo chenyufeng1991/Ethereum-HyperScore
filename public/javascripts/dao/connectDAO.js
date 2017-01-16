@@ -12,5 +12,6 @@ module.exports.connect = function () {
     require('./model/manager.server.model');
     require('./model/bank.server.model');
     require('./model/good.server.model');
+    require('./model/transaction.server.model');
     return db;
 };

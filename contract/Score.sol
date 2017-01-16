@@ -52,7 +52,7 @@ contract Score is Utils, Test {
     uint totalSettledScore; //银行已经清算的积分总数
 
     //交易状态
-    enum txState{Issue, Settle, Transfer, Buy}
+    enum TxType{Issue, Settle, Transfer, Buy}
    
     struct Manager {
         address managerAddr; //银行管理员address
@@ -85,7 +85,7 @@ contract Score is Utils, Test {
     }
 
     struct Transaction {
-        txState state; //交易状态
+        TxType txType; //交易状态
         bytes32 sender; //发送者手机号
         bytes32 receiver; //接收者手机号
         uint score; //积分数量
@@ -550,7 +550,7 @@ contract Score is Utils, Test {
     //添加一次交易信息，应该是被外部调用的
     event AddTransaction(address sender, uint statusCode, string message);
     function addTransaction(string _txHash,
-        txState _state, 
+        TxType _txType, 
         string _sender, 
         string _receiver, 
         uint _score) {
@@ -558,7 +558,7 @@ contract Score is Utils, Test {
         bytes32 tempSenderPhone = stringToBytes32(_sender);
         bytes32 tempReceiverPhone = stringToBytes32(_receiver);
 
-        transaction[tempTxHash].state = _state;
+        transaction[tempTxHash].txType = _txType;
         transaction[tempTxHash].sender = tempSenderPhone;
         transaction[tempTxHash].receiver = tempReceiverPhone;
         transaction[tempTxHash].score = _score;
@@ -570,9 +570,9 @@ contract Score is Utils, Test {
 
     //根据交易hash查找交易
     //经过测试，枚举可以直接返回，后台接收到的是uint类型
-    function getTransaction(string _txHash)constant returns(txState, bytes32, bytes32, uint) {
+    function getTransaction(string _txHash)constant returns(TxType, bytes32, bytes32, uint) {
         bytes32 tempTxHash = stringToBytes32(_txHash);
-        return(transaction[tempTxHash].state, transaction[tempTxHash].sender, transaction[tempTxHash].receiver, transaction[tempTxHash].score);
+        return(transaction[tempTxHash].txType, transaction[tempTxHash].sender, transaction[tempTxHash].receiver, transaction[tempTxHash].score);
     } 
 }
 

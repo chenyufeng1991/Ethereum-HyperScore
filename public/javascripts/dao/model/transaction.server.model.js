@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 var TransactionSchema = new mongoose.Schema({
     txHash: String,
-    state: Number,
+    txType: Number,
     sender: String,
     receiver: String,
     score: Number

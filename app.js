@@ -91,6 +91,10 @@ app.post('/v1_0/good/buy', buyGood.buy);
 var customerGoods = require('./routes/customer/customerGoods');
 app.get('/v1_0/user/customer/goods', customerGoods.query);
 
+//根据交易hash查找某次交易
+var transactionDetail = require('./routes/transaction/transactionDetail');
+app.get('/v1_0/transaction/detail', transactionDetail.query);
+
 app.listen(config.serverPort, function () {
     console.log(LOG.CS_START_SERVER_MESSAGE + config.serverPort);
 });

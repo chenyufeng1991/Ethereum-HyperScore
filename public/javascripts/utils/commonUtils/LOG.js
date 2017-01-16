@@ -36,6 +36,8 @@ module.exports = {
     DB_FIND_CUSTOMER_FAILED: "查找客户失败",
     DB_FIND_GOOD_SUCCESS: "查找商品成功",
     DB_FIND_GOOD_FAILED: "查找商品失败",
+    DB_TRANSACTION_INSERT_SUCCESS: "交易插入数据库成功",
+    DB_TRANSACTION_INSERT_FAILED: "交易插入数据库失败",
 
     //common string
     CS_PHONE: "手机号码",

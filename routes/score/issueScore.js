@@ -52,7 +52,10 @@ module.exports.issue = function (req, res) {
                             eventAddTransaction.watch(function (error, result) {
                                 var statusCode = result.args.statusCode;
                                 var message = result.args.message;
-
+                                if(statusCode == 0) {
+                                    //交易插入数据库
+                                    daoUtils.addTransaction(txHash, 0, managerPhone, customerPhone, score);
+                                }
                                 console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                                 eventAddTransaction.stopWatching();
                             });

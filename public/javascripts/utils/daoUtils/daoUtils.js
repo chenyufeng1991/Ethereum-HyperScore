@@ -9,6 +9,7 @@ var Merchant = mongoose.model('Merchant');
 var Manager = mongoose.model('Manager');
 var Good = mongoose.model('Good');
 var Bank = mongoose.model('Bank');
+var Transaction = mongoose.model('Transaction');
 
 var LOG = require('../commonUtils/LOG');
 
@@ -322,3 +323,30 @@ module.exports.buyGood = function (phone, goodId) {
         }
     });
 };
+
+//插入一条交易记录
+module.exports.addTransaction = function (txHash, state, sender, receiver, score) {
+    //存储数据库
+    var transaction = new Transaction({
+        txHash: txHash,
+        state: state,
+        sender: sender,
+        receiver: receiver,
+        score: score
+    });
+
+    transaction.save(function (error) {
+        if(!error) {
+            console.log(LOG.DB_TRANSACTION_INSERT_SUCCESS);
+        }
+        else {
+            console.log(LOG.DB_TRANSACTION_INSERT_FAILED);
+        }
+    });
+};
+
+
+
+
+
+

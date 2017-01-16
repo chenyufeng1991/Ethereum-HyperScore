@@ -329,7 +329,7 @@ module.exports.addTransaction = function (txHash, state, sender, receiver, score
     //存储数据库
     var transaction = new Transaction({
         txHash: txHash,
-        state: state,
+        txType: state,
         sender: sender,
         receiver: receiver,
         score: score

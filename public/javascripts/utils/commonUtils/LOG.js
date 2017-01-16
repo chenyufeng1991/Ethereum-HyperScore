@@ -45,6 +45,7 @@ module.exports = {
     CS_MANAGER_ADDRESS: "管理员address",
     CS_MERCHANT_ADDRESS: "商户address",
     CS_SCORE_BALANCE: "积分余额",
+    CS_SCORE_AMOUNT: "积分数量",
     CS_CALL_CONTRACT_METHOD_FAILED: "调用合约方法失败",
     CS_PASSWORD: "密码",
     CS_CONTRACT_STATUS_CODE: "合约状态码",
@@ -55,6 +56,10 @@ module.exports = {
     CS_MANAGER_ISSUED_SCORE: "管理员已发行积分",
     CS_BANK_ISSUED_SCORE: "银行已发行积分",
     CS_BANK_SETTLED_SCORE: "银行已清算积分",
+
+    CS_TX_STATE: "交易状态",
+    CS_SENDER_PHONE: "发送者手机",
+    CS_RECEIVER_PHONE: "接收者手机",
 
     CS_START_SERVER_MESSAGE: "服务器开启，地址为：http://localhost:"
 

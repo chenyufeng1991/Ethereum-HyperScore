@@ -2,6 +2,7 @@
 var web3Instance = require('../../public/javascripts/utils/ethereumUtils/web3Instance');
 var daoUtils = require('../../public/javascripts/utils/daoUtils/daoUtils');
 var LOG = require('../../public/javascripts/utils/commonUtils/LOG');
+var commonUtils = require('../../public/javascripts/utils/commonUtils/commonUtils');
 
 //web3初始化
 var web3 = web3Instance.web3;
@@ -33,9 +34,38 @@ module.exports.buy = function (req, res) {
             eventBuyGood.watch(function (error, result) {
                 var statusCode = result.args.statusCode;
                 var message = result.args.message;
-                console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
-                if(statusCode == 0) {
+                var goodPrice = result.args.goodPrice;
+                var merchantPhone = result.args.merchantPhone;
+                var txHash = result.transactionHash;
+                console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode +
+                    LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message + LOG.CS_GOOD_PRICE + ":" + goodPrice +
+                    LOG.CS_MERCHANT_PHONE + ":" + commonUtils.hexCharCodeToStr(merchantPhone));
+                if (statusCode == 0) {
+                    //更新数据库
                     daoUtils.buyGood(phone, goodId);
+
+                    //区块链插入交易记录
+                    global.contractInstance.addTransaction(txHash, 2, phone, merchantPhone, goodPrice, {
+                        from: web3.eth.coinbase,
+                        gas: 1000000
+                    }, function (error, result) {
+                        if (!error) {
+                            var eventAddTransaction = global.contractInstance.AddTransaction();
+                            eventAddTransaction.watch(function (error, result) {
+                                var statusCode = result.args.statusCode;
+                                var message = result.args.message;
+                                if (statusCode == 0) {
+                                    //交易插入数据库
+                                    daoUtils.addTransaction(txHash, 2, phone, commonUtils.hexCharCodeToStr(merchantPhone), goodPrice);
+                                }
+                                console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
+                                eventAddTransaction.stopWatching();
+                            });
+                        }
+                        else {
+                            console.error(LOG.CS_CALL_CONTRACT_METHOD_FAILED + ":" + error);
+                        }
+                    });
                 }
                 var response = {
                     code: statusCode,

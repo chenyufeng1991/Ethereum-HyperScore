@@ -60,6 +60,9 @@ module.exports = {
     CS_TX_STATE: "交易状态",
     CS_SENDER_PHONE: "发送者手机",
     CS_RECEIVER_PHONE: "接收者手机",
+    CS_MANAGER_PHONE: "管理员手机",
+    CS_CUSTOMER_PHONE: "客户手机",
+    CS_MERCHANT_PHONE: "商户手机",
 
     CS_START_SERVER_MESSAGE: "服务器开启，地址为：http://localhost:"
 

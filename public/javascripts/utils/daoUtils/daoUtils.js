@@ -325,11 +325,11 @@ module.exports.buyGood = function (phone, goodId) {
 };
 
 //插入一条交易记录
-module.exports.addTransaction = function (txHash, state, sender, receiver, score) {
+module.exports.addTransaction = function (txHash, txType, sender, receiver, score) {
     //存储数据库
     var transaction = new Transaction({
         txHash: txHash,
-        txType: state,
+        txType: txType,
         sender: sender,
         receiver: receiver,
         score: score

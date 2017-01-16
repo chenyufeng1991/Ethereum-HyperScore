@@ -45,7 +45,7 @@ module.exports.issue = function (req, res) {
                     //更新数据库
                     daoUtils.issueScore(managerPhone, customerPhone, score);
 
-                    //同时插入一条交易记录
+                    //区块链插入交易记录
                     global.contractInstance.addTransaction(txHash, 0, managerPhone, customerPhone, score, {from: web3.eth.coinbase, gas: 1000000},function (error, result) {
                         if(!error) {
                             var eventAddTransaction = global.contractInstance.AddTransaction();

@@ -50,6 +50,9 @@ contract Score is Utils, Test {
     address owner; //合约的拥有者，银行
     uint totalIssuedScore; //银行发行的积分总数
     uint totalSettledScore; //银行已经清算的积分总数
+
+    //交易状态
+    enum txState{Issue, Settle, Transfer, Buy}
    
     struct Manager {
         address managerAddr; //银行管理员address
@@ -81,6 +84,13 @@ contract Score is Utils, Test {
         address merchantAddr; //商品属于哪个商户address；
     }
 
+    struct Transaction {
+        txState state; //交易状态
+        bytes32 sender; //发送者手机号
+        bytes32 receiver; //接收者手机号
+        uint score; //积分数量
+    }
+
     mapping (address=>Customer) customer; 
     mapping (bytes32=>address) customerPhone; //根据用户手机查找账户address
 
@@ -92,6 +102,8 @@ contract Score is Utils, Test {
 
     mapping (bytes32=>Good) good; //根据商品Id查找该件商品
 
+    mapping (bytes32=>Transaction) transaction; //根据交易hash查找交易
+
     address[] customerAddrs; //已注册的客户地址数组
     bytes32[] customerPhones; //已注册的客户手机数组
 
@@ -102,6 +114,8 @@ contract Score is Utils, Test {
     bytes32[] managerPhones; //已注册的管理员手机数组
 
     bytes32[] goods; //已经上线的商品id数组
+
+    bytes32[] transactions; //所有涉及积分的交易hash
 
     //增加权限控制，某些方法只能由合约的创建者调用
     modifier onlyOwner(){
@@ -532,6 +546,34 @@ contract Score is Utils, Test {
         address tempCustomerAddr = customerPhone[tempPhone];
         return customer[tempCustomerAddr].buyGoods;
     }
+
+    //添加一次交易信息，应该是被外部调用的
+    event AddTransaction(address sender, uint statusCode, string message);
+    function addTransaction(string _txHash,
+        txState _state, 
+        string _sender, 
+        string _receiver, 
+        uint _score) {
+        bytes32 tempTxHash = stringToBytes32(_txHash);
+        bytes32 tempSenderPhone = stringToBytes32(_sender);
+        bytes32 tempReceiverPhone = stringToBytes32(_receiver);
+
+        transaction[tempTxHash].state = _state;
+        transaction[tempTxHash].sender = tempSenderPhone;
+        transaction[tempTxHash].receiver = tempReceiverPhone;
+        transaction[tempTxHash].score = _score;
+
+        transactions.push(tempTxHash);
+
+        AddTransaction(msg.sender, 0, "添加交易成功");
+    }
+
+    //根据交易hash查找交易
+    //经过测试，枚举可以直接返回，后台接收到的是uint类型
+    function getTransaction(string _txHash)constant returns(txState, bytes32, bytes32, uint) {
+        bytes32 tempTxHash = stringToBytes32(_txHash);
+        return(transaction[tempTxHash].state, transaction[tempTxHash].sender, transaction[tempTxHash].receiver, transaction[tempTxHash].score);
+    } 
 }
 
 

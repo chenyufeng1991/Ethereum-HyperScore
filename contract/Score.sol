@@ -52,7 +52,7 @@ contract Score is Utils, Test {
     uint totalSettledScore; //银行已经清算的积分总数
 
     //交易状态
-    enum TxType{Issue, Settle, Transfer, Buy}
+    enum TxType{Issue, Transfer, Buy, Settle}
    
     struct Manager {
         address managerAddr; //银行管理员address

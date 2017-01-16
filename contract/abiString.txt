@@ -89,6 +89,36 @@
   "constant": true,
   "inputs": [
    {
+    "name": "_txHash",
+    "type": "bytes32"
+   }
+  ],
+  "name": "getTransaction",
+  "outputs": [
+   {
+    "name": "",
+    "type": "uint8"
+   },
+   {
+    "name": "",
+    "type": "bytes32"
+   },
+   {
+    "name": "",
+    "type": "bytes32"
+   },
+   {
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": true,
+  "inputs": [
+   {
     "name": "_phone",
     "type": "string"
    }
@@ -272,36 +302,6 @@
   "constant": true,
   "inputs": [
    {
-    "name": "_txHash",
-    "type": "string"
-   }
-  ],
-  "name": "getTransaction",
-  "outputs": [
-   {
-    "name": "",
-    "type": "uint8"
-   },
-   {
-    "name": "",
-    "type": "bytes32"
-   },
-   {
-    "name": "",
-    "type": "bytes32"
-   },
-   {
-    "name": "",
-    "type": "uint256"
-   }
-  ],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [
-   {
     "name": "_phone",
     "type": "string"
    }
@@ -313,6 +313,35 @@
     "type": "bytes32[]"
    }
   ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_txHash",
+    "type": "bytes32"
+   },
+   {
+    "name": "_txType",
+    "type": "uint8"
+   },
+   {
+    "name": "_sender",
+    "type": "string"
+   },
+   {
+    "name": "_receiver",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   }
+  ],
+  "name": "addTransaction",
+  "outputs": [],
   "payable": false,
   "type": "function"
  },
@@ -388,35 +417,6 @@
    }
   ],
   "name": "buyGood",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_txHash",
-    "type": "string"
-   },
-   {
-    "name": "_txType",
-    "type": "uint8"
-   },
-   {
-    "name": "_sender",
-    "type": "string"
-   },
-   {
-    "name": "_receiver",
-    "type": "string"
-   },
-   {
-    "name": "_score",
-    "type": "uint256"
-   }
-  ],
-  "name": "addTransaction",
   "outputs": [],
   "payable": false,
   "type": "function"

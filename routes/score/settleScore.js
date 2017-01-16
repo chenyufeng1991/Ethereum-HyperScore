@@ -44,7 +44,7 @@ module.exports.settle = function (req, res) {
                     daoUtils.settleScore(phone, score);
 
                     //区块链插入交易记录
-                    global.contractInstance.addTransaction(txHash, 3, phone, "", score, {from: web3.eth.coinbase, gas: 1000000},function (error, result) {
+                    global.contractInstance.addTransaction(txHash, 4, phone, "", score, {from: web3.eth.coinbase, gas: 1000000},function (error, result) {
                         if(!error) {
                             var eventAddTransaction = global.contractInstance.AddTransaction();
                             eventAddTransaction.watch(function (error, result) {
@@ -52,7 +52,7 @@ module.exports.settle = function (req, res) {
                                 var message = result.args.message;
                                 if(statusCode == 0) {
                                     //交易插入数据库
-                                    daoUtils.addTransaction(txHash, 3, phone, "", score);
+                                    daoUtils.addTransaction(txHash, 4, phone, "", score);
                                 }
                                 console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                                 eventAddTransaction.stopWatching();

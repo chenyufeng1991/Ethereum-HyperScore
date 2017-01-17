@@ -3,6 +3,23 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_customerPhone",
+    "type": "string"
+   },
+   {
+    "name": "_customerAddr",
+    "type": "address"
+   }
+  ],
+  "name": "setCustomerPhone",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
     "name": "_owner",
     "type": "address"
    }
@@ -21,35 +38,6 @@
    }
   ],
   "name": "setCustomerAddrs",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_customerAddr",
-    "type": "address"
-   },
-   {
-    "name": "_phone",
-    "type": "bytes32"
-   },
-   {
-    "name": "_password",
-    "type": "bytes32"
-   },
-   {
-    "name": "_score",
-    "type": "uint256"
-   },
-   {
-    "name": "_buyGoods",
-    "type": "bytes32[]"
-   }
-  ],
-  "name": "setCustomer",
   "outputs": [],
   "payable": false,
   "type": "function"
@@ -166,6 +154,35 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_customerAddr",
+    "type": "address"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   },
+   {
+    "name": "_buyGoods",
+    "type": "bytes32[]"
+   }
+  ],
+  "name": "setCustomer",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [
    {
@@ -264,6 +281,24 @@
    {
     "name": "",
     "type": "bytes32[]"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": true,
+  "inputs": [
+   {
+    "name": "_customerPhone",
+    "type": "string"
+   }
+  ],
+  "name": "getCustomerPhone",
+  "outputs": [
+   {
+    "name": "",
+    "type": "address"
    }
   ],
   "payable": false,
@@ -499,6 +534,19 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_customerPhones",
+    "type": "string"
+   }
+  ],
+  "name": "setCustomerPhones",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
     "name": "_merchantAddrs",
     "type": "address[]"
    }
@@ -546,24 +594,6 @@
   "constant": true,
   "inputs": [],
   "name": "getOwner",
-  "outputs": [
-   {
-    "name": "",
-    "type": "address"
-   }
-  ],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [
-   {
-    "name": "_customerPhone",
-    "type": "bytes32"
-   }
-  ],
-  "name": "getCustomerPhone",
   "outputs": [
    {
     "name": "",
@@ -680,19 +710,6 @@
   "type": "function"
  },
  {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_customerPhones",
-    "type": "bytes32[]"
-   }
-  ],
-  "name": "setCustomerPhones",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
   "constant": true,
   "inputs": [],
   "name": "getTotalSettledScore",
@@ -773,23 +790,6 @@
    }
   ],
   "name": "setManager",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_customerPhone",
-    "type": "bytes32"
-   },
-   {
-    "name": "_customerAddr",
-    "type": "address"
-   }
-  ],
-  "name": "setCustomerPhone",
   "outputs": [],
   "payable": false,
   "type": "function"

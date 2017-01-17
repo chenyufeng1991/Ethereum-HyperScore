@@ -4,6 +4,7 @@
 var fs = require('fs');
 var path = require('path');
 var LOG = require('../commonUtils/LOG');
+var commonUtils = require('../commonUtils/commonUtils');
 
 //web3
 var judgeNodeType = require('./judgeNodeType');
@@ -92,4 +93,70 @@ function initOldContract(newContract) {
  */
 function startMigrate(oldContract, newContract) {
     console.log("chenyufeng：" + oldContract.address + "    " + newContract.address);
+    //迁移客户数据
+    oldContract.getCustomerAddrs(function (error, result) {
+        if (!error) {
+            var customerAddrs = result;
+            newContract.setCustomerAddrs(customerAddrs, {from: web3.eth.coinbase, gas: 1000000}, function (error, result) {
+                if (!error) {
+                    oldContract.getCustomerPhones(function (error, result) {
+                        if (!error) {
+                            var customerPhones = result;
+                            for (var i = 0; i < customerAddrs.length; i++) {
+                                oldContract.getCustomer(customerAddrs[i], function (error, result) {
+                                    var customerInfo = result;
+                                    console.log("111:" + commonUtils.hexCharCodeToStr(customerInfo[1]));
+                                    console.log("222:" + commonUtils.hexCharCodeToStr(customerInfo[2]));
+                                    newContract.setCustomer(customerInfo[0], commonUtils.hexCharCodeToStr(customerInfo[1]), commonUtils.hexCharCodeToStr(customerInfo[2]), customerInfo[3], customerInfo[4], {
+                                        from: web3.eth.coinbase,
+                                        gas: 1000000
+                                    }, function (error, result) {
+                                        if (!error) {
+                                            console.log("插入地址->用户信息mapping成功");
+                                        }
+                                        else {
+                                            console.log("错误：" + error);
+                                        }
+                                    });
+
+                                    newContract.setCustomerPhone(commonUtils.hexCharCodeToStr(customerInfo[1]), customerInfo[0], {
+                                        from: web3.eth.coinbase,
+                                        gas: 1000000
+                                    }, function (error, result) {
+                                        if (!error) {
+                                            console.log("插入手机->地址mapping成功");
+                                        }
+                                        else {
+                                            console.log("错误：" + error);
+                                        }
+                                    });
+
+                                    newContract.setCustomerPhones(commonUtils.hexCharCodeToStr(customerInfo[1]), {
+                                        from: web3.eth.coinbase,
+                                        gas: 1000000
+                                    }, function (error, result) {
+                                        if (!error) {
+                                            console.log("客户手机插入成功");
+                                        }
+                                        else {
+                                            console.log("错误：" + error);
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                        else {
+                            console.log("错误：" + error);
+                        }
+                    });
+                }
+                else {
+                    console.log("错误：" + error);
+                }
+            });
+        }
+        else {
+            console.log("错误：" + error);
+        }
+    });
 }

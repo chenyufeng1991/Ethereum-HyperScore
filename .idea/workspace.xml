@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/Score.sol" afterPath="$PROJECT_DIR$/contract/Score.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/abiString.txt" afterPath="$PROJECT_DIR$/contract/abiString.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/codeString.txt" afterPath="$PROJECT_DIR$/contract/codeString.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/compileJSON.txt" afterPath="$PROJECT_DIR$/contract/compileJSON.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/contractAddress.txt" afterPath="$PROJECT_DIR$/contract/contractAddress.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/HyperScore.log" afterPath="$PROJECT_DIR$/log/HyperScore.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/good/buyGood.js" afterPath="$PROJECT_DIR$/routes/good/buyGood.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/score/issueScore.js" afterPath="$PROJECT_DIR$/routes/score/issueScore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/score/settleScore.js" afterPath="$PROJECT_DIR$/routes/score/settleScore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/score/transferScore.js" afterPath="$PROJECT_DIR$/routes/score/transferScore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/transaction/transactionDetail.js" afterPath="$PROJECT_DIR$/routes/transaction/transactionDetail.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,18 +25,28 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="75" column="51" lean-forward="true" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+            <state relative-caret-position="145">
+              <caret line="81" column="6" lean-forward="true" selection-start-line="81" selection-start-column="6" selection-end-line="81" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transactionDetail.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="transactionDetail.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/transaction/transactionDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="578">
+              <caret line="70" column="9" lean-forward="true" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HyperScore.log" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/log/HyperScore.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="54" column="35" lean-forward="true" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -54,8 +55,8 @@
       <file leaf-file-name="deployContract.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="90">
+              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -97,6 +98,23 @@
             <state relative-caret-position="541">
               <caret line="47" column="120" lean-forward="false" selection-start-line="47" selection-start-column="120" selection-end-line="47" selection-end-column="120" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="daoUtils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="93" column="26" lean-forward="false" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
+              <folding>
+                <element signature="e#3137#3936#0" expanded="false" />
+                <element signature="e#4043#4987#0" expanded="false" />
+                <element signature="e#5213#7929#0" expanded="false" />
+                <element signature="e#7992#8607#0" expanded="false" />
+                <element signature="e#8669#9852#0" expanded="false" />
+                <element signature="e#9949#10357#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -199,12 +217,12 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/javascripts/config/log4jsConfig.js" />
         <option value="$PROJECT_DIR$/access.log" />
-        <option value="$PROJECT_DIR$/log/HyperScore.log" />
         <option value="$PROJECT_DIR$/routes/score/issueScore.js" />
         <option value="$PROJECT_DIR$/routes/score/settleScore.js" />
         <option value="$PROJECT_DIR$/routes/score/transferScore.js" />
         <option value="$PROJECT_DIR$/routes/good/buyGood.js" />
         <option value="$PROJECT_DIR$/routes/transaction/transactionDetail.js" />
+        <option value="$PROJECT_DIR$/log/HyperScore.log" />
       </list>
     </option>
   </component>
@@ -220,10 +238,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1280" />
+    <option name="x" value="33" />
     <option name="y" value="22" />
-    <option name="width" value="1920" />
-    <option name="height" value="1058" />
+    <option name="width" value="1247" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -471,6 +489,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="log" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HyperScore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HyperScore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="contract" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -635,23 +667,23 @@
       <workItem from="1484291207356" duration="5864000" />
       <workItem from="1484323074679" duration="33311000" />
       <workItem from="1484447864896" duration="43769000" />
-      <workItem from="1484576638335" duration="7448000" />
+      <workItem from="1484576638335" duration="10413000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253151000" />
+    <option name="totallyTimeSpent" value="256116000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="22" width="1920" height="1058" extended-state="6" />
-    <editor active="true" />
+    <frame x="33" y="22" width="1247" height="778" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20379147" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21778141" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20496894" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18513119" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18238342" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -701,7 +733,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/routes/index.js" />
     <entry file="file://$PROJECT_DIR$/truffle/Score/build/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
@@ -937,22 +968,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="289" column="2" lean-forward="false" selection-start-line="289" selection-start-column="2" selection-end-line="289" selection-end-column="2" />
-          <folding>
-            <element signature="e#2028#2839#0" expanded="false" />
-            <element signature="e#3137#3936#0" expanded="false" />
-            <element signature="e#4043#4987#0" expanded="false" />
-            <element signature="e#5213#7929#0" expanded="false" />
-            <element signature="e#7992#8607#0" expanded="false" />
-            <element signature="e#8669#9852#0" expanded="false" />
-            <element signature="e#9949#10357#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -995,22 +1010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log/HyperScore.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/score/issueScore.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1043,18 +1042,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/contract/Score.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="499" column="9" lean-forward="true" selection-start-line="499" selection-start-column="9" selection-end-line="499" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/utils/daoUtils/daoUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="93" column="26" lean-forward="false" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
+          <folding>
+            <element signature="e#3137#3936#0" expanded="false" />
+            <element signature="e#4043#4987#0" expanded="false" />
+            <element signature="e#5213#7929#0" expanded="false" />
+            <element signature="e#7992#8607#0" expanded="false" />
+            <element signature="e#8669#9852#0" expanded="false" />
+            <element signature="e#9949#10357#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="75" column="51" lean-forward="true" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+        <state relative-caret-position="145">
+          <caret line="81" column="6" lean-forward="true" selection-start-line="81" selection-start-column="6" selection-end-line="81" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/transaction/transactionDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="578">
+          <caret line="70" column="9" lean-forward="true" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/HyperScore.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="54" column="35" lean-forward="true" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
           <folding />
         </state>
       </provider>

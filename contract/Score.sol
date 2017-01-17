@@ -565,12 +565,6 @@ contract Score is Utils, Test {
         transactions.push(_txHash);
 
         AddTransaction(msg.sender, 0, "添加交易成功");
-    }
-
-    //根据交易hash查找交易
-    //经过测试，枚举可以直接返回，后台接收到的是uint类型
-    function getTransactionDetail(bytes32 _txHash)constant returns(TxType, bytes32, bytes32, uint) {
-        return(transaction[_txHash].txType, transaction[_txHash].sender, transaction[_txHash].receiver, transaction[_txHash].score);
     } 
 
     //for contract migrate:setter/getter
@@ -598,6 +592,7 @@ contract Score is Utils, Test {
         totalSettledScore = _totalSettledScore;
     }
 
+    //关于客户合约迁移方法
     function getCustomerAddrs()constant returns(address[]) {
         return customerAddrs;
     }
@@ -654,11 +649,11 @@ contract Score is Utils, Test {
         goods = _goods;
     }
 
-    function getTransaction()constant returns(bytes32[]) {
+    function getTransactions()constant returns(bytes32[]) {
         return transactions;
     }
 
-    function setTransaction(bytes32[] _transactions) {
+    function setTransactions(bytes32[] _transactions) {
         transactions = _transactions;
     }
     

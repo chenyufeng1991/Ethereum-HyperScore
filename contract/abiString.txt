@@ -183,6 +183,19 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_transactions",
+    "type": "bytes32[]"
+   }
+  ],
+  "name": "setTransactions",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [
    {
@@ -370,19 +383,6 @@
  },
  {
   "constant": true,
-  "inputs": [],
-  "name": "getTransaction",
-  "outputs": [
-   {
-    "name": "",
-    "type": "bytes32[]"
-   }
-  ],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": true,
   "inputs": [
    {
     "name": "_phone",
@@ -514,6 +514,19 @@
   ],
   "name": "registerCustomer",
   "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": true,
+  "inputs": [],
+  "name": "getTransactions",
+  "outputs": [
+   {
+    "name": "",
+    "type": "bytes32[]"
+   }
+  ],
   "payable": false,
   "type": "function"
  },
@@ -760,19 +773,6 @@
   "constant": false,
   "inputs": [
    {
-    "name": "_transactions",
-    "type": "bytes32[]"
-   }
-  ],
-  "name": "setTransaction",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
     "name": "_managerAddr",
     "type": "address"
    },
@@ -898,36 +898,6 @@
   ],
   "name": "addTransaction",
   "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [
-   {
-    "name": "_txHash",
-    "type": "bytes32"
-   }
-  ],
-  "name": "getTransactionDetail",
-  "outputs": [
-   {
-    "name": "",
-    "type": "uint8"
-   },
-   {
-    "name": "",
-    "type": "bytes32"
-   },
-   {
-    "name": "",
-    "type": "bytes32"
-   },
-   {
-    "name": "",
-    "type": "uint256"
-   }
-  ],
   "payable": false,
   "type": "function"
  },

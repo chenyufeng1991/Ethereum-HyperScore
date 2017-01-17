@@ -601,6 +601,37 @@ contract Score is Utils, Test {
         customerAddrs = _customerAddrs;
     }
 
+    function getCustomer(address _customerAddr)constant returns(address, bytes32, bytes32, uint, bytes32[]) {
+        return (customer[_customerAddr].customerAddr, customer[_customerAddr].phone, customer[_customerAddr].password, customer[_customerAddr].score, customer[_customerAddr].buyGoods);
+    }
+
+    function setCustomer(address _customerAddr,
+        string _phone,
+        string _password,
+        uint _score,
+        bytes32[] _buyGoods) {
+
+        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempPassword = stringToBytes32(_password);
+
+        customer[_customerAddr].customerAddr = _customerAddr;
+        customer[_customerAddr].phone = tempPhone;
+        customer[_customerAddr].password = tempPassword;
+        customer[_customerAddr].score = _score;
+        customer[_customerAddr].buyGoods = _buyGoods;
+    }
+
+    function getCustomerPhone(string _customerPhone)constant returns(address) {
+        bytes32 tempCustomerPhone = stringToBytes32(_customerPhone);
+        return (customerPhone[tempCustomerPhone]);
+    }
+
+    function setCustomerPhone(string _customerPhone,
+        address _customerAddr) {
+        bytes32 tempCustomerPhone = stringToBytes32(_customerPhone);
+        customerPhone[tempCustomerPhone] = _customerAddr;
+    }
+
     function getCustomerPhones()constant returns(bytes32[]) {
         return customerPhones;
     }
@@ -655,37 +686,6 @@ contract Score is Utils, Test {
 
     function setTransactions(bytes32[] _transactions) {
         transactions = _transactions;
-    }
-    
-    function getCustomer(address _customerAddr)constant returns(address, bytes32, bytes32, uint, bytes32[]) {
-        return (customer[_customerAddr].customerAddr, customer[_customerAddr].phone, customer[_customerAddr].password, customer[_customerAddr].score, customer[_customerAddr].buyGoods);
-    }
-
-    function setCustomer(address _customerAddr, 
-        string _phone, 
-        string _password, 
-        uint _score, 
-        bytes32[] _buyGoods) {
-
-        bytes32 tempPhone = stringToBytes32(_phone);
-        bytes32 tempPassword = stringToBytes32(_password);
-
-        customer[_customerAddr].customerAddr = _customerAddr;
-        customer[_customerAddr].phone = tempPhone;
-        customer[_customerAddr].password = tempPassword;
-        customer[_customerAddr].score = _score;
-        customer[_customerAddr].buyGoods = _buyGoods;
-    }
-
-    function getCustomerPhone(string _customerPhone)constant returns(address) {
-        bytes32 tempCustomerPhone = stringToBytes32(_customerPhone);
-        return (customerPhone[tempCustomerPhone]);
-    }
-
-    function setCustomerPhone(string _customerPhone, 
-        address _customerAddr) {
-        bytes32 tempCustomerPhone = stringToBytes32(_customerPhone);
-        customerPhone[tempCustomerPhone] = _customerAddr;
     }
     
     function getMerchant(address _merchantAddr)constant returns(address, bytes32, bytes32, uint, bytes32[]) {

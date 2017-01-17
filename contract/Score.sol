@@ -404,9 +404,9 @@ contract Score is Utils, Test {
         }
 
         bytes32 tempSenderPhone = stringToBytes32(_sender);
-        bytes32 tempReceivedPhone = stringToBytes32(_receiver);
+        bytes32 tempReceiverPhone = stringToBytes32(_receiver);
         address tempSenderAddr;
-        address tempReceivedAddr;
+        address tempReceiverAddr;
         
         if(_senderType == 0) {
             //客户转移
@@ -416,13 +416,13 @@ contract Score is Utils, Test {
         
                 if(isCustomerAlreadyRegister(_receiver)) {
                     //目的地址是客户
-                    tempReceivedAddr = customerPhone[tempReceivedPhone];
-                    customer[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = customerPhone[tempReceiverPhone];
+                    customer[tempReceiverAddr].score += _score;
                 }
                 else {
                     //目的地址是商户
-                    tempReceivedAddr = merchantPhone[tempReceivedPhone];
-                    merchant[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = merchantPhone[tempReceiverPhone];
+                    merchant[tempReceiverAddr].score += _score;
                 }
                 TransferScore(msg.sender, 0, "积分转让成功！");
                 return;
@@ -439,13 +439,13 @@ contract Score is Utils, Test {
                 merchant[tempSenderAddr].score -= _score;
                 if(isCustomerAlreadyRegister(_receiver)) {
                     //目的地址是客户
-                    tempReceivedAddr = customerPhone[tempReceivedPhone];
-                    customer[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = customerPhone[tempReceiverPhone];
+                    customer[tempReceiverAddr].score += _score;
                 }
                 else {
                     //目的地址是商户
-                    tempReceivedAddr = merchantPhone[tempReceivedPhone];
-                    merchant[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = merchantPhone[tempReceiverPhone];
+                    merchant[tempReceiverAddr].score += _score;
                 }
                 TransferScore(msg.sender, 0, "积分转让成功！");
                 return;

@@ -404,25 +404,25 @@ contract Score is Utils, Test {
         }
 
         bytes32 tempSenderPhone = stringToBytes32(_sender);
-        bytes32 tempReceivedPhone = stringToBytes32(_receiver);
+        bytes32 tempReceiverPhone = stringToBytes32(_receiver);
         address tempSenderAddr;
-        address tempReceivedAddr;
-        
+        address tempReceiverAddr;
+
         if(_senderType == 0) {
             //客户转移
             tempSenderAddr = customerPhone[tempSenderPhone];
             if(customer[tempSenderAddr].score >= _score) {
                 customer[tempSenderAddr].score -= _score;
-        
+
                 if(isCustomerAlreadyRegister(_receiver)) {
                     //目的地址是客户
-                    tempReceivedAddr = customerPhone[tempReceivedPhone];
-                    customer[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = customerPhone[tempReceiverPhone];
+                    customer[tempReceiverAddr].score += _score;
                 }
                 else {
                     //目的地址是商户
-                    tempReceivedAddr = merchantPhone[tempReceivedPhone];
-                    merchant[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = merchantPhone[tempReceiverPhone];
+                    merchant[tempReceiverAddr].score += _score;
                 }
                 TransferScore(msg.sender, 0, "积分转让成功！");
                 return;
@@ -439,13 +439,13 @@ contract Score is Utils, Test {
                 merchant[tempSenderAddr].score -= _score;
                 if(isCustomerAlreadyRegister(_receiver)) {
                     //目的地址是客户
-                    tempReceivedAddr = customerPhone[tempReceivedPhone];
-                    customer[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = customerPhone[tempReceiverPhone];
+                    customer[tempReceiverAddr].score += _score;
                 }
                 else {
                     //目的地址是商户
-                    tempReceivedAddr = merchantPhone[tempReceivedPhone];
-                    merchant[tempReceivedAddr].score += _score;
+                    tempReceiverAddr = merchantPhone[tempReceiverPhone];
+                    merchant[tempReceiverAddr].score += _score;
                 }
                 TransferScore(msg.sender, 0, "积分转让成功！");
                 return;
@@ -459,14 +459,14 @@ contract Score is Utils, Test {
 
     //商户添加一件商品
     event AddGood(address sender, uint statusCode, string message);
-    function addGood(string _phone, 
-        string _goodId, 
-        string _goodName, 
+    function addGood(string _phone,
+        string _goodId,
+        string _goodName,
         uint _goodPrice) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempGoodId = stringToBytes32(_goodId);
         bytes32 tempName = stringToBytes32(_goodName);
-        address tempMerchantAddr = merchantPhone[tempPhone]; 
+        address tempMerchantAddr = merchantPhone[tempPhone];
 
         //首先判断该商品Id是否已经存在
         if(!isGoodAlreadyAdd(_goodId)) {
@@ -506,7 +506,7 @@ contract Score is Utils, Test {
 
     //用户用积分购买一件商品,后台需要获得商品价格，使用event返回
     event BuyGood(address sender, uint statusCode, string message, uint goodPrice, bytes32 merchantPhone);
-    function buyGood(string _phone, 
+    function buyGood(string _phone,
         string _goodId) {
         //首先判断输入的商品Id是否存在
         bytes32 tempGoodId = stringToBytes32(_goodId);
@@ -527,7 +527,7 @@ contract Score is Utils, Test {
                 return;
             }
             else {
-                //对这里的方法抽取      
+                //对这里的方法抽取
                 BuyGood(msg.sender, 1, "余额不足，购买商品失败", goodPrice, merchantPhone);
                 return;
             }
@@ -549,9 +549,9 @@ contract Score is Utils, Test {
     //添加一次交易信息，应该是被外部调用的
     event AddTransaction(address sender, uint statusCode, string message);
     function addTransaction(bytes32 _txHash,
-        TxType _txType, 
-        string _sender, 
-        string _receiver, 
+        TxType _txType,
+        string _sender,
+        string _receiver,
         uint _score) {
         bytes32 tempSenderPhone = stringToBytes32(_sender);
         bytes32 tempReceiverPhone = stringToBytes32(_receiver);

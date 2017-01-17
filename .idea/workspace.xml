@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/Score.sol" afterPath="$PROJECT_DIR$/contract/Score.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contract/new/new_Score.sol" afterPath="$PROJECT_DIR$/contract/new/new_Score.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/transaction/transactionDetail.js" afterPath="$PROJECT_DIR$/routes/transaction/transactionDetail.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,8 +24,8 @@
       <file leaf-file-name="Score.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contract/Score.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="653" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
+            <state relative-caret-position="321">
+              <caret line="483" column="54" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -36,7 +34,7 @@
       <file leaf-file-name="new_Score.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contract/new/new_Score.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2582">
+            <state relative-caret-position="3857">
               <caret line="775" column="0" lean-forward="true" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
               <folding />
             </state>
@@ -619,12 +617,12 @@
       <workItem from="1484323074679" duration="33311000" />
       <workItem from="1484447864896" duration="43769000" />
       <workItem from="1484576638335" duration="15136000" />
-      <workItem from="1484631239147" duration="18595000" />
+      <workItem from="1484631239147" duration="19027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279434000" />
+    <option name="totallyTimeSpent" value="279866000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="6" />
@@ -1023,15 +1021,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contract/Score.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="653" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
+        <state relative-caret-position="321">
+          <caret line="483" column="54" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contract/new/new_Score.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2582">
+        <state relative-caret-position="3857">
           <caret line="775" column="0" lean-forward="true" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
           <folding />
         </state>

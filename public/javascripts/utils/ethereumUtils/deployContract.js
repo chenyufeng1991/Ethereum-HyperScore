@@ -4,10 +4,17 @@
  */
 var fs = require('fs');
 var path = require('path');
-var judgeNodeType = require('./judgeNodeType');
-var web3Instance = require('./web3Instance');
 var LOG = require('../commonUtils/LOG');
 
+//log4js
+var log4js = require('log4js');
+var log4jsConfig = require('../../config/log4jsConfig');
+log4js.configure(log4jsConfig.config('../../../log/deployContract.log'));
+var logger = log4jsConfig.logger;
+
+//web3
+var judgeNodeType = require('./judgeNodeType');
+var web3Instance = require('./web3Instance');
 var web3 = web3Instance.web3;
 
 //读取合约

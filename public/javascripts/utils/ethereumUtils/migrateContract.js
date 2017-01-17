@@ -56,27 +56,27 @@ fs.readFile("../../../../contract/new/new_Score.sol", function (error, result) {
         data: codeString,
         from: web3.eth.coinbase,
         gas: 5000000
-    }, function (error, contract) {
-        if (!contract.address) {
-            console.log(LOG.ETH_TRANSACTION_HASH + ":" + contract.transactionHash);
+    }, function (error, newContractInstance) {
+        if (!newContractInstance.address) {
+            console.log(LOG.ETH_TRANSACTION_HASH + ":" + newContractInstance.transactionHash);
         }
         else {
             //获得部署的合约地址
-            var contractAddress = contract.address;
+            var contractAddress = newContractInstance.address;
             console.log("新合约地址" + ":" + contractAddress);
             fs.writeFile("../../../../contract/new/new_contractAddress.txt", contractAddress);
 
             //传入新合约实例，然后去初始化旧合约实例
-            initOldContract(contract);
+            initOldContractInstance(newContractInstance);
         }
     });
 });
 
 /**
  * 获得旧合约实例
- * @param newContract
+ * @param newContractInstance
  */
-function initOldContract(newContract) {
+function initOldContractInstance(newContractInstance) {
     fs.readFile("../../../../contract/abiString.txt", function (error, result) {
         console.log(LOG.ETH_ABI_FILE + ":" + result.toString());
         var abiString = result.toString();
@@ -84,9 +84,9 @@ function initOldContract(newContract) {
         fs.readFile("../../../../contract/contractAddress.txt", function (error, result) {
             console.log("旧合约地址" + ":" + result.toString());
             var contractAddress = result.toString();
-            var oldContract = web3.eth.contract(JSON.parse(abiString)).at(contractAddress);
+            var oldContractInstance = web3.eth.contract(JSON.parse(abiString)).at(contractAddress);
 
-            startMigrate(oldContract, newContract);
+            startMigrate(oldContractInstance, newContractInstance);
         });
     });
 }
@@ -99,7 +99,10 @@ function initOldContract(newContract) {
 function startMigrate(oldContract, newContract) {
     console.log("chenyufeng：" + oldContract.address + "    " + newContract.address);
     //迁移客户数据
-    //获得客户地址数组
+    migrateCustomer(oldContract, newContract);
+}
+
+function migrateCustomer(oldContract, newContract) {
     oldContract.getCustomerAddrs(function (error, result) {
         if (!error) {
             var customerAddrs = result;

@@ -60,25 +60,17 @@ fs.readFile("../../../../contract/new/new_Score.sol", function (error, result) {
             console.log("新合约地址" + ":" + contractAddress);
             fs.writeFile("../../../../contract/new/new_contractAddress.txt", contractAddress);
 
-            contract.setAge(8888, {from: web3.eth.coinbase}, function (error, result) {
-                console.log(result);
-            });
-            contract.getAge(function (error, result) {
-                console.log(result);
-            });
-            var eventSetAge = contract.SetAge();
-            eventSetAge.watch(function (error, event) {
-                console.log(event.args.age);
-                eventSetAge.stopWatching();
-            });
-
+            //传入新合约实例
             initOldContract(contract);
         }
     });
 });
 
+/**
+ * 获得旧合约实例
+ * @param newContract
+ */
 function initOldContract(newContract) {
-
     fs.readFile("../../../../contract/abiString.txt", function (error, result) {
         console.log(LOG.ETH_ABI_FILE + ":" + result.toString());
         var abiString = result.toString();
@@ -93,6 +85,11 @@ function initOldContract(newContract) {
     });
 }
 
+/**
+ * 获得新旧合约实例
+ * @param oldContract
+ * @param newContract
+ */
 function startMigrate(oldContract, newContract) {
     console.log("chenyufeng：" + oldContract.address + "    " + newContract.address);
 }

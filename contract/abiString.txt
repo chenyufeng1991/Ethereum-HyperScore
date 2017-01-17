@@ -145,15 +145,19 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_managerAddr",
+    "type": "address"
+   },
+   {
     "name": "_phone",
-    "type": "bytes32"
+    "type": "string"
    },
    {
     "name": "_password",
-    "type": "bytes32"
+    "type": "string"
    }
   ],
-  "name": "loginManager",
+  "name": "registerManager",
   "outputs": [],
   "payable": false,
   "type": "function"
@@ -278,6 +282,23 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   }
+  ],
+  "name": "loginManager",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [
    {
@@ -396,27 +417,6 @@
    }
   ],
   "name": "buyGood",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_managerAddr",
-    "type": "address"
-   },
-   {
-    "name": "_phone",
-    "type": "bytes32"
-   },
-   {
-    "name": "_password",
-    "type": "bytes32"
-   }
-  ],
-  "name": "registerManager",
   "outputs": [],
   "payable": false,
   "type": "function"

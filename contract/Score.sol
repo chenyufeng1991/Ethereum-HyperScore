@@ -136,19 +136,21 @@ contract Score is Utils, Test {
     //注册一个银行管理员
     event RegisterManager(address sender, uint statusCode, string message);
     function registerManager(address _managerAddr, 
-        bytes32 _phone, 
-        bytes32 _password) {
+        string _phone, 
+        string _password) {
+        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempPassword = stringToBytes32(_password);
 
         //判断该账号是否已经注册
         if(!isManagerAlreadyRegister(_phone)) {
             //还未注册
             manager[_managerAddr].managerAddr = _managerAddr;
-            manager[_managerAddr].phone = _phone;
-            manager[_managerAddr].password = _password;
+            manager[_managerAddr].phone = tempPhone;
+            manager[_managerAddr].password = tempPassword;
 
-            managerPhone[_phone] = _managerAddr;
+            managerPhone[tempPhone] = _managerAddr;
             managerAddrs.push(_managerAddr);
-            managerPhones.push(_phone);
+            managerPhones.push(tempPhone);
 
             RegisterManager(msg.sender, 0, "管理员注册成功");
             return;
@@ -162,13 +164,13 @@ contract Score is Utils, Test {
 
     //登录一个银行管理员
     event LoginManager(address sender, uint statusCode, string message);
-    function loginManager(bytes32 _phone, 
-        bytes32 _password) {
+    function loginManager(string _phone, 
+        string _password) {
         //判断是否已经注册
         if(isManagerAlreadyRegister(_phone)) {
             //已经注册，可以进行登录操作
-            address tempAddr = managerPhone[_phone];
-            if(_password == manager[tempAddr].password) {
+            address tempAddr = managerPhone[stringToBytes32(_phone)];
+            if(stringToBytes32(_password) == manager[tempAddr].password) {
                 //登录成功
                 LoginManager(msg.sender, 0, "管理员登录成功");
                 return;
@@ -312,9 +314,10 @@ contract Score is Utils, Test {
     }
 
     //判断一个管理员是否已经注册
-    function isManagerAlreadyRegister(bytes32 _phone)internal returns(bool) {
+    function isManagerAlreadyRegister(string _phone)internal returns(bool) {
+        bytes32 tempPhone = stringToBytes32(_phone);
         for(uint i = 0; i < managerPhones.length; i++) {
-            if(managerPhones[i] == _phone) {
+            if(managerPhones[i] == tempPhone) {
                 return true;
             }
         }

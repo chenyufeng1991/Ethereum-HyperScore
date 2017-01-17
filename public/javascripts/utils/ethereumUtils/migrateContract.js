@@ -6,6 +6,11 @@ var path = require('path');
 var LOG = require('../commonUtils/LOG');
 var commonUtils = require('../commonUtils/commonUtils');
 
+//log4js
+var log4js = require('log4js');
+var log4jsConfig = require('../../config/log4jsConfig');
+log4js.configure(log4jsConfig.config('../../../../log/migrateContract.log'));
+
 //web3
 var judgeNodeType = require('./judgeNodeType');
 var web3Instance = require('./web3Instance');

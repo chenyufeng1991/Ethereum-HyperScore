@@ -85,6 +85,7 @@ contract Score is Utils, Test {
     }
 
     struct Transaction {
+        bytes32 txHash; //交易hash
         TxType txType; //交易状态
         bytes32 sender; //发送者手机号
         bytes32 receiver; //接收者手机号
@@ -126,11 +127,6 @@ contract Score is Utils, Test {
     //构造函数
     function Score() {
         owner = msg.sender;
-    }
-
-    //返回合约调用者地址
-    function getOwner() constant returns(address) {
-        return owner;
     }
 
     //注册一个银行管理员
@@ -560,6 +556,7 @@ contract Score is Utils, Test {
         bytes32 tempSenderPhone = stringToBytes32(_sender);
         bytes32 tempReceiverPhone = stringToBytes32(_receiver);
 
+        transaction[_txHash].txHash = _txHash;
         transaction[_txHash].txType = _txType;
         transaction[_txHash].sender = tempSenderPhone;
         transaction[_txHash].receiver = tempReceiverPhone;
@@ -572,10 +569,201 @@ contract Score is Utils, Test {
 
     //根据交易hash查找交易
     //经过测试，枚举可以直接返回，后台接收到的是uint类型
-    function getTransaction(bytes32 _txHash)constant returns(TxType, bytes32, bytes32, uint) {
+    function getTransactionDetail(bytes32 _txHash)constant returns(TxType, bytes32, bytes32, uint) {
         return(transaction[_txHash].txType, transaction[_txHash].sender, transaction[_txHash].receiver, transaction[_txHash].score);
     } 
 
+    //for contract migrate:setter/getter
+    function getOwner()constant returns(address) {
+        return owner;
+    }
+
+    function setOwner(address _owner) {
+        owner = _owner;
+    }
+
+    function getTotalIssuedScore()constant returns(uint) {
+        return totalIssuedScore;
+    }
+
+    function setTotalIssuedScore(uint _totalIssuedScore) {
+        totalIssuedScore = _totalIssuedScore;
+    }
+
+    function getTotalSettledScore()constant returns(uint) {
+        return totalSettledScore;
+    }
+
+    function setTotalSettledScore(uint _totalSettledScore) {
+        totalSettledScore = _totalSettledScore;
+    }
+
+    function getCustomerAddrs()constant returns(address[]) {
+        return customerAddrs;
+    }
+
+    function setCustomerAddrs(address[] _customerAddrs) {
+        customerAddrs = _customerAddrs;
+    }
+
+    function getCustomerPhones()constant returns(bytes32[]) {
+        return customerPhones;
+    }
+
+    function setCustomerPhones(bytes32[] _customerPhones) {
+        customerPhones = _customerPhones;
+    }
+
+    function getMerchantAddrs()constant returns(address[]) {
+        return merchantAddrs;
+    }
+
+    function setMerchantAddrs(address[] _merchantAddrs) {
+        merchantAddrs = _merchantAddrs;
+    }
+
+    function getMerchantPhones()constant returns(bytes32[]) {
+        return merchantPhones;
+    }
+
+    function setMerchantPhones(bytes32[] _merchantPhones) {
+        merchantPhones = _merchantPhones;
+    }
+
+    function getManagerAddrs()constant returns(address[]) {
+        return managerAddrs;
+    }
+
+    function setManagerAddrs(address[] _managerAddrs) {
+        managerAddrs = _managerAddrs;
+    }
+
+    function getManagerPhones()constant returns(bytes32[]) {
+        return managerPhones;
+    }
+
+    function setManagerPhones(bytes32[] _managerPhones) {
+        managerPhones = _managerPhones;
+    }
+
+    function getGoods()constant returns(bytes32[]) {
+        return goods;
+    }
+
+    function setGoods(bytes32[] _goods) {
+        goods = _goods;
+    }
+
+    function getTransaction()constant returns(bytes32[]) {
+        return transactions;
+    }
+
+    function setTransaction(bytes32[] _transactions) {
+        transactions = _transactions;
+    }
+    
+    function getCustomer(address _customerAddr)constant returns(address, bytes32, bytes32, uint, bytes32[]) {
+        return (customer[_customerAddr].customerAddr, customer[_customerAddr].phone, customer[_customerAddr].password, customer[_customerAddr].score, customer[_customerAddr].buyGoods);
+    }
+
+    function setCustomer(address _customerAddr, 
+        bytes32 _phone, 
+        bytes32 _password, 
+        uint _score, 
+        bytes32[] _buyGoods) {
+        customer[_customerAddr].customerAddr = _customerAddr;
+        customer[_customerAddr].phone = _phone;
+        customer[_customerAddr].password = _password;
+        customer[_customerAddr].score = _score;
+        customer[_customerAddr].buyGoods = _buyGoods;
+    }
+
+    function getCustomerPhone(bytes32 _customerPhone)constant returns(address) {
+        return (customerPhone[_customerPhone]);
+    }
+
+    function setCustomerPhone(bytes32 _customerPhone, 
+        address _customerAddr) {
+        customerPhone[_customerPhone] = _customerAddr;
+    }
+    
+    function getMerchant(address _merchantAddr)constant returns(address, bytes32, bytes32, uint, bytes32[]) {
+        return (merchant[_merchantAddr].merchantAddr, merchant[_merchantAddr].phone, merchant[_merchantAddr].password, merchant[_merchantAddr].score, merchant[_merchantAddr].sellGoods);
+    }
+
+    function setMerchant(address _merchantAddr, 
+        bytes32 _phone, 
+        bytes32 _password, 
+        uint _score, 
+        bytes32[] _sellGoods) {
+        merchant[_merchantAddr].merchantAddr = _merchantAddr;
+        merchant[_merchantAddr].phone = _phone;
+        merchant[_merchantAddr].password = _password;
+        merchant[_merchantAddr].score = _score;
+        merchant[_merchantAddr].sellGoods = _sellGoods;
+    }
+    
+    function getMerchantPhone(bytes32 _merchantPhone)constant returns(address) {
+        return merchantPhone[_merchantPhone];
+    }
+
+    function setMerchantPhone(bytes32 _merchantPhone, 
+        address _merchantAddr) {
+        merchantPhone[_merchantPhone] = _merchantAddr;
+    }
+    
+    function getManager(address _managerAddr)constant returns(address, bytes32, bytes32, uint) {
+        return(manager[_managerAddr].managerAddr, manager[_managerAddr].phone, manager[_managerAddr].password, manager[_managerAddr].issuedScore);
+    }
+
+    function setManager(address _managerAddr, 
+        bytes32 _phone, 
+        bytes32 _password, 
+        uint _issuedScore) {
+        manager[_managerAddr].managerAddr = _managerAddr;
+        manager[_managerAddr].phone = _phone;
+        manager[_managerAddr].password = _password;
+        manager[_managerAddr].issuedScore = _issuedScore;
+    }
+
+    function getManagerPhone(bytes32 _managerPhone)constant returns(address) {
+        return managerPhone[_managerPhone];
+    }
+
+    function setManagerPhone(bytes32 _managerPhone, 
+        address _managerAddr) {
+        managerPhone[_managerPhone] = _managerAddr;
+    }
+    
+    function getGood(bytes32 _goodId)constant returns(bytes32, bytes32, uint, address) {
+        return(good[_goodId].goodId, good[_goodId].goodName, good[_goodId].goodPrice, good[_goodId].merchantAddr);
+    }
+
+    function setGood(bytes32 _goodId, 
+        bytes32 _goodName, 
+        uint _goodPrice, 
+        address _merchantAddr) {
+        good[_goodId].goodId = _goodId;
+        good[_goodId].goodName = _goodName;
+        good[_goodId].goodPrice = _goodPrice;
+        good[_goodId].merchantAddr = _merchantAddr;
+    }
+    
+    function getTransaction(bytes32 _txHash)constant returns(bytes32, TxType, bytes32, bytes32, uint) {
+        return (transaction[_txHash].txHash, transaction[_txHash].txType, transaction[_txHash].sender, transaction[_txHash].receiver, transaction[_txHash].score);
+    }
+
+    function setTransaction(bytes32 _txHash, 
+        TxType _txType, 
+        bytes32 _sender, 
+        bytes32 _receiver, 
+        uint _score) {
+        transaction[_txHash].txHash = _txHash;
+        transaction[_txHash].txType = _txType;
+        transaction[_txHash].sender = _sender;
+        transaction[_txHash].receiver = _receiver;
+        transaction[_txHash].score = _score;
+    }
 }
 
 

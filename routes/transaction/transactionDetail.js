@@ -34,7 +34,7 @@ module.exports.query = function (req, res) {
 
     console.log(LOG.ETH_TRANSACTION_HASH + ":" + txHash);
 
-    global.contractInstance.getTransaction(txHash, function (error, result) {
+    global.contractInstance.getTransactionDetail(txHash, function (error, result) {
         if (!error) {
             console.log(LOG.CS_TX_STATE + ":" + result[0] + LOG.CS_SENDER_PHONE + ":" + commonUtils.hexCharCodeToStr(result[1]) +
                 LOG.CS_RECEIVER_PHONE + ":" + commonUtils.hexCharCodeToStr(result[2]) + LOG.CS_SCORE_AMOUNT + ":" + result[3]);

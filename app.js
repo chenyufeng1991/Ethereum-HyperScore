@@ -5,7 +5,7 @@ var LOG = require('./public/javascripts/utils/commonUtils/LOG');
 
 //web3
 var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
-contractInstance.createInstance(false); //是否使用迁移后的新合约
+contractInstance.createInstance(true); //是否使用迁移后的新合约
 var web3Instance = require('./public/javascripts/utils/ethereumUtils/web3Instance');
 var web3 = web3Instance.web3;
 

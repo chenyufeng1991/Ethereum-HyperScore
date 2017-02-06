@@ -100,6 +100,7 @@ function startMigrate(oldContract, newContract) {
     console.log("chenyufeng：" + oldContract.address + "    " + newContract.address);
     //迁移客户数据
     migrateCustomer(oldContract, newContract);
+    migrateMerchant(oldContract, newContract);
 }
 
 function migrateCustomer(oldContract, newContract) {
@@ -147,6 +148,74 @@ function migrateCustomer(oldContract, newContract) {
                                 }, function (error, result) {
                                     if (!error) {
                                         console.log("客户手机插入成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+                            }
+                            else {
+                                console.log("错误：" + error);
+                            }
+                        });
+                    }
+                }
+                else {
+                    console.log("错误：" + error);
+                }
+            });
+        }
+        else {
+            console.log("错误：" + error);
+        }
+    });
+}
+
+function migrateMerchant(oldContract, newContract) {
+    oldContract.getMerchantAddrs(function (error, result) {
+        if (!error) {
+            var merchantAddrs = result;
+            newContract.setMerchantAddrs(merchantAddrs, {
+                from: web3.eth.coinbase,
+                gas: 1000000
+            }, function (error, result) {
+                if (!error) {
+                    for (var i = 0; i < merchantAddrs.length; i++) {
+                        oldContract.getMerchant(merchantAddrs[i], function (error, result) {
+                            if (!error) {
+                                var merchantInfo = result;
+                                console.log("手机号:" + commonUtils.hexCharCodeToStr(merchantInfo[1]));
+                                console.log("密码:" + commonUtils.hexCharCodeToStr(merchantInfo[2]));
+                                newContract.setMerchant(merchantInfo[0], commonUtils.hexCharCodeToStr(merchantInfo[1]), commonUtils.hexCharCodeToStr(merchantInfo[2]), merchantInfo[3], merchantInfo[4], {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("插入地址->商户信息mapping成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+
+                                newContract.setMerchantPhone(commonUtils.hexCharCodeToStr(merchantInfo[1]), merchantInfo[0], {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("插入手机->地址mapping成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+
+                                newContract.setMerchantPhones(commonUtils.hexCharCodeToStr(merchantInfo[1]), {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("商户手机插入成功");
                                     }
                                     else {
                                         console.log("错误：" + error);

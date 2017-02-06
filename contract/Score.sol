@@ -702,8 +702,8 @@ contract Score is Utils, Test {
         return managerPhones;
     }
 
-    function setManagerPhones(bytes32[] _managerPhones) {
-        managerPhones = _managerPhones;
+    function setManagerPhones(string _managerPhones) {
+        managerPhones.push(stringToBytes32(_managerPhones));
     }
 
     function getManager(address _managerAddr)constant returns(address, bytes32, bytes32, uint) {
@@ -711,22 +711,28 @@ contract Score is Utils, Test {
     }
 
     function setManager(address _managerAddr, 
-        bytes32 _phone, 
-        bytes32 _password, 
+        string _phone, 
+        string _password, 
         uint _issuedScore) {
+
+        bytes32 tempPhone = stringToBytes32(_phone);
+        bytes32 tempPassword = stringToBytes32(_password);
+
         manager[_managerAddr].managerAddr = _managerAddr;
-        manager[_managerAddr].phone = _phone;
-        manager[_managerAddr].password = _password;
+        manager[_managerAddr].phone = tempPhone;
+        manager[_managerAddr].password = tempPassword;
         manager[_managerAddr].issuedScore = _issuedScore;
     }
 
-    function getManagerPhone(bytes32 _managerPhone)constant returns(address) {
-        return managerPhone[_managerPhone];
+    function getManagerPhone(string _managerPhone)constant returns(address) {
+        bytes32 tempManagerPhone = stringToBytes32(_managerPhone);
+        return (managerPhone[tempManagerPhone]);
     }
 
-    function setManagerPhone(bytes32 _managerPhone, 
+    function setManagerPhone(string _managerPhone, 
         address _managerAddr) {
-        managerPhone[_managerPhone] = _managerAddr;
+        bytes32 tempManagerPhone = stringToBytes32(_managerPhone);
+        managerPhone[tempManagerPhone] = _managerAddr;
     }
 
     //Goods

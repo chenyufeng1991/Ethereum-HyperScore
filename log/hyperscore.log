@@ -204,3 +204,15 @@
 [2017-02-06 11:39:30.477] [INFO] normal - GET /v1_0/user/customer/login/?phone=18710498512&password=12345
 [2017-02-06 11:40:14.899] [INFO] normal - GET /v1_0/user/customer/login/?phone=18710498511&password=12345
 [2017-02-06 11:40:35.949] [INFO] normal - GET /v1_0/user/merchant/login/?phone=18710498513&password=123456
+[2017-02-06 12:59:11.529] [INFO] normal - POST /v1_0/user/manager/register/?phone=18710498511&password=123456
+[2017-02-06 12:59:13.114] [INFO] normal - POST /v1_0/user/manager/register/?phone=18710498511&password=123456
+[2017-02-06 12:59:14.424] [INFO] normal - POST /v1_0/user/manager/register/?phone=18710498511&password=123456
+[2017-02-06 13:00:35.159] [INFO] normal - POST /v1_0/user/manager/register/?phone=18710498511&password=123456
+[2017-02-06 13:00:36.370] [INFO] normal - POST /v1_0/user/manager/register/?phone=18710498511&password=123456
+[2017-02-06 13:00:39.518] [INFO] normal - POST /v1_0/user/manager/register/?phone=18710498511&password=123456
+[2017-02-06 13:00:46.233] [INFO] normal - GET /v1_0/user/manager/login/?phone=18710498512&password=123456
+[2017-02-06 13:00:51.942] [INFO] normal - GET /v1_0/user/manager/login/?phone=18710498512&password=123456
+[2017-02-06 13:00:58.791] [INFO] normal - GET /v1_0/user/manager/login/?phone=18710498511&password=123456
+[2017-02-06 13:01:00.128] [INFO] normal - GET /v1_0/user/manager/login/?phone=18710498511&password=123456
+[2017-02-06 13:01:46.686] [INFO] normal - GET /v1_0/user/manager/login/?phone=18710498511&password=123456
+[2017-02-06 13:01:51.029] [INFO] normal - GET /v1_0/user/manager/login/?phone=18710498511&password=12345

@@ -382,6 +382,31 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_goodId",
+    "type": "string"
+   },
+   {
+    "name": "_goodName",
+    "type": "string"
+   },
+   {
+    "name": "_goodPrice",
+    "type": "uint256"
+   },
+   {
+    "name": "_merchantAddr",
+    "type": "address"
+   }
+  ],
+  "name": "setGood",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [
    {
@@ -486,31 +511,6 @@
     "type": "address"
    }
   ],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_goodId",
-    "type": "bytes32"
-   },
-   {
-    "name": "_goodName",
-    "type": "bytes32"
-   },
-   {
-    "name": "_goodPrice",
-    "type": "uint256"
-   },
-   {
-    "name": "_merchantAddr",
-    "type": "address"
-   }
-  ],
-  "name": "setGood",
-  "outputs": [],
   "payable": false,
   "type": "function"
  },

@@ -100,7 +100,11 @@ function startMigrate(oldContract, newContract) {
     console.log("chenyufeng：" + oldContract.address + "    " + newContract.address);
     //迁移客户数据
     migrateCustomer(oldContract, newContract);
+    //迁移商户数据
     migrateMerchant(oldContract, newContract);
+    //迁移管理员数据
+    migrateManager(oldContract, newContract);
+
 }
 
 function migrateCustomer(oldContract, newContract) {
@@ -216,6 +220,74 @@ function migrateMerchant(oldContract, newContract) {
                                 }, function (error, result) {
                                     if (!error) {
                                         console.log("商户手机插入成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+                            }
+                            else {
+                                console.log("错误：" + error);
+                            }
+                        });
+                    }
+                }
+                else {
+                    console.log("错误：" + error);
+                }
+            });
+        }
+        else {
+            console.log("错误：" + error);
+        }
+    });
+}
+
+function migrateManager(oldContract, newContract) {
+    oldContract.getManagerAddrs(function (error, result) {
+        if (!error) {
+            var managerAddrs = result;
+            newContract.setManagerAddrs(managerAddrs, {
+                from: web3.eth.coinbase,
+                gas: 1000000
+            }, function (error, result) {
+                if (!error) {
+                    for (var i = 0; i < managerAddrs.length; i++) {
+                        oldContract.getManager(managerAddrs[i], function (error, result) {
+                            if (!error) {
+                                var managerInfo = result;
+                                console.log("手机号:" + commonUtils.hexCharCodeToStr(managerInfo[1]));
+                                console.log("密码:" + commonUtils.hexCharCodeToStr(managerInfo[2]));
+                                newContract.setManager(managerInfo[0], commonUtils.hexCharCodeToStr(managerInfo[1]), commonUtils.hexCharCodeToStr(managerInfo[2]), managerInfo[3], {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("插入地址->管理员信息mapping成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+
+                                newContract.setManagerPhone(commonUtils.hexCharCodeToStr(managerInfo[1]), managerInfo[0], {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("插入手机->地址mapping成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+
+                                newContract.setManagerPhones(commonUtils.hexCharCodeToStr(managerInfo[1]), {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("管理员手机插入成功");
                                     }
                                     else {
                                         console.log("错误：" + error);

@@ -214,24 +214,6 @@
   "type": "function"
  },
  {
-  "constant": true,
-  "inputs": [
-   {
-    "name": "_managerPhone",
-    "type": "bytes32"
-   }
-  ],
-  "name": "getManagerPhone",
-  "outputs": [
-   {
-    "name": "",
-    "type": "address"
-   }
-  ],
-  "payable": false,
-  "type": "function"
- },
- {
   "constant": false,
   "inputs": [
    {
@@ -490,6 +472,24 @@
   "type": "function"
  },
  {
+  "constant": true,
+  "inputs": [
+   {
+    "name": "_managerPhone",
+    "type": "string"
+   }
+  ],
+  "name": "getManagerPhone",
+  "outputs": [
+   {
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": false,
   "inputs": [
    {
@@ -699,19 +699,6 @@
   "type": "function"
  },
  {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_managerPhones",
-    "type": "bytes32[]"
-   }
-  ],
-  "name": "setManagerPhones",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
   "constant": true,
   "inputs": [],
   "name": "getTotalSettledScore",
@@ -762,31 +749,6 @@
   "constant": false,
   "inputs": [
    {
-    "name": "_managerAddr",
-    "type": "address"
-   },
-   {
-    "name": "_phone",
-    "type": "bytes32"
-   },
-   {
-    "name": "_password",
-    "type": "bytes32"
-   },
-   {
-    "name": "_issuedScore",
-    "type": "uint256"
-   }
-  ],
-  "name": "setManager",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
     "name": "_merchantPhones",
     "type": "string"
    }
@@ -811,6 +773,36 @@
     "type": "bytes32[]"
    }
   ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_managerPhone",
+    "type": "string"
+   },
+   {
+    "name": "_managerAddr",
+    "type": "address"
+   }
+  ],
+  "name": "setManagerPhone",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_managerPhones",
+    "type": "string"
+   }
+  ],
+  "name": "setManagerPhones",
+  "outputs": [],
   "payable": false,
   "type": "function"
  },
@@ -1055,15 +1047,23 @@
   "constant": false,
   "inputs": [
    {
-    "name": "_managerPhone",
-    "type": "bytes32"
-   },
-   {
     "name": "_managerAddr",
     "type": "address"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   },
+   {
+    "name": "_issuedScore",
+    "type": "uint256"
    }
   ],
-  "name": "setManagerPhone",
+  "name": "setManager",
   "outputs": [],
   "payable": false,
   "type": "function"

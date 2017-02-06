@@ -1,6 +1,9 @@
 /**
  * 该文件为合约的自动化部署脚本，本次要部署新合约的时候，执行该文件即可。
  * 部署脚本不应该在服务端被调用，否则每次启动服务器都要部署新合约，不符合实际应用。
+ *
+ * 当在TestRPC中部署时，由于默认的TestRPC的gasLimit=0x47E7C4，而我们的合约部署gas已经远超过这个值，所以在启动TestRPC是要手动设置gasLimit,如使用：
+ * testrpc -l 6000000
  */
 var fs = require('fs');
 var path = require('path');

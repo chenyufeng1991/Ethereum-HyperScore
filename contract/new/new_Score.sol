@@ -748,14 +748,18 @@ contract Score is Utils, Test {
         return(good[_goodId].goodId, good[_goodId].goodName, good[_goodId].goodPrice, good[_goodId].merchantAddr);
     }
 
-    function setGood(bytes32 _goodId,
-        bytes32 _goodName,
+    function setGood(string _goodId,
+        string _goodName,
         uint _goodPrice,
         address _merchantAddr) {
-        good[_goodId].goodId = _goodId;
-        good[_goodId].goodName = _goodName;
-        good[_goodId].goodPrice = _goodPrice;
-        good[_goodId].merchantAddr = _merchantAddr;
+
+        bytes32 tempGoodId = stringToBytes32(_goodId);
+        bytes32 tempGoodName = stringToBytes32(_goodName);
+
+        good[tempGoodId].goodId = tempGoodId;
+        good[tempGoodId].goodName = tempGoodName;
+        good[tempGoodId].goodPrice = _goodPrice;
+        good[tempGoodId].merchantAddr = _merchantAddr;
     }
 
     //Transactions

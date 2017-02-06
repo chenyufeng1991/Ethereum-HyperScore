@@ -107,6 +107,9 @@ function startMigrate(oldContract, newContract) {
     //迁移管理员数据
     migrateManager(oldContract, newContract);
 
+    //迁移商品数据
+    migrateGood(oldContract, newContract);
+
 }
 
 function migrateTotalScore(oldContract, newContract) {
@@ -353,4 +356,45 @@ function migrateManager(oldContract, newContract) {
             console.log("错误：" + error);
         }
     });
+}
+
+function migrateGood(oldContract, newContract) {
+    oldContract.getGoods(function (error, result) {
+        if (!error) {
+            var goodIds = result;
+            newContract.setGoods(goodIds, {from: web3.eth.coinbase, gas: 1000000}, function (error, result) {
+                if (!error) {
+                    for (var i = 0; i < goodIds.length; i++) {
+                        oldContract.getGood(goodIds[i], function (error, result) {
+                            if (!error) {
+                                var goodInfo = result;
+                                console.log("商品Id：" + commonUtils.hexCharCodeToStr(goodInfo[0]) + "；商品名称：" + commonUtils.hexCharCodeToStr(goodInfo[1]) + "；商品价格：" + goodInfo[2] + "；商户地址：" + goodInfo[3]);
+
+                                newContract.setGood(commonUtils.hexCharCodeToStr(goodInfo[0]), commonUtils.hexCharCodeToStr(goodInfo[1]), goodInfo[2], goodInfo[3], {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("商品插入数组成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+                            }
+                            else {
+                                console.log("错误：" + error);
+                            }
+                        })
+                    }
+                }
+                else {
+                    console.log("错误：" + error);
+                }
+            })
+        }
+        else {
+            console.log("错误：" + error);
+        }
+    })
 }

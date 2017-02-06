@@ -110,6 +110,9 @@ function startMigrate(oldContract, newContract) {
     //迁移商品数据
     migrateGood(oldContract, newContract);
 
+    //迁移交易数据
+    migrateTransaction(oldContract, newContract);
+
 }
 
 function migrateTotalScore(oldContract, newContract) {
@@ -375,7 +378,51 @@ function migrateGood(oldContract, newContract) {
                                     gas: 1000000
                                 }, function (error, result) {
                                     if (!error) {
-                                        console.log("商品插入数组成功");
+                                        console.log("商品插入mapping成功");
+                                    }
+                                    else {
+                                        console.log("错误：" + error);
+                                    }
+                                });
+                            }
+                            else {
+                                console.log("错误：" + error);
+                            }
+                        })
+                    }
+                }
+                else {
+                    console.log("错误：" + error);
+                }
+            })
+        }
+        else {
+            console.log("错误：" + error);
+        }
+    })
+}
+
+function migrateTransaction(oldContract, newContract) {
+    oldContract.getTransactions(function (error, result) {
+        if (!error) {
+            var transactions = result;
+            newContract.setTransactions(transactions, {
+                from: web3.eth.coinbase,
+                gas: 1000000
+            }, function (error, result) {
+                if (!error) {
+                    for (var i = 0; i < transactions.length; i++) {
+                        oldContract.getTransaction(transactions[i], function (error, result) {
+                            if (!error) {
+                                var transactionInfo = result;
+                                console.log("交易Hash：" + transactionInfo[0] + "；交易类型：" + transactionInfo[1] + "；发送者：" + commonUtils.hexCharCodeToStr(transactionInfo[2]) + "；接收者：" + commonUtils.hexCharCodeToStr(transactionInfo[3]) + "；积分数额：" + transactionInfo[4]);
+
+                                newContract.setTransaction(transactionInfo[0], transactionInfo[1], commonUtils.hexCharCodeToStr(transactionInfo[2]), commonUtils.hexCharCodeToStr(transactionInfo[3]), transactionInfo[4], {
+                                    from: web3.eth.coinbase,
+                                    gas: 1000000
+                                }, function (error, result) {
+                                    if (!error) {
+                                        console.log("交易插入mapping成功");
                                     }
                                     else {
                                         console.log("错误：" + error);

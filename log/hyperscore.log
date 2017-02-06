@@ -299,3 +299,8 @@
 [2017-02-06 16:07:37.796] [INFO] normal - POST /v1_0/good/buy?phone=18710498513&goodId=1003
 [2017-02-06 16:07:41.832] [INFO] normal - POST /v1_0/good/buy?phone=18710498512&goodId=1003
 [2017-02-06 16:07:44.929] [INFO] normal - POST /v1_0/good/buy?phone=18710498512&goodId=1003
+[2017-02-06 16:43:43.478] [INFO] normal - GET /v1_0/transaction/detail?txHash=0x157288c437856127d091edeb3d205523e5a37e35fb3928a310e00fbfbd98831f
+[2017-02-06 16:44:19.564] [INFO] normal - GET /v1_0/transaction/detail?txHash=0x2064c5a1feb6941cf685e924a7cf6ba5a2dc3c85eb26071697231d97dbad2cd0
+[2017-02-06 16:44:35.371] [INFO] normal - GET /v1_0/transaction/detail?txHash=0xd47106cfeaf6976ceccaacc4de8482cd8f09bfbc8541fb0e7d89069403be18ee
+[2017-02-06 16:44:50.725] [INFO] normal - GET /v1_0/transaction/detail?txHash=0xee4749de5336eb20dee0c2c6f95c2737410efdc7c10a7073657188a8b0dc550d
+[2017-02-06 16:45:18.651] [INFO] normal - GET /v1_0/transaction/detail?txHash=0x7aa65951027f3abb6ac2d15395e9b40981faaa2ec2a65cfa09f9370901dd444f

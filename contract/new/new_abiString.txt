@@ -3,6 +3,35 @@
   "constant": false,
   "inputs": [
    {
+    "name": "_txHash",
+    "type": "bytes32"
+   },
+   {
+    "name": "_txType",
+    "type": "uint8"
+   },
+   {
+    "name": "_sender",
+    "type": "string"
+   },
+   {
+    "name": "_receiver",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   }
+  ],
+  "name": "setTransaction",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
     "name": "_customerPhone",
     "type": "string"
    },
@@ -94,35 +123,6 @@
    }
   ],
   "name": "setManagerAddrs",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_txHash",
-    "type": "bytes32"
-   },
-   {
-    "name": "_txType",
-    "type": "uint8"
-   },
-   {
-    "name": "_sender",
-    "type": "bytes32"
-   },
-   {
-    "name": "_receiver",
-    "type": "bytes32"
-   },
-   {
-    "name": "_score",
-    "type": "uint256"
-   }
-  ],
-  "name": "setTransaction",
   "outputs": [],
   "payable": false,
   "type": "function"

@@ -154,6 +154,24 @@
   "type": "function"
  },
  {
+  "constant": true,
+  "inputs": [
+   {
+    "name": "_merchantPhone",
+    "type": "string"
+   }
+  ],
+  "name": "getMerchantPhone",
+  "outputs": [
+   {
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": false,
   "inputs": [
    {
@@ -239,6 +257,23 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_merchantPhone",
+    "type": "string"
+   },
+   {
+    "name": "_merchantAddr",
+    "type": "address"
+   }
+  ],
+  "name": "setMerchantPhone",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [
    {
@@ -314,23 +349,6 @@
     "type": "address"
    }
   ],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_merchantPhone",
-    "type": "bytes32"
-   },
-   {
-    "name": "_merchantAddr",
-    "type": "address"
-   }
-  ],
-  "name": "setMerchantPhone",
-  "outputs": [],
   "payable": false,
   "type": "function"
  },
@@ -651,35 +669,6 @@
    },
    {
     "name": "_phone",
-    "type": "bytes32"
-   },
-   {
-    "name": "_password",
-    "type": "bytes32"
-   },
-   {
-    "name": "_score",
-    "type": "uint256"
-   },
-   {
-    "name": "_sellGoods",
-    "type": "bytes32[]"
-   }
-  ],
-  "name": "setMerchant",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_merchantAddr",
-    "type": "address"
-   },
-   {
-    "name": "_phone",
     "type": "string"
    },
    {
@@ -799,7 +788,7 @@
   "inputs": [
    {
     "name": "_merchantPhones",
-    "type": "bytes32[]"
+    "type": "string"
    }
   ],
   "name": "setMerchantPhones",
@@ -822,6 +811,35 @@
     "type": "bytes32[]"
    }
   ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_merchantAddr",
+    "type": "address"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   },
+   {
+    "name": "_score",
+    "type": "uint256"
+   },
+   {
+    "name": "_sellGoods",
+    "type": "bytes32[]"
+   }
+  ],
+  "name": "setMerchant",
+  "outputs": [],
   "payable": false,
   "type": "function"
  },
@@ -957,24 +975,6 @@
   ],
   "name": "issueScore",
   "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [
-   {
-    "name": "_merchantPhone",
-    "type": "bytes32"
-   }
-  ],
-  "name": "getMerchantPhone",
-  "outputs": [
-   {
-    "name": "",
-    "type": "address"
-   }
-  ],
   "payable": false,
   "type": "function"
  },

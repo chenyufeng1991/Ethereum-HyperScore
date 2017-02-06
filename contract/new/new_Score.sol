@@ -770,20 +770,24 @@ contract Score is Utils, Test {
     function setTransactions(bytes32[] _transactions) {
         transactions = _transactions;
     }
-    
+
     function getTransaction(bytes32 _txHash)constant returns(bytes32, TxType, bytes32, bytes32, uint) {
         return (transaction[_txHash].txHash, transaction[_txHash].txType, transaction[_txHash].sender, transaction[_txHash].receiver, transaction[_txHash].score);
     }
 
-    function setTransaction(bytes32 _txHash, 
-        TxType _txType, 
-        bytes32 _sender, 
-        bytes32 _receiver, 
+    function setTransaction(bytes32 _txHash,
+        TxType _txType,
+        string _sender,
+        string _receiver,
         uint _score) {
+
+        bytes32 tempSender = stringToBytes32(_sender);
+        bytes32 tempReceiver = stringToBytes32(_receiver);
+
         transaction[_txHash].txHash = _txHash;
         transaction[_txHash].txType = _txType;
-        transaction[_txHash].sender = _sender;
-        transaction[_txHash].receiver = _receiver;
+        transaction[_txHash].sender = tempSender;
+        transaction[_txHash].receiver = tempReceiver;
         transaction[_txHash].score = _score;
     }
 }

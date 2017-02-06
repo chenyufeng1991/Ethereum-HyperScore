@@ -98,6 +98,8 @@ function initOldContractInstance(newContractInstance) {
  */
 function startMigrate(oldContract, newContract) {
     console.log("chenyufeng：" + oldContract.address + "    " + newContract.address);
+    //迁移已发行积分/已清算积分
+    migrateTotalScore(oldContract, newContract);
     //迁移客户数据
     migrateCustomer(oldContract, newContract);
     //迁移商户数据
@@ -105,6 +107,48 @@ function startMigrate(oldContract, newContract) {
     //迁移管理员数据
     migrateManager(oldContract, newContract);
 
+}
+
+function migrateTotalScore(oldContract, newContract) {
+    oldContract.getTotalIssuedScore(function (error, result) {
+        if (!error) {
+            var totalIssuedScore = result;
+            newContract.setTotalIssuedScore(totalIssuedScore, {
+                from: web3.eth.coinbase,
+                gas: 1000000
+            }, function (error, result) {
+                if (!error) {
+                    console.log("已发行总积分插入成功");
+                }
+                else {
+                    console.log("错误：" + error);
+                }
+            })
+        }
+        else {
+            console.log("错误：" + error);
+        }
+    });
+
+    oldContract.getTotalSettledScore(function (error, result) {
+        if (!error) {
+            var totalSettledScore = result;
+            newContract.setTotalSettledScore(totalSettledScore, {
+                from: web3.eth.coinbase,
+                gas: 1000000
+            }, function (error, result) {
+                if (!error) {
+                    console.log("已清算总积分插入成功");
+                }
+                else {
+                    console.log("错误：" + error);
+                }
+            })
+        }
+        else {
+            console.log("错误：" + error);
+        }
+    });
 }
 
 function migrateCustomer(oldContract, newContract) {

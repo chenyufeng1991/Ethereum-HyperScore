@@ -22,7 +22,7 @@ var web3 = web3Instance.web3;
 
 //读取合约
 //如果由其他文件来调用该模块，则fs中写入的路径应该是相对于调用者来的，而不是该文件
-fs.readFile("../../../contract/Score.sol", function (error, result) {
+fs.readFile("../../../../contract/Score.sol", function (error, result) {
     console.log(LOG.ETH_CONTRACT + ":" + result.toString());
     //编译合约
     var compileJSON = JSON.stringify(web3.eth.compile.solidity(result.toString()), null, " "); //格式化输出

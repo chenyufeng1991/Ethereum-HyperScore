@@ -12,7 +12,7 @@ var LOG = require('../commonUtils/LOG');
 //log4js
 var log4js = require('log4js');
 var log4jsConfig = require('../../config/log4jsConfig');
-log4js.configure(log4jsConfig.config('../../../../log/deployContract.log'));
+log4js.configure(log4jsConfig.config(path.join(__dirname, '../../../../log/deployContract.log')));
 var logger = log4jsConfig.logger;
 
 //web3
@@ -22,12 +22,12 @@ var web3 = web3Instance.web3;
 
 //读取合约
 //如果由其他文件来调用该模块，则fs中写入的路径应该是相对于调用者来的，而不是该文件
-fs.readFile("../../../../contract/Score.sol", function (error, result) {
+fs.readFile(path.join(__dirname, "../../../../contract/Score.sol"), function (error, result) {
     console.log(LOG.ETH_CONTRACT + ":" + result.toString());
     //编译合约
     var compileJSON = JSON.stringify(web3.eth.compile.solidity(result.toString()), null, " "); //格式化输出
     console.log(LOG.ETH_COMPILED_CONTRACT + ":" + compileJSON);
-    fs.writeFile("../../../../contract/compileJSON.txt", compileJSON); //写入文件
+    fs.writeFile(path.join(__dirname, "../../../../contract/compileJSON.txt"), compileJSON); //写入文件
 
     //获得abi文件
     var abiString;
@@ -40,7 +40,7 @@ fs.readFile("../../../../contract/Score.sol", function (error, result) {
         abiString = JSON.stringify(web3.eth.compile.solidity(result.toString()).Score.info.abiDefinition, null, " ");
     }
     console.log(LOG.ETH_ABI_FILE + ":" + abiString);
-    fs.writeFile("../../../../contract/abiString.txt", abiString);
+    fs.writeFile(path.join(__dirname, "../../../../contract/abiString.txt"), abiString);
 
     //获得code字节码
     var codeString;
@@ -53,7 +53,7 @@ fs.readFile("../../../../contract/Score.sol", function (error, result) {
         codeString = web3.eth.compile.solidity(result.toString()).Score.code;
     }
     console.log(LOG.ETH_BINARY_CODE + ":" + codeString);
-    fs.writeFile("../../../../contract/codeString.txt", codeString);
+    fs.writeFile(path.join(__dirname, "../../../../contract/codeString.txt"), codeString);
 
     //根据abi和bytecode部署合约;如果这里error，有可能是OOG造成的
     web3.eth.contract(JSON.parse(abiString)).new({
@@ -68,7 +68,7 @@ fs.readFile("../../../../contract/Score.sol", function (error, result) {
             //获得部署的合约地址
             var contractAddress = contract.address;
             console.log(LOG.ETH_CONTRACT_ADDRESS + ":" + contractAddress);
-            fs.writeFile("../../../../contract/contractAddress.txt", contractAddress);
+            fs.writeFile(path.join(__dirname, "../../../../contract/contractAddress.txt"), contractAddress);
 
             contract.setAge(8888, {from: web3.eth.coinbase}, function (error, result) {
                 console.log(result);

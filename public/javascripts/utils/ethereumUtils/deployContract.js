@@ -27,7 +27,7 @@ fs.readFile("../../../../contract/Score.sol", function (error, result) {
     //编译合约
     var compileJSON = JSON.stringify(web3.eth.compile.solidity(result.toString()), null, " "); //格式化输出
     console.log(LOG.ETH_COMPILED_CONTRACT + ":" + compileJSON);
-    fs.writeFile("../../../contract/compileJSON.txt", compileJSON); //写入文件
+    fs.writeFile("../../../../contract/compileJSON.txt", compileJSON); //写入文件
 
     //获得abi文件
     var abiString;
@@ -40,7 +40,7 @@ fs.readFile("../../../../contract/Score.sol", function (error, result) {
         abiString = JSON.stringify(web3.eth.compile.solidity(result.toString()).Score.info.abiDefinition, null, " ");
     }
     console.log(LOG.ETH_ABI_FILE + ":" + abiString);
-    fs.writeFile("../../../contract/abiString.txt", abiString);
+    fs.writeFile("../../../../contract/abiString.txt", abiString);
 
     //获得code字节码
     var codeString;
@@ -53,7 +53,7 @@ fs.readFile("../../../../contract/Score.sol", function (error, result) {
         codeString = web3.eth.compile.solidity(result.toString()).Score.code;
     }
     console.log(LOG.ETH_BINARY_CODE + ":" + codeString);
-    fs.writeFile("../../../contract/codeString.txt", codeString);
+    fs.writeFile("../../../../contract/codeString.txt", codeString);
 
     //根据abi和bytecode部署合约;如果这里error，有可能是OOG造成的
     web3.eth.contract(JSON.parse(abiString)).new({
@@ -68,7 +68,7 @@ fs.readFile("../../../../contract/Score.sol", function (error, result) {
             //获得部署的合约地址
             var contractAddress = contract.address;
             console.log(LOG.ETH_CONTRACT_ADDRESS + ":" + contractAddress);
-            fs.writeFile("../../../contract/contractAddress.txt", contractAddress);
+            fs.writeFile("../../../../contract/contractAddress.txt", contractAddress);
 
             contract.setAge(8888, {from: web3.eth.coinbase}, function (error, result) {
                 console.log(result);

@@ -12,7 +12,7 @@ var LOG = require('../commonUtils/LOG');
 //log4js
 var log4js = require('log4js');
 var log4jsConfig = require('../../config/log4jsConfig');
-log4js.configure(log4jsConfig.config('../../../log/deployContract.log'));
+// log4js.configure(log4jsConfig.config('../../../log/deployContract.log'));
 var logger = log4jsConfig.logger;
 
 //web3

@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var web3Instance = require('./web3Instance');
 var LOG = require('../commonUtils/LOG');
 
@@ -13,13 +14,13 @@ module.exports.createInstance = function (isNewContract) {
 
     if(isNewContract) {
         //使用迁移后的新合约
-        abiStringRoute = "./contract/new/new_abiString.txt";
-        contractAddressRoute = "./contract/new/new_contractAddress.txt";
+        abiStringRoute = path.join(__dirname, "../../../../contract/new/new_abiString.txt");
+        contractAddressRoute = path.join(__dirname, "../../../../contract/new/new_contractAddress.txt");
     }
     else {
         //使用旧合约
-        abiStringRoute = "./contract/abiString.txt";
-        contractAddressRoute = "./contract/contractAddress.txt";
+        abiStringRoute = path.join(__dirname, "../../../../contract/abiString.txt");
+        contractAddressRoute = path.join(__dirname, "../../../../contract/contractAddress.txt");
     }
     fs.readFile(abiStringRoute, function (error, result) {
         console.log(LOG.ETH_ABI_FILE + ":" + result.toString());

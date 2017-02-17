@@ -900,3 +900,9 @@
 [2017-02-17 09:46:43.922] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
 [2017-02-17 09:49:05.009] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
 [2017-02-17 09:49:09.985] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
+[2017-02-17 10:05:59.222] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
+[2017-02-17 10:58:03.676] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
+[2017-02-17 10:58:16.538] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
+[2017-02-17 11:00:22.833] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
+[2017-02-17 11:00:24.208] [INFO] normal - POST /v1_0/user/manager/register/?phone=1&password=123456
+[2017-02-17 11:00:27.900] [INFO] normal - POST /v1_0/user/manager/register/?phone=2&password=123456

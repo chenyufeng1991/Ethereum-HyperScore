@@ -1,5 +1,6 @@
 var express = require('express'); // 项目服务端使用express框架
 var app = express();
+var path = require('path');
 var config = require('./public/javascripts/config/config');
 var LOG = require('./public/javascripts/utils/commonUtils/LOG');
 
@@ -18,7 +19,7 @@ daoUtils.bankCreate(web3.eth.coinbase, 0, 0);
 //log4js
 var log4js = require('log4js');
 var log4jsConfig = require('./public/javascripts/config/log4jsConfig');
-log4js.configure(log4jsConfig.config('./log/hyperscore.log'));
+log4js.configure(log4jsConfig.config(path.join(__dirname, './log/hyperscore.log')));
 app.use(log4js.connectLogger(log4jsConfig.logger, {
     level: log4jsConfig.connectLogLevel,
     format: log4jsConfig.connectLogFormat

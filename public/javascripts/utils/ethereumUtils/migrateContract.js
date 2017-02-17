@@ -9,7 +9,7 @@ var commonUtils = require('../commonUtils/commonUtils');
 //log4js
 var log4js = require('log4js');
 var log4jsConfig = require('../../config/log4jsConfig');
-log4js.configure(log4jsConfig.config('../../../../log/migrateContract.log'));
+log4js.configure(log4jsConfig.config(path.join(__dirname, '../../../../log/migrateContract.log')));
 
 //web3
 var judgeNodeType = require('./judgeNodeType');
@@ -18,12 +18,12 @@ var web3 = web3Instance.web3;
 
 //读取合约
 //如果由其他文件来调用该模块，则fs中写入的路径应该是相对于调用者来的，而不是该文件
-fs.readFile("../../../../contract/new/new_Score.sol", function (error, result) {
+fs.readFile(path.join(__dirname, "../../../../contract/new/new_Score.sol"), function (error, result) {
     console.log(LOG.ETH_CONTRACT + ":" + result.toString());
     //编译合约
     var compileJSON = JSON.stringify(web3.eth.compile.solidity(result.toString()), null, " "); //格式化输出
     console.log(LOG.ETH_COMPILED_CONTRACT + ":" + compileJSON);
-    fs.writeFile("../../../../contract/new/new_compileJSON.txt", compileJSON); //写入文件
+    fs.writeFile(path.join(__dirname, "../../../../contract/new/new_compileJSON.txt"), compileJSON); //写入文件
 
     //获得abi文件
     var abiString;
@@ -36,7 +36,7 @@ fs.readFile("../../../../contract/new/new_Score.sol", function (error, result) {
         abiString = JSON.stringify(web3.eth.compile.solidity(result.toString()).Score.info.abiDefinition, null, " ");
     }
     console.log(LOG.ETH_ABI_FILE + ":" + abiString);
-    fs.writeFile("../../../../contract/new/new_abiString.txt", abiString);
+    fs.writeFile(path.join(__dirname, "../../../../contract/new/new_abiString.txt"), abiString);
 
     //获得code字节码
     var codeString;
@@ -49,7 +49,7 @@ fs.readFile("../../../../contract/new/new_Score.sol", function (error, result) {
         codeString = web3.eth.compile.solidity(result.toString()).Score.code;
     }
     console.log(LOG.ETH_BINARY_CODE + ":" + codeString);
-    fs.writeFile("../../../../contract/new/new_codeString.txt", codeString);
+    fs.writeFile(path.join(__dirname, "../../../../contract/new/new_codeString.txt"), codeString);
 
     //根据abi和bytecode部署合约;如果这里error，有可能是OOG造成的
     web3.eth.contract(JSON.parse(abiString)).new({
@@ -64,7 +64,7 @@ fs.readFile("../../../../contract/new/new_Score.sol", function (error, result) {
             //获得部署的合约地址
             var contractAddress = newContractInstance.address;
             console.log("新合约地址" + ":" + contractAddress);
-            fs.writeFile("../../../../contract/new/new_contractAddress.txt", contractAddress);
+            fs.writeFile(path.join(__dirname, "../../../../contract/new/new_contractAddress.txt"), contractAddress);
 
             //传入新合约实例，然后去初始化旧合约实例
             initOldContractInstance(newContractInstance);
@@ -77,11 +77,11 @@ fs.readFile("../../../../contract/new/new_Score.sol", function (error, result) {
  * @param newContractInstance
  */
 function initOldContractInstance(newContractInstance) {
-    fs.readFile("../../../../contract/abiString.txt", function (error, result) {
+    fs.readFile(path.join(__dirname, "../../../../contract/abiString.txt"), function (error, result) {
         console.log(LOG.ETH_ABI_FILE + ":" + result.toString());
         var abiString = result.toString();
 
-        fs.readFile("../../../../contract/contractAddress.txt", function (error, result) {
+        fs.readFile(path.join(__dirname, "../../../../contract/contractAddress.txt"), function (error, result) {
             console.log("旧合约地址" + ":" + result.toString());
             var contractAddress = result.toString();
             var oldContractInstance = web3.eth.contract(JSON.parse(abiString)).at(contractAddress);

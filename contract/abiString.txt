@@ -433,27 +433,6 @@
   "type": "function"
  },
  {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_managerAddr",
-    "type": "address"
-   },
-   {
-    "name": "_phone",
-    "type": "string"
-   },
-   {
-    "name": "_password",
-    "type": "string"
-   }
-  ],
-  "name": "registerManager",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
   "constant": true,
   "inputs": [],
   "name": "getMerchantPhones",
@@ -925,6 +904,24 @@
   "type": "function"
  },
  {
+  "constant": true,
+  "inputs": [
+   {
+    "name": "_phone",
+    "type": "string"
+   }
+  ],
+  "name": "getSalt",
+  "outputs": [
+   {
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": false,
   "inputs": [
    {
@@ -1027,6 +1024,31 @@
     "type": "address[]"
    }
   ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_managerAddr",
+    "type": "address"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   },
+   {
+    "name": "_salt",
+    "type": "uint256"
+   }
+  ],
+  "name": "registerManager",
+  "outputs": [],
   "payable": false,
   "type": "function"
  },

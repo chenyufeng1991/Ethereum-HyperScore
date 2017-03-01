@@ -7,7 +7,8 @@ var ManagerSchema = new mongoose.Schema({
     managerAddr: String,
     phone: String,
     password: String,
-    issuedScore: Number
+    issuedScore: Number,
+    salt: String
 });
 
 mongoose.model('Manager', ManagerSchema);

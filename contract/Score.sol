@@ -59,6 +59,7 @@ contract Score is Utils, Test {
         bytes32 phone; //管理员手机
         bytes32 password; //管理员密码
         uint issuedScore; //该管理员发行的积分总数
+        uint salt; //该管理员的盐，为注册时的时间戳
     }
 
     struct Customer {
@@ -133,7 +134,8 @@ contract Score is Utils, Test {
     event RegisterManager(address sender, uint statusCode, string message);
     function registerManager(address _managerAddr, 
         string _phone, 
-        string _password) {
+        string _password,
+        uint _salt) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempPassword = stringToBytes32(_password);
 
@@ -143,6 +145,7 @@ contract Score is Utils, Test {
             manager[_managerAddr].managerAddr = _managerAddr;
             manager[_managerAddr].phone = tempPhone;
             manager[_managerAddr].password = tempPassword;
+            manager[_managerAddr].salt = _salt;
 
             managerPhone[tempPhone] = _managerAddr;
             managerAddrs.push(_managerAddr);
@@ -156,6 +159,11 @@ contract Score is Utils, Test {
             RegisterManager(msg.sender, 1, "该管理员已经注册");
             return;
         }
+    }
+
+    function getSalt(string _phone)constant returns(uint) {
+        address tempAddr = managerPhone[stringToBytes32(_phone)];
+        return manager[tempAddr].salt;
     }
 
     //登录一个银行管理员

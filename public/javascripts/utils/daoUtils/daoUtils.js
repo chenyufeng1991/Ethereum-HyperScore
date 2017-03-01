@@ -55,13 +55,14 @@ module.exports.merchantInsert = function (merchantAddr, phone, password) {
 };
 
 //向数据库中插入一个商户
-module.exports.managerInsert = function (managerAddr, phone, password) {
+module.exports.managerInsert = function (managerAddr, phone, password, salt) {
     //存储数据库
     var manager = new Manager({
         managerAddr: managerAddr,
         phone: phone,
         password: commonUtils.toMD5(password),
-        issuedScore: 0
+        issuedScore: 0,
+        salt: salt
     });
 
     manager.save(function (error) {

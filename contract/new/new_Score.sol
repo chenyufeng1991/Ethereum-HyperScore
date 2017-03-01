@@ -59,6 +59,7 @@ contract Score is Utils, Test {
         bytes32 phone; //管理员手机
         bytes32 password; //管理员密码
         uint issuedScore; //该管理员发行的积分总数
+        uint salt; //该管理员的盐，为注册时的时间戳
     }
 
     struct Customer {
@@ -92,10 +93,10 @@ contract Score is Utils, Test {
         uint score; //积分数量
     }
 
-    mapping (address=>Customer) customer; 
+    mapping (address=>Customer) customer;
     mapping (bytes32=>address) customerPhone; //根据用户手机查找账户address
 
-    mapping (address=>Merchant) merchant; 
+    mapping (address=>Merchant) merchant;
     mapping (bytes32=>address) merchantPhone; //根据商户手机查找账户address
 
     mapping (address=>Manager) manager;
@@ -131,9 +132,10 @@ contract Score is Utils, Test {
 
     //注册一个银行管理员
     event RegisterManager(address sender, uint statusCode, string message);
-    function registerManager(address _managerAddr, 
-        string _phone, 
-        string _password) {
+    function registerManager(address _managerAddr,
+        string _phone,
+        string _password,
+        uint _salt) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempPassword = stringToBytes32(_password);
 
@@ -143,6 +145,7 @@ contract Score is Utils, Test {
             manager[_managerAddr].managerAddr = _managerAddr;
             manager[_managerAddr].phone = tempPhone;
             manager[_managerAddr].password = tempPassword;
+            manager[_managerAddr].salt = _salt;
 
             managerPhone[tempPhone] = _managerAddr;
             managerAddrs.push(_managerAddr);
@@ -158,9 +161,14 @@ contract Score is Utils, Test {
         }
     }
 
+    function getSalt(string _phone)constant returns(uint) {
+        address tempAddr = managerPhone[stringToBytes32(_phone)];
+        return manager[tempAddr].salt;
+    }
+
     //登录一个银行管理员
     event LoginManager(address sender, uint statusCode, string message);
-    function loginManager(string _phone, 
+    function loginManager(string _phone,
         string _password) {
         //判断是否已经注册
         if(isManagerAlreadyRegister(_phone)) {
@@ -192,8 +200,8 @@ contract Score is Utils, Test {
 
     //注册一个客户
     event RegisterCustomer(address sender, uint statusCode, string message);
-    function registerCustomer(address _customerAddr, 
-        string _phone, 
+    function registerCustomer(address _customerAddr,
+        string _phone,
         string _password) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempPassword = stringToBytes32(_password);
@@ -219,7 +227,7 @@ contract Score is Utils, Test {
 
     //登录一个客户
     event LoginCustomer(address sender, uint statusCode, string message);
-    function loginCustomer(string _phone, 
+    function loginCustomer(string _phone,
         string _password) {
         //判断是否已经注册
         if(isCustomerAlreadyRegister(_phone)) {
@@ -252,8 +260,8 @@ contract Score is Utils, Test {
 
     //注册一个商户
     event RegisterMerchant(address sender, uint statusCode, string message);
-    function registerMerchant(address _merchantAddr, 
-        string _phone, 
+    function registerMerchant(address _merchantAddr,
+        string _phone,
         string _password) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempPassword = stringToBytes32(_password);
@@ -279,7 +287,7 @@ contract Score is Utils, Test {
 
     //登录一个商户
     event LoginMerchant(address sender, uint statusCode, string message);
-    function loginMerchant(string _phone, 
+    function loginMerchant(string _phone,
         string _password) {
         //判断是否已经注册
         if(isMerchantAlreadyRegister(_phone)) {
@@ -346,7 +354,7 @@ contract Score is Utils, Test {
     //管理员发送积分给客户,只能发送给客户
     event IssueScore(address sender, uint statusCode, string message);
     function issueScore(string _managerPhone ,
-        string _customerPhone, 
+        string _customerPhone,
         uint _score)onlyOwner {
         bytes32 tempManagerPhone = stringToBytes32(_managerPhone);
         bytes32 tempCustomerPhone = stringToBytes32(_customerPhone);
@@ -355,7 +363,7 @@ contract Score is Utils, Test {
             //已经注册
             address tempManagerAddr = managerPhone[tempManagerPhone];
             address tempCustomerAddr = customerPhone[tempCustomerPhone];
-            
+
             totalIssuedScore += _score;
             customer[tempCustomerAddr].score += _score;
             manager[tempManagerAddr].issuedScore += _score;
@@ -371,7 +379,7 @@ contract Score is Utils, Test {
 
     //商户和银行之间清算积分
     event SettleScore(address sender, uint statusCode, string message);
-    function settleScore(string _phone, 
+    function settleScore(string _phone,
         uint _score) {
         bytes32 tempPhone = stringToBytes32(_phone);
         address tempAddr = merchantPhone[tempPhone];
@@ -392,9 +400,9 @@ contract Score is Utils, Test {
     //两个账户转移积分，任意两个账户之间都可以转移，客户商户都调用该方法
     //_senderType表示调用者类型，0表示客户，1表示商户
     event TransferScore(address sender, uint statusCode, string message);
-    function transferScore(uint _senderType, 
-        string _sender, 
-        string _receiver, 
+    function transferScore(uint _senderType,
+        string _sender,
+        string _receiver,
         uint _score) {
 
         if(!isCustomerAlreadyRegister(_receiver) && !isMerchantAlreadyRegister(_receiver)){

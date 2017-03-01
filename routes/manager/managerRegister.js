@@ -35,6 +35,7 @@ module.exports.register = function (req, res) {
 
     var phone = req.query.phone;
     var password = req.query.password;
+    var timeStamp = Date.now();
 
     console.log(LOG.CS_PHONE + ":" + phone + LOG.CS_PASSWORD + ":" + password);
 
@@ -45,7 +46,8 @@ module.exports.register = function (req, res) {
         console.log(LOG.ETH_ECC_PUBLIC_KEY + ":" + keys.publicKey + LOG.ETH_ECC_PRIVATE_KEY + ":" + keys.privateKey +
             LOG.ETH_ECC_ACCOUNT + ":" + keys.accountAddress);
         var accountAddress = keys.accountAddress;
-        global.contractInstance.registerManager(accountAddress, phone, commonUtils.toMD5(password), {
+
+        global.contractInstance.registerManager(accountAddress, phone, commonUtils.toMD5(password + timeStamp), timeStamp, {
             from: web3.eth.coinbase,
             gas: 1600000
         }, function (error, result) {
@@ -56,7 +58,7 @@ module.exports.register = function (req, res) {
                     var message = result.args.message;
                     console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                     if (statusCode == 0) {
-                        daoUtils.managerInsert(accountAddress, phone, password);
+                        daoUtils.managerInsert(accountAddress, phone, commonUtils.toMD5(password + timeStamp), timeStamp);
                     }
                     var response = {
                         code: statusCode,

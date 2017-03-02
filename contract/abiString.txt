@@ -338,6 +338,28 @@
   "constant": true,
   "inputs": [
    {
+    "name": "_userType",
+    "type": "uint8"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   }
+  ],
+  "name": "getSalt",
+  "outputs": [
+   {
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": true,
+  "inputs": [
+   {
     "name": "_txHash",
     "type": "bytes32"
    }
@@ -900,24 +922,6 @@
   ],
   "name": "setAge",
   "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [
-   {
-    "name": "_phone",
-    "type": "string"
-   }
-  ],
-  "name": "getSalt",
-  "outputs": [
-   {
-    "name": "",
-    "type": "uint256"
-   }
-  ],
   "payable": false,
   "type": "function"
  },

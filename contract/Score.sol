@@ -53,6 +53,9 @@ contract Score is Utils, Test {
 
     //交易状态
     enum TxType{Unknown, Issue, Transfer, Buy, Settle}
+
+    //类型
+    enum UserType{Manager, Customer, Merchant}
    
     struct Manager {
         address managerAddr; //银行管理员address
@@ -68,6 +71,7 @@ contract Score is Utils, Test {
         bytes32 password; //客户密码
         uint score; //积分余额
         bytes32[] buyGoods; //购买的商品数组
+        uint salt; //该客户的盐，为注册时的时间戳
     }
 
     struct Merchant {
@@ -76,6 +80,7 @@ contract Score is Utils, Test {
         bytes32 password; //商户密码
         uint score; //积分余额
         bytes32[] sellGoods; //发布的商品数组
+        uint salt; //该商户的盐，为注册时的时间戳
     }
 
     struct Good {
@@ -161,9 +166,21 @@ contract Score is Utils, Test {
         }
     }
 
-    function getSalt(string _phone)constant returns(uint) {
-        address tempAddr = managerPhone[stringToBytes32(_phone)];
-        return manager[tempAddr].salt;
+    function getSalt(UserType _userType, 
+        string _phone)constant returns(uint) {
+        address tempAddr;
+        if(_userType == UserType.Manager) {
+            tempAddr = managerPhone[stringToBytes32(_phone)];
+            return manager[tempAddr].salt;
+        }
+        else if(_userType == UserType.Customer) {
+            tempAddr = customerPhone[stringToBytes32(_phone)];
+            return customer[tempAddr].salt;
+        }
+        else if(_userType == UserType.Merchant) {
+            tempAddr = merchantPhone[stringToBytes32(_phone)];
+            return merchant[tempAddr].salt;
+        }
     }
 
     //登录一个银行管理员

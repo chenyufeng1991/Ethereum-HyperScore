@@ -29,7 +29,7 @@ module.exports.login = function (req, res) {
 
     console.log(LOG.CS_PHONE + ":" + phone + LOG.CS_PASSWORD + ":" + password);
 
-    global.contractInstance.getSalt(phone, function (error, result) {
+    global.contractInstance.getSalt(0, phone, function (error, result) {
         if(!error) {
             var salt = result.toString();
             global.contractInstance.loginManager(phone, commonUtils.toMD5(password + salt), {from: web3.eth.coinbase}, function (error, result) {

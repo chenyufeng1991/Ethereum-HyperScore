@@ -14,14 +14,15 @@ var Transaction = mongoose.model('Transaction');
 var LOG = require('../commonUtils/LOG');
 
 //向数据库中插入一个客户
-module.exports.customerInsert = function (customerAddr, phone, password) {
+module.exports.customerInsert = function (customerAddr, phone, password, salt) {
     //存储数据库
     var customer = new Customer({
         customerAddr: customerAddr,
         phone: phone,
         password: commonUtils.toMD5(password),
         score: 0,
-        buyGoods: []
+        buyGoods: [],
+        salt: salt
     });
     customer.save(function (error) {
         if (!error) {

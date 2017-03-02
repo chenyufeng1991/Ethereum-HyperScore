@@ -9,7 +9,8 @@ var CustomerSchema = new mongoose.Schema({
     phone: String,
     password: String,
     score: Number,
-    buyGoods: []
+    buyGoods: [],
+    salt: String
 });
 
 mongoose.model('Customer', CustomerSchema);

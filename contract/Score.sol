@@ -219,7 +219,8 @@ contract Score is Utils, Test {
     event RegisterCustomer(address sender, uint statusCode, string message);
     function registerCustomer(address _customerAddr, 
         string _phone, 
-        string _password) {
+        string _password,
+        uint _salt) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempPassword = stringToBytes32(_password);
 
@@ -229,6 +230,7 @@ contract Score is Utils, Test {
             customer[_customerAddr].customerAddr = _customerAddr;
             customer[_customerAddr].phone = tempPhone;
             customer[_customerAddr].password = tempPassword;
+            customer[_customerAddr].salt = _salt;
 
             customerPhone[tempPhone] = _customerAddr;
             customerAddrs.push(_customerAddr);

@@ -85,6 +85,31 @@
   "type": "function"
  },
  {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_customerAddr",
+    "type": "address"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   },
+   {
+    "name": "_salt",
+    "type": "uint256"
+   }
+  ],
+  "name": "registerCustomer",
+  "outputs": [],
+  "payable": false,
+  "type": "function"
+ },
+ {
   "constant": true,
   "inputs": [],
   "name": "getMerchantAddrs",
@@ -512,27 +537,6 @@
     "type": "address"
    }
   ],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_customerAddr",
-    "type": "address"
-   },
-   {
-    "name": "_phone",
-    "type": "string"
-   },
-   {
-    "name": "_password",
-    "type": "string"
-   }
-  ],
-  "name": "registerCustomer",
-  "outputs": [],
   "payable": false,
   "type": "function"
  },

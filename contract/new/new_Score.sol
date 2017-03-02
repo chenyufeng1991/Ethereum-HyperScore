@@ -281,7 +281,8 @@ contract Score is Utils, Test {
     event RegisterMerchant(address sender, uint statusCode, string message);
     function registerMerchant(address _merchantAddr,
         string _phone,
-        string _password) {
+        string _password,
+        uint _salt) {
         bytes32 tempPhone = stringToBytes32(_phone);
         bytes32 tempPassword = stringToBytes32(_password);
 
@@ -291,6 +292,7 @@ contract Score is Utils, Test {
             merchant[_merchantAddr].merchantAddr = _merchantAddr;
             merchant[_merchantAddr].phone = tempPhone;
             merchant[_merchantAddr].password = tempPassword;
+            merchant[_merchantAddr].salt = _salt;
 
             merchantPhone[tempPhone] = _merchantAddr;
             merchantAddrs.push(_merchantAddr);

@@ -35,6 +35,7 @@ module.exports.register = function (req, res) {
 
     var phone = req.query.phone;
     var password = req.query.password;
+    var timeStamp = Date.now();
 
     console.log(LOG.CS_PHONE + ":" + phone + LOG.CS_PASSWORD + ":" + password);
 
@@ -45,7 +46,7 @@ module.exports.register = function (req, res) {
         var accountAddress = keys.accountAddress;
         console.log(LOG.ETH_ECC_PUBLIC_KEY + ":" + keys.publicKey + LOG.ETH_ECC_PRIVATE_KEY + ":" + keys.privateKey +
             LOG.ETH_ECC_ACCOUNT + ":" + keys.accountAddress);
-        global.contractInstance.registerMerchant(accountAddress, phone, commonUtils.toMD5(password), {
+        global.contractInstance.registerMerchant(accountAddress, phone, commonUtils.toMD5(password + timeStamp), timeStamp, {
             from: web3.eth.coinbase,
             gas: 1600000
         }, function (error, result) {
@@ -57,7 +58,7 @@ module.exports.register = function (req, res) {
                     console.log(LOG.CS_CONTRACT_STATUS_CODE + ":" + statusCode + LOG.CS_CONTRACT_EVENT_MESSAGE + ":" + message);
                     if (statusCode == 0) {
                         //该商户在区块链注册成功，插入数据库
-                        daoUtils.merchantInsert(accountAddress, phone, password);
+                        daoUtils.merchantInsert(accountAddress, phone, commonUtils.toMD5(password + timeStamp), timeStamp);
                     }
                     var response = {
                         code: statusCode,

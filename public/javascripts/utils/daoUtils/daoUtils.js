@@ -35,14 +35,15 @@ module.exports.customerInsert = function (customerAddr, phone, password, salt) {
 };
 
 //向数据库中插入一个商户
-module.exports.merchantInsert = function (merchantAddr, phone, password) {
+module.exports.merchantInsert = function (merchantAddr, phone, password, salt) {
     //存储数据库
     var merchant = new Merchant({
         merchantAddr: merchantAddr,
         phone: phone,
-        password: commonUtils.toMD5(password),
+        password: password,
         score: 0,
-        sellGoods: []
+        sellGoods: [],
+        salt: salt
     });
 
     merchant.save(function (error) {

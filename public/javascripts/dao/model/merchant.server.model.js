@@ -8,7 +8,8 @@ var MerchantSchema = new mongoose.Schema({
     phone: String,
     password: String,
     score: Number,
-    sellGoods: []
+    sellGoods: [],
+    salt: String
 });
 
 mongoose.model('Merchant', MerchantSchema);

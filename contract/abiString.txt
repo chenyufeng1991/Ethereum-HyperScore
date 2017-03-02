@@ -669,27 +669,6 @@
   "constant": false,
   "inputs": [
    {
-    "name": "_merchantAddr",
-    "type": "address"
-   },
-   {
-    "name": "_phone",
-    "type": "string"
-   },
-   {
-    "name": "_password",
-    "type": "string"
-   }
-  ],
-  "name": "registerMerchant",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
     "name": "_phone",
     "type": "string"
    },
@@ -747,6 +726,31 @@
     "type": "bytes32[]"
    }
   ],
+  "payable": false,
+  "type": "function"
+ },
+ {
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_merchantAddr",
+    "type": "address"
+   },
+   {
+    "name": "_phone",
+    "type": "string"
+   },
+   {
+    "name": "_password",
+    "type": "string"
+   },
+   {
+    "name": "_salt",
+    "type": "uint256"
+   }
+  ],
+  "name": "registerMerchant",
+  "outputs": [],
   "payable": false,
   "type": "function"
  },

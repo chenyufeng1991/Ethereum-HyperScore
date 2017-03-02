@@ -19,7 +19,7 @@ module.exports.customerInsert = function (customerAddr, phone, password, salt) {
     var customer = new Customer({
         customerAddr: customerAddr,
         phone: phone,
-        password: commonUtils.toMD5(password),
+        password: password,
         score: 0,
         buyGoods: [],
         salt: salt
@@ -61,7 +61,7 @@ module.exports.managerInsert = function (managerAddr, phone, password, salt) {
     var manager = new Manager({
         managerAddr: managerAddr,
         phone: phone,
-        password: commonUtils.toMD5(password),
+        password: password,
         issuedScore: 0,
         salt: salt
     });

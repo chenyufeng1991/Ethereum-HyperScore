@@ -10,5 +10,6 @@
 module.exports = {
     mongodb: "mongodb://localhost/HyperScore",
     clientUrl: "http://localhost:8545",
-    serverPort: 8000
+    PORT: 8000,
+    SSLPORT: 8001
 };

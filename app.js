@@ -1,8 +1,29 @@
 var express = require('express'); // 项目服务端使用express框架
 var app = express();
 var path = require('path');
+var fs = require('fs');
 var config = require('./public/javascripts/config/config');
 var LOG = require('./public/javascripts/utils/commonUtils/LOG');
+
+var http = require('http');
+var https = require('https');
+
+var privateKey  = fs.readFileSync(path.join(__dirname, './certificate/private.pem'), 'utf8');
+var certificate = fs.readFileSync(path.join(__dirname, './certificate/file.crt'), 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+var PORT = config.PORT;
+var SSLPORT = config.SSLPORT;
+
+httpServer.listen(PORT, function() {
+    console.log('HTTP Server is running on: http://localhost:%s', PORT);
+});
+
+httpsServer.listen(SSLPORT, function() {
+    console.log('HTTPS Server is running on: https://localhost:%s', SSLPORT);
+});
 
 //web3
 var contractInstance = require('./public/javascripts/utils/ethereumUtils/contractInstance');
@@ -27,9 +48,12 @@ app.use(log4js.connectLogger(log4jsConfig.logger, {
 
 //主页
 app.get('/', function (req, res) {
-    console.log("HyperScore Main Page");
-    res.send("HyperScore Main Page");
-    res.end();
+    if(req.protocol === 'https') {
+        res.status(200).send('Welcome to Safety Land!');
+    }
+    else {
+        res.status(200).send('Welcome!');
+    }
 });
 
 //中间件，所有的路由都经过这里，可以起到过滤器的作用
@@ -105,9 +129,3 @@ app.get('/v1_0/user/customer/goods', customerGoods.query);
 //根据交易hash查找某次交易
 var transactionDetail = require('./routes/transaction/transactionDetail');
 app.get('/v1_0/transaction/detail', transactionDetail.query);
-
-app.listen(config.serverPort, function () {
-    console.log(LOG.CS_START_SERVER_MESSAGE + config.serverPort);
-});
-
-

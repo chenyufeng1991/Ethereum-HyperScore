@@ -59,7 +59,7 @@ fs.readFile(path.join(__dirname, "../../../../contract/Score.sol"), function (er
     web3.eth.contract(JSON.parse(abiString)).new({
         data: codeString,
         from: web3.eth.coinbase,
-        gas: 5000000
+        gas: 7000000
     }, function (error, contract) {
         if (!contract.address) {
             console.log(LOG.ETH_TRANSACTION_HASH + ":" + contract.transactionHash);

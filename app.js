@@ -49,10 +49,10 @@ app.use(log4js.connectLogger(log4jsConfig.logger, {
 //主页
 app.get('/', function (req, res) {
     if(req.protocol === 'https') {
-        res.status(200).send('Welcome to Safety Land!');
+        res.status(200).send('This is https visit!');
     }
     else {
-        res.status(200).send('Welcome!');
+        res.status(200).send('This is http visit!');
     }
 });
 

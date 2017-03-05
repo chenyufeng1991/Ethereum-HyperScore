@@ -1077,3 +1077,9 @@
 [2017-03-03 22:08:03.825] [INFO] normal - GET /v1_0/user/customer/login/?phone=1&password=12345
 [2017-03-03 22:08:04.861] [INFO] normal - GET /v1_0/user/customer/login/?phone=1&password=12345
 [2017-03-03 22:08:07.541] [INFO] normal - GET /v1_0/user/customer/login/?phone=12&password=12345
+[2017-03-04 20:30:11.834] [INFO] normal - GET /
+[2017-03-04 20:31:12.441] [INFO] normal - GET /
+[2017-03-04 20:55:37.713] [INFO] normal - GET /
+[2017-03-04 20:56:32.612] [INFO] normal - GET /
+[2017-03-04 21:19:27.769] [INFO] normal - GET /
+[2017-03-04 21:52:43.682] [INFO] normal - GET /

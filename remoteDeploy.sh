@@ -4,5 +4,5 @@
 node ./public/javascripts/utils/ethereumUtils/deployContract.js
 
 #启动服务
-node ./app.js
+sudo forever start ./app.js
 

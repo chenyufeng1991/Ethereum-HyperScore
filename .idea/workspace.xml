@@ -2,7 +2,228 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d6352a-e399-4483-a2b8-c412ef0c595e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/solidity官方文档.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/《比特币：一种点对点的电子现金系统》 中本聪 比特币创始论文.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/中国区块链白皮书1014.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/以太坊白皮书最新版.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/区块链技术——通往未来的虫洞.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/精通比特币.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/精通比特币Mastering-Bitcoin.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/.idea/Score.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/bank.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/customer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/javascripts/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/javascripts/bank.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/javascripts/customer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/javascripts/merchant.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/javascripts/utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/merchant.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/app/stylesheets/app.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/app.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/bank.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/contracts/Score.sol.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/contracts/Utils.sol.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/customer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/build/merchant.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/contracts/Score.sol" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/migrations/2_deploy_contracts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/test/metacoin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/truffle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/.bowerrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/.editorconfig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/.jshintrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/.versions" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/dist/web3-light.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/dist/web3-light.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/dist/web3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/dist/web3.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/dist/web3.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/example/balance.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/example/contract.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/example/contract_array.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/example/event_inc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/example/icap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/example/namereg.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/example/node-app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/gulpfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/contracts/GlobalRegistrar.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/contracts/ICAPRegistrar.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/contracts/SmartExchange.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/address.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/bool.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/bytes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/coder.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/dynamicbytes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/formatters.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/int.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/param.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/real.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/string.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/type.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/uint.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/solidity/ureal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/utils/browser-bn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/utils/browser-xhr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/utils/config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/utils/sha3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/utils/utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/version.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/allevents.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/batch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/contract.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/errors.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/event.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/extend.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/filter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/formatters.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/function.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/httpprovider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/iban.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/ipcprovider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/jsonrpc.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/method.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/methods/db.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/methods/eth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/methods/net.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/methods/personal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/methods/shh.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/methods/watches.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/namereg.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/property.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/requestmanager.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/settings.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/syncing.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/lib/web3/transfer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/package-init.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/package.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/styleguide.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/async.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/batch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/coder.decodeParam.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/coder.encodeParam.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/contract.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/errors.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/event.decode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/event.encode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.inputAddressFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.inputDefaultBlockFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.inputPostFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.inputTransactionFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.outputBlockFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.outputLogFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.outputPostFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/formatters.outputTransactionFormatter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/helpers/FakeHttpProvider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/helpers/FakeHttpProvider2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/helpers/FakeIpcRequest.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/helpers/FakeQtNavigator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/helpers/FakeXMLHttpRequest.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/helpers/test.method.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/helpers/test.utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/httpprovider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/iban.createIndirect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/iban.fromAddress.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/iban.isValid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/iban.toAddress.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/ipcprovider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/jsonrpc.id.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/jsonrpc.isValidResponse.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/jsonrpc.toBatchPayload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/jsonrpc.toPayload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/method.extractCallback.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/method.formatInput.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/method.formatOutput.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/method.getCall.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/method.validateArgs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/mocha.opts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/node/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/node/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/polling.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/requestmanager.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/sha3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.extractDisplayName.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.extractTypeName.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.fromAscii.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.fromDecimal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.fromUtf8.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.fromWei.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.isAddress.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.isBigNumber.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.isChecksumAddress.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.isFunction.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.isJson.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.isStrictAddress.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.isString.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.toAscii.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.toBigNumber.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.toDecimal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.toHex.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.toUtf8.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/utils.toWei.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.db.getHex.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.db.getString.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.db.methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.db.putHex.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.db.putString.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.accounts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.blockNumber.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.call.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.coinbase.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.contract.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.defaultBlock.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.estimateGas.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.filter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.gasPrice.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getBalance.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getBlock.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getBlockTransactionCount.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getBlockUncleCount.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getCode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getCompilers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getStorageAt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getTransaction.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getTransactionFromBlock.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getTransactionReceipt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getUncle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.getWork.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.hashRate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.isSyncing.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.mining.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.sendIBANTransaction.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.eth.submitWork.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.extend.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.fromICAP.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.net.listening.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.net.methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.net.peerCount.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.personal.listAccounts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.personal.methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.personal.newAccount.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.personal.unlockAccount.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.sha3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.shh.filter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.shh.hasIdentity.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.shh.methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/truffle/Score/web3js/test/web3.shh.post.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/hyperscore.log" afterPath="$PROJECT_DIR$/log/hyperscore.log" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,11 +271,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deployContract.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log/deployContract.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hyperscore.log" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/log/hyperscore.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="migrateContract.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log/migrateContract.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_log4js.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log/test_log4js.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -140,7 +401,6 @@
         <option value="$PROJECT_DIR$/HyperScore.log" />
         <option value="$PROJECT_DIR$/public/javascripts/test/test_log4js.js" />
         <option value="$PROJECT_DIR$/public/javascripts/config/log4jsConfig.js" />
-        <option value="$PROJECT_DIR$/log/hyperscore.log" />
         <option value="$PROJECT_DIR$/routes/transaction/transactionDetail.js" />
         <option value="$PROJECT_DIR$/public/javascripts/test/testcase/2.6测试流程.txt" />
         <option value="$PROJECT_DIR$/routes/merchant/merchantGoods.js" />
@@ -164,6 +424,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils/ethereumUtils/deployContract.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/log/hyperscore.log" />
       </list>
     </option>
   </component>
@@ -224,7 +485,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="log" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -238,95 +499,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ethereumUtils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HyperScore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="certificate" />
+              <option name="myItemId" value="contract" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -514,18 +687,18 @@
       <workItem from="1488631953254" duration="428000" />
       <workItem from="1488633469589" duration="609000" />
       <workItem from="1488716288919" duration="2252000" />
-      <workItem from="1532878114082" duration="197000" />
+      <workItem from="1532878114082" duration="509000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355032000" />
+    <option name="totallyTimeSpent" value="355344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1652" y="85" width="1252" height="778" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22420797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22420797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -580,34 +753,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/config/log4jsConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="56" column="1" lean-forward="false" selection-start-line="56" selection-start-column="1" selection-end-line="56" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/bank.server.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/good.server.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/dao/model/transaction.server.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/dao/connectDAO.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -937,6 +1082,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/deployContract.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/migrateContract.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/test_log4js.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/hyperscore.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
